@@ -14,12 +14,19 @@ import java.io.IOException;
 public class App extends Application {
 
     private static Scene scene;
+    private PrimaryController primaryController;  // Add this field
+
 
     @Override
     public void start(Stage stage) throws IOException {
-        scene = new Scene(loadFXML("primary"), 640, 480);
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("primary.fxml"));
+        Parent root = loader.load();
+        primaryController = loader.getController();  // Initialize the controller
+        scene = new Scene(root, 800, 800);
         stage.setScene(scene);
         stage.show();
+        primaryController.buildCards();
+
     }
 
     static void setRoot(String fxml) throws IOException {
