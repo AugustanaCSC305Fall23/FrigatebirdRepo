@@ -59,14 +59,10 @@ public class PrimaryController {
             String event = entry.getKey();
             Map<String, Card> genderMap = entry.getValue();
 
-            System.out.println("Event: " + event);
-
             for (Map.Entry<String, Card> genderEntry : genderMap.entrySet()) {
                 String gender = genderEntry.getKey();
                 Card card = genderEntry.getValue();
 
-                System.out.println("  Gender: " + gender);
-                System.out.println("  Card Details: " + card.toString());
             }
         }
     }
@@ -91,13 +87,10 @@ public class PrimaryController {
                 VBox cardContentBox = new VBox(imgView , event );
                 button.setGraphic(cardContentBox);
                 allCardContent.getChildren().add(button);
-
-
                 button.setGraphic(imgView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-
 
             // Add the button to the TilePane
         }
@@ -105,6 +98,7 @@ public class PrimaryController {
         // Set gaps for the TilePane
         allCardContent.setHgap(10);
         allCardContent.setVgap(20);
+
     }
 
 }
