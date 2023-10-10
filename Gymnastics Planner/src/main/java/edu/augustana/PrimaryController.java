@@ -35,9 +35,10 @@ public class PrimaryController{
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
-            String searchText = searchedWord.getText();
-            // Do something with the collected text (e.g., perform a search)
-            searchList(searchText, allCards);
+            if(searchButton != null) {
+                String searchText = searchedWord.getText();
+                searchList(searchText);
+            }
         });
     }
 
@@ -124,7 +125,7 @@ public class PrimaryController{
         allCardContent.setVgap(20);
     }
 
-    private void searchList(String inputWord, ArrayList<Card> allCards) {
+    private void searchList(String inputWord) {
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
         ArrayList<Card> filteredCards = new ArrayList<>();
 
@@ -164,7 +165,7 @@ public class PrimaryController{
                 event.setFont(Font.font(20));
                 VBox cardContentBox = new VBox(imgView, event);
                 button.setGraphic(cardContentBox);
-                allCardContent.getChildren().add(cardContentBox);
+                allCardContent.getChildren().add(button);
 
 
                 button.setGraphic(imgView);
