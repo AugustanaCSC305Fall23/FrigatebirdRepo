@@ -10,17 +10,13 @@
 <TabPane prefHeight="600.0" prefWidth="865.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
     <tabs>
         <Tab fx:id="allCardTab" text="All Cards">
-            <content>
-                    <ScrollPane prefWidth="400.0">
-                        <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="865.0">
-                                <children>
-                                    <TilePane fx:id="allCardContent" prefHeight="563.0" prefWidth="849.0" />
-                                </children>
-                            </AnchorPane>
-                        </content>
-                    </ScrollPane>
-            </content>
+         <content>
+            <ScrollPane prefHeight="200.0" prefWidth="200.0">
+               <content>
+                  <TilePane fx:id="allCardContent" prefHeight="549.0" prefWidth="855.0" />
+               </content>
+            </ScrollPane>
+         </content>
         </Tab>
         <Tab text="Create Plan">
             <content>
