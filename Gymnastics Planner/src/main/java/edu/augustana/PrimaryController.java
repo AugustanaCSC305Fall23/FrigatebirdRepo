@@ -69,6 +69,8 @@ public class PrimaryController {
 
 
     private void dynamicCarAddingToView() {
+        allCardContent.setPrefColumns(3);  // Set the desired number of columns
+
         for (Card card : allCards) {
             Button button = new Button();
 
@@ -80,9 +82,9 @@ public class PrimaryController {
 
                 Image img = new Image(imageLink);
                 ImageView imgView = new ImageView(img);
-                imgView.setFitHeight(200);
-                imgView.setFitWidth(200);
-                imgView.setPreserveRatio(true);
+                imgView.setFitHeight(250);
+                imgView.setFitWidth(250);
+
                 Text event  = new Text(card.getEvent());
                 VBox cardContentBox = new VBox(imgView , event );
                 button.setGraphic(cardContentBox);

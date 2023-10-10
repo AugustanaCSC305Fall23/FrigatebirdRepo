@@ -8,50 +8,42 @@
 <?import javafx.scene.layout.TilePane?>
 
 <TabPane prefHeight="600.0" prefWidth="865.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
-  <tabs>
-    <Tab fx:id="allCardTab" text="All Cards">
-         <content>
-            <ScrollPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="-Infinity" minWidth="-Infinity" prefHeight="517.0" prefWidth="716.0">
-              <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="574.0" prefWidth="779.0">
-                     <children>
-                        <ScrollPane prefHeight="570.0" prefWidth="778.0">
-                          <content>
-                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="773.0">
-                                 <children>
-                                    <TilePane fx:id="allCardContent" prefHeight="168.0" prefWidth="296.0" />
-                                 </children>
-                              </AnchorPane>
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-              </content>
-            </ScrollPane>
-         </content>
-      </Tab>
-      <Tab text="Create Plan">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-        </content>
-      </Tab>
-    <Tab text="All Plans">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0" />
-      </content>
-    </Tab>
-      <Tab text="Add Cards">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </content>
-      </Tab>
-      <Tab text="Exit">
-         <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-         </content>
-      </Tab>
-  </tabs>
-   <opaqueInsets>
-      <Insets right="3.0" top="1.0" />
-   </opaqueInsets>
+    <tabs>
+        <Tab fx:id="allCardTab" text="All Cards">
+            <content>
+                    <ScrollPane prefWidth="400.0">
+                        <content>
+                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="566.0" prefWidth="865.0">
+                                <children>
+                                    <TilePane fx:id="allCardContent" prefHeight="563.0" prefWidth="849.0" />
+                                </children>
+                            </AnchorPane>
+                        </content>
+                    </ScrollPane>
+            </content>
+        </Tab>
+        <Tab text="Create Plan">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+        <Tab text="All Plans">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0" />
+            </content>
+        </Tab>
+        <Tab text="Add Cards">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+        <Tab text="Exit">
+            <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+            </content>
+        </Tab>
+    </tabs>
+    <opaqueInsets>
+        <Insets right="3.0" top="1.0" />
+    </opaqueInsets>
 </TabPane>
