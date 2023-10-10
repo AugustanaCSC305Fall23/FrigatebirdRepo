@@ -12,6 +12,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 
 public class PrimaryController {
@@ -86,10 +87,12 @@ public class PrimaryController {
                 imgView.setFitWidth(250);
 
                 Text event  = new Text(card.getEvent());
+                event.setFont(Font.font(20));
                 VBox cardContentBox = new VBox(imgView , event );
+
                 button.setGraphic(cardContentBox);
                 allCardContent.getChildren().add(button);
-                button.setGraphic(imgView);
+                button.setGraphic(cardContentBox);
             } catch (Exception e) {
                 e.printStackTrace();
             }
