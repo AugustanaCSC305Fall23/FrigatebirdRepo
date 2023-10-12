@@ -26,9 +26,9 @@ public class PrimaryController{
 
     @FXML
     private TilePane allCardContent;
-    ArrayList<Card> filteredCards = new ArrayList<>();
+    ArrayList<Card> searchFilteredCards = new ArrayList<>();
 
-
+    private String lastSearch;
     private HashMap<String, HashMap> cardsDictionary;
 
     @FXML
@@ -36,10 +36,14 @@ public class PrimaryController{
         searchButton.setOnAction(event -> {
                 if (searchButton != null) {
                     String searchText = searchedWord.getText();
-                    if(searchText.equals("")) {
-                        dynamicCarAddingToView(allCards);
-                    }else {
-                        searchList(searchText);
+                    if (!searchText.equals(lastSearch)) {
+                        lastSearch = searchText;
+                        searchFilteredCards.clear();
+                        if (searchText.equals("")) {
+                            dynamicCarAddingToView(allCards);
+                        } else {
+                            searchList(searchText);
+                        }
                     }
                 }
 
@@ -103,16 +107,17 @@ public class PrimaryController{
             for (String word : searchWordArray) {
                 for(String data: card.getData()){
                     if(data.toLowerCase().equals(word.toLowerCase())){
-                        filteredCards.add(card);
+                        searchFilteredCards.add(card);
                         break;
                     }
                 }
             }
         }
-        System.out.println(filteredCards);
+        System.out.println(searchFilteredCards);
         allCardContent.getChildren().clear();
-        dynamicCarAddingToView(filteredCards);
+        dynamicCarAddingToView(searchFilteredCards);
     }
+
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
         for (Card card : filteredCards) {
