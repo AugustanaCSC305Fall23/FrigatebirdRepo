@@ -16,7 +16,6 @@ public class App extends Application {
     private static Scene scene;
     private PrimaryController primaryController;  // Add this field
 
-
     @Override
     public void start(Stage stage) throws IOException {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("primary.fxml"));

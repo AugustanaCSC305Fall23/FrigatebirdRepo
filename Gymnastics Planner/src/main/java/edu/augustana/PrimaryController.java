@@ -1,12 +1,9 @@
 package edu.augustana;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
@@ -37,7 +34,7 @@ public class PrimaryController{
         searchButton.setOnAction(event -> {
             String searchText = searchedWord.getText();
             // Do something with the collected text (e.g., perform a search)
-            searchList(searchText, allCards);
+            searchList(searchText);
         });
     }
 
@@ -68,7 +65,7 @@ public class PrimaryController{
         }
 
         printCardsDictionary(cardsDictionary);
-        dynamicCarAddingToView();
+        dynamicCarAddingToView(allCards);
     }
 
     public static void printCardsDictionary(HashMap<String, HashMap> cardsDictionary) {
@@ -89,42 +86,7 @@ public class PrimaryController{
     }
 
 
-    private void dynamicCarAddingToView() {
-        for (Card card : allCards) {
-            Button button = new Button();
-
-            // Set the text and style for the button
-            String imageLink = card.getImage();
-
-            try {
-                // Load the image and create an ImageView
-
-                Image img = new Image(imageLink);
-                ImageView imgView = new ImageView(img);
-                imgView.setFitHeight(200);
-                imgView.setFitWidth(200);
-                imgView.setPreserveRatio(true);
-                Text event = new Text(card.getEvent());
-                VBox cardContentBox = new VBox(imgView, event);
-                button.setGraphic(cardContentBox);
-                allCardContent.getChildren().add(button);
-
-
-                button.setGraphic(imgView);
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-
-
-            // Add the button to the TilePane
-        }
-
-        // Set gaps for the TilePane
-        allCardContent.setHgap(10);
-        allCardContent.setVgap(20);
-    }
-
-    private void searchList(String inputWord, ArrayList<Card> allCards) {
+    private void searchList(String inputWord) {
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
         ArrayList<Card> filteredCards = new ArrayList<>();
 
@@ -142,11 +104,10 @@ public class PrimaryController{
         }
         System.out.println(filteredCards);
         allCardContent.getChildren().clear();
-        dynamicCarAddingToViewProto(filteredCards);
+        dynamicCarAddingToView(filteredCards);
     }
-    private void dynamicCarAddingToViewProto(ArrayList<Card> filteredCards) {
+    private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
-
         for (Card card : filteredCards) {
             Button button = new Button();
 
@@ -160,11 +121,13 @@ public class PrimaryController{
                 ImageView imgView = new ImageView(img);
                 imgView.setFitHeight(250);
                 imgView.setFitWidth(250);
+
                 Text event = new Text(card.getEvent());
                 event.setFont(Font.font(20));
+
                 VBox cardContentBox = new VBox(imgView, event);
                 button.setGraphic(cardContentBox);
-                allCardContent.getChildren().add(cardContentBox);
+                allCardContent.getChildren().add(button);
 
 
                 button.setGraphic(imgView);
