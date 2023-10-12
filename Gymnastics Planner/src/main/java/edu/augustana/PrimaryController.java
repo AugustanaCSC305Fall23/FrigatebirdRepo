@@ -97,11 +97,11 @@ public class PrimaryController{
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
 
         for (Card card : allCards) {
-            boolean containsAllWords = true;
             for (String word : searchWordArray) {
                 for(String data: card.getData()){
                     if(data.toLowerCase().equals(word.toLowerCase())){
                         filteredCards.add(card);
+                        System.out.println("lopping search");
                         break;
                     }
                 }
