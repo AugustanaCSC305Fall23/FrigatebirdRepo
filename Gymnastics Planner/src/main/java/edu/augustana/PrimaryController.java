@@ -33,43 +33,50 @@ public class PrimaryController{
 
     @FXML
     private TilePane allCardContent;
-    ArrayList<Card> filteredCards = new ArrayList<>();
+    private ArrayList<Card> searchFilteredCards = new ArrayList<>();
 
+    private ArrayList<Card> checkBoxFilteredCards = new ArrayList<>();
 
+    private String lastSearch;
     private HashMap<String, HashMap> cardsDictionary;
 
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
+                if (searchButton != null) {
+                    String searchText = searchedWord.getText();
+                    if (!searchText.equals(lastSearch)) {
+                        lastSearch = searchText;
+                        searchFilteredCards.clear();
+                        if (searchText.equals("")) {
+                            dynamicCarAddingToView(allCards);
+                        } else {
+                            searchList(searchText);
+                        }
+                    }
+                }
 
-            String searchText = searchedWord.getText();
-                 if(searchText.equals("")) {
-                     dynamicCarAddingToView(allCards);
-                 }else {
-                     searchList(searchText);
-                 }
-            filteredCards.clear();
+            searchFilteredCards.clear();
 
         });
     }
     @FXML
     void showFemaleAction() {
         FemaleCheckBox.setOnAction(event -> {
-            filteredCards.clear();
             if (FemaleCheckBox.isSelected()) {
                 
                 for (Card card : allCards) {
                     System.out.println(card.getGender());
                     if (card.getGender().equals("N") || card.getGender().equals("F")) {
-                        filteredCards.add(card);
+                        checkBoxFilteredCards.add(card);
                     }
                 }
                 allCardContent.getChildren().clear();
-                dynamicCarAddingToView(filteredCards);
+                dynamicCarAddingToView(checkBoxFilteredCards);
             }
             else{
-                filteredCards = allCards;
-                dynamicCarAddingToView(filteredCards);
+                checkBoxFilteredCards = allCards;
+                dynamicCarAddingToView(checkBoxFilteredCards);
             }
         });
     }
@@ -77,23 +84,21 @@ public class PrimaryController{
     @FXML
     void showMaleAction() {
         MaleCheckBox.setOnAction(event -> {
-            filteredCards.clear();
+            checkBoxFilteredCards.clear();
             if (MaleCheckBox.isSelected()) {
                 for (Card card : allCards) {
                     System.out.println("test");
                     if (card.getGender().equals("N") || card.getGender().equals("M")) {
-                        filteredCards.add(card);
+                        checkBoxFilteredCards.add(card);
                     }
                 }
                 allCardContent.getChildren().clear();
-                dynamicCarAddingToView(filteredCards);
+                dynamicCarAddingToView(checkBoxFilteredCards);
             }
             else{
-                filteredCards = allCards;
-                dynamicCarAddingToView(filteredCards);
+                checkBoxFilteredCards = allCards;
+                dynamicCarAddingToView(checkBoxFilteredCards);
             }
-            filteredCards.clear();
-            System.out.println(filteredCards.size());
         });
     }
 
@@ -186,16 +191,17 @@ private void dynamicCarAddingToView() {
             for (String word : searchWordArray) {
                 for(String data: card.getData()){
                     if(data.toLowerCase().equals(word.toLowerCase())){
-                        filteredCards.add(card);
+                        searchFilteredCards.add(card);
                         break;
                     }
                 }
             }
         }
-        System.out.println(filteredCards);
+        System.out.println(searchFilteredCards);
         allCardContent.getChildren().clear();
-        dynamicCarAddingToView(filteredCards);
+        dynamicCarAddingToView(searchFilteredCards);
     }
+
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
         for (Card card : filteredCards) {
