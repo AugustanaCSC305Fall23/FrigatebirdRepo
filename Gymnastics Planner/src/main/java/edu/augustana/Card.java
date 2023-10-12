@@ -18,8 +18,19 @@ public class Card {
         private String equipment;
         private String keywords;
 
+        private String[] allData;
+
     public Card(String[] data) {
         if (data.length >= 10) {
+
+            //all data array
+
+             allData = new String[data.length];
+            for (int i = 0 ; i < data.length ; i++){
+
+                allData[i] = data[i];
+            }
+
             this.code = data[0].strip();
             this.event = data[1].strip();
             this.category = data[2].strip();
@@ -35,6 +46,12 @@ public class Card {
         }
     }
 
+
+    public String[] getData(){
+
+        return allData;
+
+    }
 
 
     public String getCode() {

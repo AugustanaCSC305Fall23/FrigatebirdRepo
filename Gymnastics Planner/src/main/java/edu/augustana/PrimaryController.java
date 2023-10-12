@@ -1,12 +1,9 @@
 package edu.augustana;
 
 import java.io.*;
-import java.net.URL;
 import java.util.*;
-import java.util.stream.Collectors;
 
 import javafx.fxml.FXML;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -36,23 +33,31 @@ public class PrimaryController{
 
     @FXML
     private TilePane allCardContent;
+    ArrayList<Card> filteredCards = new ArrayList<>();
+
 
     private HashMap<String, HashMap> cardsDictionary;
 
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
-            if(searchButton != null) {
-                String searchText = searchedWord.getText();
-                searchList(searchText);
-            }
+
+            String searchText = searchedWord.getText();
+                 if(searchText.equals("")) {
+                     dynamicCarAddingToView(allCards);
+                 }else {
+                     searchList(searchText);
+                 }
+            filteredCards.clear();
+
         });
     }
     @FXML
     void showFemaleAction() {
         FemaleCheckBox.setOnAction(event -> {
-            ArrayList<Card> filteredCards = new ArrayList<>();
+            filteredCards.clear();
             if (FemaleCheckBox.isSelected()) {
+                
                 for (Card card : allCards) {
                     System.out.println(card.getGender());
                     if (card.getGender().equals("N") || card.getGender().equals("F")) {
@@ -60,20 +65,19 @@ public class PrimaryController{
                     }
                 }
                 allCardContent.getChildren().clear();
-                dynamicCarAddingToViewProto(filteredCards);
+                dynamicCarAddingToView(filteredCards);
             }
             else{
                 filteredCards = allCards;
-                dynamicCarAddingToViewProto(filteredCards);
+                dynamicCarAddingToView(filteredCards);
             }
-            filteredCards.clear();
         });
     }
 
     @FXML
     void showMaleAction() {
         MaleCheckBox.setOnAction(event -> {
-            ArrayList<Card> filteredCards = new ArrayList<>();
+            filteredCards.clear();
             if (MaleCheckBox.isSelected()) {
                 for (Card card : allCards) {
                     System.out.println("test");
@@ -82,13 +86,14 @@ public class PrimaryController{
                     }
                 }
                 allCardContent.getChildren().clear();
-                dynamicCarAddingToViewProto(filteredCards);
+                dynamicCarAddingToView(filteredCards);
             }
             else{
                 filteredCards = allCards;
-                dynamicCarAddingToViewProto(filteredCards);
+                dynamicCarAddingToView(filteredCards);
             }
             filteredCards.clear();
+            System.out.println(filteredCards.size());
         });
     }
 
@@ -119,7 +124,7 @@ public class PrimaryController{
         }
 
         printCardsDictionary(cardsDictionary);
-        dynamicCarAddingToView();
+        dynamicCarAddingToView(allCards);
     }
 
     public static void printCardsDictionary(HashMap<String, HashMap> cardsDictionary) {
@@ -140,7 +145,7 @@ public class PrimaryController{
     }
 
 
-    private void dynamicCarAddingToView() {
+private void dynamicCarAddingToView() {
         for (Card card : allCards) {
             Button button = new Button();
 
@@ -176,27 +181,23 @@ public class PrimaryController{
 
     private void searchList(String inputWord) {
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
-        ArrayList<Card> filteredCards = new ArrayList<>();
-
         for (Card card : allCards) {
             boolean containsAllWords = true;
             for (String word : searchWordArray) {
-                if (!card.toString().toLowerCase().contains(word.toLowerCase())) {
-                    containsAllWords = false;
-                    break; // No need to continue checking if one word is not contained
+                for(String data: card.getData()){
+                    if(data.toLowerCase().equals(word.toLowerCase())){
+                        filteredCards.add(card);
+                        break;
+                    }
                 }
-            }
-            if (containsAllWords) {
-                filteredCards.add(card);
             }
         }
         System.out.println(filteredCards);
         allCardContent.getChildren().clear();
-        dynamicCarAddingToViewProto(filteredCards);
+        dynamicCarAddingToView(filteredCards);
     }
-    private void dynamicCarAddingToViewProto(ArrayList<Card> filteredCards) {
+    private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
-
         for (Card card : filteredCards) {
             Button button = new Button();
 
@@ -210,14 +211,14 @@ public class PrimaryController{
                 ImageView imgView = new ImageView(img);
                 imgView.setFitHeight(250);
                 imgView.setFitWidth(250);
+
                 Text event = new Text(card.getEvent());
                 event.setFont(Font.font(20));
+
                 VBox cardContentBox = new VBox(imgView, event);
                 button.setGraphic(cardContentBox);
                 allCardContent.getChildren().add(button);
 
-
-                button.setGraphic(imgView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
