@@ -34,12 +34,11 @@ public class PrimaryController{
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
-                String searchText = searchedWord.getText();
                 if (searchButton != null) {
-                    searchText = searchedWord.getText();
-                    if (searchText == null) {
+                    String searchText = searchedWord.getText();
+                    if(searchText.equals("")) {
                         dynamicCarAddingToView(allCards);
-                    } else {
+                    }else {
                         searchList(searchText);
                     }
                 }
@@ -108,13 +107,6 @@ public class PrimaryController{
                         break;
                     }
                 }
-//                if (!card.toString().toLowerCase().contains(word.toLowerCase())) {
-//                    containsAllWords = false;
-//                    break; // No need to continue checking if one word is not contained
-//                }
-//            }
-//            if (containsAllWords) {
-//                filteredCards.add(card);
             }
         }
         System.out.println(filteredCards);

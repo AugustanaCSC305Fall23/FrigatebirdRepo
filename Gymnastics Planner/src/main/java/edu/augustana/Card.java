@@ -47,7 +47,6 @@ public class Card {
     }
 
 
-
     public String[] getData(){
 
         return allData;
