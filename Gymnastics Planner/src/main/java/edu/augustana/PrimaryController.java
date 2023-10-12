@@ -8,6 +8,7 @@ import java.util.stream.Collectors;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -28,6 +29,12 @@ public class PrimaryController{
     Button searchButton;
 
     @FXML
+    private CheckBox FemaleCheckBox;
+
+    @FXML
+    private CheckBox MaleCheckBox;
+
+    @FXML
     private TilePane allCardContent;
 
     private HashMap<String, HashMap> cardsDictionary;
@@ -39,6 +46,49 @@ public class PrimaryController{
                 String searchText = searchedWord.getText();
                 searchList(searchText);
             }
+        });
+    }
+    @FXML
+    void showFemaleAction() {
+        FemaleCheckBox.setOnAction(event -> {
+            ArrayList<Card> filteredCards = new ArrayList<>();
+            if (FemaleCheckBox.isSelected()) {
+                for (Card card : allCards) {
+                    System.out.println(card.getGender());
+                    if (card.getGender().equals("N") || card.getGender().equals("F")) {
+                        filteredCards.add(card);
+                    }
+                }
+                allCardContent.getChildren().clear();
+                dynamicCarAddingToViewProto(filteredCards);
+            }
+            else{
+                filteredCards = allCards;
+                dynamicCarAddingToViewProto(filteredCards);
+            }
+            filteredCards.clear();
+        });
+    }
+
+    @FXML
+    void showMaleAction() {
+        MaleCheckBox.setOnAction(event -> {
+            ArrayList<Card> filteredCards = new ArrayList<>();
+            if (MaleCheckBox.isSelected()) {
+                for (Card card : allCards) {
+                    System.out.println("test");
+                    if (card.getGender().equals("N") || card.getGender().equals("M")) {
+                        filteredCards.add(card);
+                    }
+                }
+                allCardContent.getChildren().clear();
+                dynamicCarAddingToViewProto(filteredCards);
+            }
+            else{
+                filteredCards = allCards;
+                dynamicCarAddingToViewProto(filteredCards);
+            }
+            filteredCards.clear();
         });
     }
 
@@ -111,7 +161,6 @@ public class PrimaryController{
                 allCardContent.getChildren().add(button);
 
 
-                button.setGraphic(imgView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
@@ -179,4 +228,5 @@ public class PrimaryController{
         allCardContent.setVgap(20);
     }
 }
+
 
