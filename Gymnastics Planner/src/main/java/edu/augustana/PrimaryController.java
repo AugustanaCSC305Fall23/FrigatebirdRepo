@@ -26,6 +26,8 @@ public class PrimaryController{
 
     @FXML
     private TilePane allCardContent;
+    ArrayList<Card> filteredCards = new ArrayList<>();
+
 
     private HashMap<String, HashMap> cardsDictionary;
 
@@ -35,11 +37,13 @@ public class PrimaryController{
 
             String searchText = searchedWord.getText();
             // Do something with the collected text (e.g., perform a search)
-            searchList(searchText);
-
             if(searchButton != null) {
                  searchText = searchedWord.getText();
-                searchList(searchText);
+                 if(searchText.equals("")) {
+                     dynamicCarAddingToView(allCards);
+                 }else{
+                     searchList(searchText);
+                 }
             }
         });
     }
@@ -95,23 +99,29 @@ public class PrimaryController{
 
     private void searchList(String inputWord) {
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
-        ArrayList<Card> filteredCards = new ArrayList<>();
 
         for (Card card : allCards) {
             boolean containsAllWords = true;
             for (String word : searchWordArray) {
-                if (!card.toString().toLowerCase().contains(word.toLowerCase())) {
-                    containsAllWords = false;
-                    break; // No need to continue checking if one word is not contained
+                for(String data: card.getData()){
+                    if(data.toLowerCase().equals(word.toLowerCase())){
+                        filteredCards.add(card);
+                        break;
+                    }
                 }
-            }
-            if (containsAllWords) {
-                filteredCards.add(card);
+//                if (!card.toString().toLowerCase().contains(word.toLowerCase())) {
+//                    containsAllWords = false;
+//                    break; // No need to continue checking if one word is not contained
+//                }
+//            }
+//            if (containsAllWords) {
+//                filteredCards.add(card);
             }
         }
         System.out.println(filteredCards);
         allCardContent.getChildren().clear();
         dynamicCarAddingToView(filteredCards);
+        filteredCards.clear();
     }
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
@@ -136,8 +146,6 @@ public class PrimaryController{
                 button.setGraphic(cardContentBox);
                 allCardContent.getChildren().add(button);
 
-
-                button.setGraphic(imgView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
