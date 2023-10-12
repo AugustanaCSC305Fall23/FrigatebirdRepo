@@ -34,17 +34,16 @@ public class PrimaryController{
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
+                String searchText = searchedWord.getText();
+                if (searchButton != null) {
+                    searchText = searchedWord.getText();
+                    if (searchText == null) {
+                        dynamicCarAddingToView(allCards);
+                    } else {
+                        searchList(searchText);
+                    }
+                }
 
-            String searchText = searchedWord.getText();
-            // Do something with the collected text (e.g., perform a search)
-            if(searchButton != null) {
-                 searchText = searchedWord.getText();
-                 if(searchText.equals("")) {
-                     dynamicCarAddingToView(allCards);
-                 }else{
-                     searchList(searchText);
-                 }
-            }
         });
     }
 
@@ -121,7 +120,6 @@ public class PrimaryController{
         System.out.println(filteredCards);
         allCardContent.getChildren().clear();
         dynamicCarAddingToView(filteredCards);
-        filteredCards.clear();
     }
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         allCardContent.setPrefColumns(3);
