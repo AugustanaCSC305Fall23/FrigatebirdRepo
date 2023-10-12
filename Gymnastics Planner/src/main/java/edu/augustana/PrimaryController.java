@@ -36,15 +36,11 @@ public class PrimaryController{
         searchButton.setOnAction(event -> {
 
             String searchText = searchedWord.getText();
-            // Do something with the collected text (e.g., perform a search)
-            if(searchButton != null) {
-                 searchText = searchedWord.getText();
                  if(searchText.equals("")) {
                      dynamicCarAddingToView(allCards);
-                 }else{
+                 }else {
                      searchList(searchText);
                  }
-            }
         });
     }
 
@@ -109,13 +105,6 @@ public class PrimaryController{
                         break;
                     }
                 }
-//                if (!card.toString().toLowerCase().contains(word.toLowerCase())) {
-//                    containsAllWords = false;
-//                    break; // No need to continue checking if one word is not contained
-//                }
-//            }
-//            if (containsAllWords) {
-//                filteredCards.add(card);
             }
         }
         System.out.println(filteredCards);
