@@ -5,6 +5,7 @@ import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -25,24 +26,142 @@ public class PrimaryController{
     Button searchButton;
 
     @FXML
+    private CheckBox FemaleCheckBox;
+
+    @FXML
+    private CheckBox MaleCheckBox;
+
+    @FXML
     private TilePane allCardContent;
-    ArrayList<Card> filteredCards = new ArrayList<>();
+    private ArrayList<Card> searchFilteredCards = new ArrayList<>();
 
+    private ArrayList<Card> checkBoxFilteredCards = new ArrayList<>();
 
+    private String lastSearch = "";
     private HashMap<String, HashMap> cardsDictionary;
 
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
+            MaleCheckBox.setSelected(false);
+            FemaleCheckBox.setSelected(false);
 
-            String searchText = searchedWord.getText();
-                 if(searchText.equals("")) {
-                     dynamicCarAddingToView(allCards);
-                 }else {
-                     searchList(searchText);
-                 }
+
+                    String searchText = searchedWord.getText().strip();
+
+                    if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
+                        lastSearch = searchText;
+                        searchFilteredCards.clear();
+
+                        allCardContent.getChildren().clear();
+
+                        searchList(searchText);
+                    }else{
+                        if (searchText.equals("")) {
+                            allCardContent.getChildren().clear();
+                            dynamicCarAddingToView(allCards);
+
+                        } else {
+                            allCardContent.getChildren().clear();
+                            dynamicCarAddingToView(searchFilteredCards);
+                        }
+                    }
         });
     }
+
+    @FXML
+    void showFemaleAction() {
+        FemaleCheckBox.setOnAction(event -> {
+
+            allCardContent.getChildren().clear();
+
+            if (FemaleCheckBox.isSelected()) {
+                // when female box is selected
+                checkBoxFilteredCards.clear();
+
+                if (searchFilteredCards.isEmpty()) {
+                    //get cards from fresh set
+
+                for (Card card : allCards) {
+                    if (card.getGender().equals("N") || card.getGender().equals("F")) {
+                        checkBoxFilteredCards.add(card);
+                    }
+                }
+
+                //add the fresh set of cards to view
+                dynamicCarAddingToView(checkBoxFilteredCards);
+            } else {
+
+                    //get cards from the search view
+                    for (Card card : searchFilteredCards) {
+                        if (card.getGender().equals("N") || card.getGender().equals("F")) {
+                            checkBoxFilteredCards.add(card);
+                        }
+                    }
+
+                    // add the cards
+
+                    dynamicCarAddingToView(checkBoxFilteredCards);
+                }
+            } else{
+
+                //if not selected un checked
+
+                if(searchFilteredCards.isEmpty()){
+                    dynamicCarAddingToView(allCards);
+                }else{
+                    dynamicCarAddingToView(searchFilteredCards);
+                }
+            }
+
+        });
+    }
+
+    @FXML
+    void showMaleAction() {
+            MaleCheckBox.setOnAction(event -> {
+                allCardContent.getChildren().clear();
+
+                if (MaleCheckBox.isSelected()) {
+                    // when female box is selected
+                    checkBoxFilteredCards.clear();
+
+                    if (searchFilteredCards.isEmpty()) {
+                        //get cards from fresh set
+
+                        for (Card card : allCards) {
+                            if (card.getGender().equals("N") || card.getGender().equals("M")) {
+                                checkBoxFilteredCards.add(card);
+                            }
+                        }
+
+                        //add the fresh set of cards to view
+                        dynamicCarAddingToView(checkBoxFilteredCards);
+                    } else {
+
+                        //get cards from the search view
+                        for (Card card : searchFilteredCards) {
+                            if (card.getGender().equals("N") || card.getGender().equals("M")) {
+                                checkBoxFilteredCards.add(card);
+                            }
+                        }
+
+                        // add the cards
+                        dynamicCarAddingToView(checkBoxFilteredCards);
+                    }
+                } else{
+
+                    //if not selected un checked
+                    if(searchFilteredCards.isEmpty()){
+                        dynamicCarAddingToView(allCards);
+                    }else{
+                        dynamicCarAddingToView(searchFilteredCards);
+                    }
+                }
+
+            });
+        }
+
 
     void buildCards() throws IOException {
 
@@ -79,14 +198,11 @@ public class PrimaryController{
             String event = entry.getKey();
             Map<String, Card> genderMap = entry.getValue();
 
-            System.out.println("Event: " + event);
 
             for (Map.Entry<String, Card> genderEntry : genderMap.entrySet()) {
                 String gender = genderEntry.getKey();
                 Card card = genderEntry.getValue();
 
-                System.out.println("  Gender: " + gender);
-                System.out.println("  Card Details: " + card.toString());
             }
         }
     }
@@ -96,24 +212,28 @@ public class PrimaryController{
     private void searchList(String inputWord) {
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
 
+
+
         for (Card card : allCards) {
             for (String word : searchWordArray) {
-                for(String data: card.getData()){
-                    if(data.toLowerCase().equals(word.toLowerCase())){
-                        filteredCards.add(card);
-                        System.out.println("lopping search");
+                for (String data : card.getData()) {
+                    if (data.toLowerCase().equals(word.toLowerCase())) {
+                        searchFilteredCards.add(card);
                         break;
                     }
                 }
             }
         }
-        System.out.println(filteredCards);
+
+
         allCardContent.getChildren().clear();
-        dynamicCarAddingToView(filteredCards);
-        filteredCards.clear();
+        dynamicCarAddingToView(searchFilteredCards);
+
+
     }
+
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
-        allCardContent.setPrefColumns(3);
+        allCardContent.setPrefColumns(5);
         for (Card card : filteredCards) {
             Button button = new Button();
 
@@ -128,7 +248,7 @@ public class PrimaryController{
                 imgView.setFitHeight(250);
                 imgView.setFitWidth(250);
 
-                Text event = new Text(card.getEvent());
+                Text event = new Text(card.getEvent() + " " + card.getGender());
                 event.setFont(Font.font(20));
 
                 VBox cardContentBox = new VBox(imgView, event);
@@ -143,6 +263,12 @@ public class PrimaryController{
         // Set gaps for the TilePane
         allCardContent.setHgap(10);
         allCardContent.setVgap(20);
+
+
+        System.out.println("All filter: " + allCards.size());
+        System.out.println("Search filter: " + searchFilteredCards.size());
+        System.out.println("Check box filter: " + checkBoxFilteredCards.size());
     }
 }
+
 

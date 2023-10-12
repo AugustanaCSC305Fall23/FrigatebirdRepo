@@ -21,7 +21,7 @@ public class App extends Application {
         FXMLLoader loader = new FXMLLoader(App.class.getResource("primary.fxml"));
         Parent root = loader.load();
         primaryController = loader.getController();  // Initialize the controller
-        scene = new Scene(root, 800, 800);
+        scene = new Scene(root, 1500, 1500);
         stage.setScene(scene);
         stage.show();
         primaryController.buildCards();
