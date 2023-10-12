@@ -32,9 +32,15 @@ public class PrimaryController{
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
+
             String searchText = searchedWord.getText();
             // Do something with the collected text (e.g., perform a search)
             searchList(searchText);
+
+            if(searchButton != null) {
+                 searchText = searchedWord.getText();
+                searchList(searchText);
+            }
         });
     }
 
@@ -84,6 +90,7 @@ public class PrimaryController{
             }
         }
     }
+
 
 
     private void searchList(String inputWord) {
