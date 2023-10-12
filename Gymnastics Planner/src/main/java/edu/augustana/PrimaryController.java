@@ -137,7 +137,6 @@ public class PrimaryController{
                 allCardContent.getChildren().add(button);
 
 
-                button.setGraphic(imgView);
             } catch (Exception e) {
                 e.printStackTrace();
             }
