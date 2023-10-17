@@ -11,8 +11,9 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="600.0" prefWidth="865.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
+<TabPane prefHeight="906.0" prefWidth="1214.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
     <tabs>
         <Tab fx:id="allCardTab" text="All Cards">
             <content>
@@ -26,9 +27,9 @@
                                 <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
                                 <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
                             </children></AnchorPane>
-                        <ScrollPane prefHeight="563.0" prefWidth="865.0">
+                        <ScrollPane prefHeight="774.0" prefWidth="1214.0">
                             <content>
-                                <TilePane fx:id="allCardContent" prefHeight="543.0" prefWidth="847.0" />
+                                <TilePane fx:id="allCardContent" prefHeight="758.0" prefWidth="1198.0" />
                             </content>
                         </ScrollPane>
                     </children>
@@ -37,7 +38,28 @@
         </Tab>
         <Tab text="Create Plan">
             <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1298.0">
+               <children>
+                  <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="868.0" prefWidth="1198.0">
+                     <children>
+                        <AnchorPane prefHeight="142.0" prefWidth="850.0">
+                           <children>
+                              <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
+                              <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" />
+                              <Button fx:id="createPlan" layoutX="1086.0" layoutY="19.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="92.0" text="Create Plan" />
+                              <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
+                                 <font>
+                                    <Font size="36.0" />
+                                 </font>
+                              </Label>
+                              <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="92.0" text="Select Cards" />
+                              <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="139.0" text="Delete Selected Cards" />
+                           </children>
+                        </AnchorPane>
+                        <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />
+                     </children>
+                  </VBox>
+               </children></AnchorPane>
             </content>
         </Tab>
         <Tab text="All Plans">
@@ -60,4 +82,3 @@
         <Insets right="3.0" top="1.0" />
     </opaqueInsets>
 </TabPane>
-

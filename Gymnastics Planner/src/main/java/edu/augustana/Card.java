@@ -10,14 +10,11 @@ public class Card {
         private String category;
         private String title;
         private String image;
-
         private String gender;
         private String sex;
         private String level;
-
         private String equipment;
         private String keywords;
-
         private String[] allData;
 
     public Card(String[] data) {

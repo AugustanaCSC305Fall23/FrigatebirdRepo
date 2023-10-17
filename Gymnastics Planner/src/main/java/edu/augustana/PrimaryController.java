@@ -4,6 +4,9 @@ import java.io.*;
 import java.util.*;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
@@ -13,6 +16,7 @@ import javafx.scene.layout.TilePane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
+import javafx.stage.Stage;
 
 public class PrimaryController{
 
@@ -39,6 +43,9 @@ public class PrimaryController{
 
     private String lastSearch = "";
     private HashMap<String, HashMap> cardsDictionary;
+
+    @FXML
+    private TilePane selectedCardsView;
 
     @FXML
     void searchButtonAction() {
@@ -213,7 +220,6 @@ public class PrimaryController{
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
 
 
-
         for (Card card : allCards) {
             for (String word : searchWordArray) {
                 for (String data : card.getData()) {
@@ -233,7 +239,6 @@ public class PrimaryController{
     }
 
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
-        allCardContent.setPrefColumns(5);
         for (Card card : filteredCards) {
             Button button = new Button();
 
@@ -253,6 +258,8 @@ public class PrimaryController{
 
                 VBox cardContentBox = new VBox(imgView, event);
                 button.setGraphic(cardContentBox);
+                allCardContent.setPrefColumns(5);
+
                 allCardContent.getChildren().add(button);
 
             } catch (Exception e) {
@@ -269,6 +276,107 @@ public class PrimaryController{
         System.out.println("Search filter: " + searchFilteredCards.size());
         System.out.println("Check box filter: " + checkBoxFilteredCards.size());
     }
+
+
+
+    /*
+
+    This is for the work of the select card we need to move this to the createPlanController.java later somehow
+
+     */
+
+
+
+
+
+    @FXML
+    Button selectCards;
+
+    ArrayList<CheckBox> allSelectedCheckBox ;
+
+    @FXML
+    public void selectCard() {
+            try {
+                // Load the FXML file
+                FXMLLoader loader = new FXMLLoader(getClass().getResource("selectCards.fxml"));
+                Parent root = loader.load();
+
+                // Create a new stage
+                Stage selectCardsStage = new Stage();
+                selectCardsStage.setTitle("Select Cards"); // Set the stage title
+
+                // Set the scene
+                Scene selectCardsScene = new Scene(root);
+                selectCardsStage.setScene(selectCardsScene);
+
+                // Set an event handler for the stage being shown
+                selectCardsStage.setOnShown(e -> {
+                    // This will be called after the stage is shown
+                    SlectCardsController createPlanController = loader.getController();
+                    try {
+                        createPlanController.buildCards(this);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
+                    }
+                });
+
+                // Show the stage
+                selectCardsStage.show();
+
+            } catch (IOException e) {
+                throw new RuntimeException("Error loading selectCards.fxml", e);
+            }
+
+    }
+
+
+    //This is the delete functionality for selected cards here
+
+    @FXML
+    private void deleteSelectedCards(){
+
+        if (allSelectedCheckBox.size() == 0){
+
+            //Prompt that the selected cards has nothing to delete
+        }else{
+
+            for(CheckBox cBox : allSelectedCheckBox){
+
+                if(cBox.isSelected()){
+
+                    allSelectedCheckBox.remove(cBox);
+                }
+            }
+            recieveArrayListCheckBox(allSelectedCheckBox);
+
+        }
+
+    }
+
+
+    //We reicieve the parameters from the selecrCards view here and display anything that is needed
+
+    public void recieveArrayListCheckBox(ArrayList<CheckBox> allCheckedBoxes){
+
+        //Display all of the checkedBoxes
+        allSelectedCheckBox = allCheckedBoxes;
+        selectedCardsView.getChildren().clear();
+        selectedCardsView.setPrefColumns(4);
+
+        for(CheckBox cBox: allCheckedBoxes){
+            cBox.setSelected(false);
+            selectedCardsView.getChildren().add(cBox);
+
+            System.out.println("The cards itself : " + cBox);
+
+        }
+
+        System.out.println("These came from another page: " + allCheckedBoxes.size());
+
+    }
+
+
+
 }
 
 
