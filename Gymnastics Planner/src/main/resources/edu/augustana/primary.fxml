@@ -46,7 +46,7 @@
                            <children>
                               <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
                               <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" />
-                              <Button fx:id="createPlan" layoutX="1086.0" layoutY="19.0" mnemonicParsing="false" prefHeight="45.0" prefWidth="92.0" text="Create Plan" />
+                              <Button layoutX="1086.0" layoutY="19.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="45.0" prefWidth="92.0" text="Create Plan" />
                               <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
                                  <font>
                                     <Font size="36.0" />

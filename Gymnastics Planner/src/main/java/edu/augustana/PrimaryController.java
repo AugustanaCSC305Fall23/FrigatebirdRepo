@@ -5,6 +5,7 @@ import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -17,6 +18,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 
 public class PrimaryController{
 
@@ -291,8 +294,12 @@ public class PrimaryController{
 
     @FXML
     Button selectCards;
+    HashMap<CheckBox,Card> allSelectedCards = new HashMap<>();
 
-    ArrayList<CheckBox> allSelectedCheckBox ;
+    @FXML
+    TextField planTitle;
+
+
 
     @FXML
     public void selectCard() {
@@ -335,19 +342,17 @@ public class PrimaryController{
     @FXML
     private void deleteSelectedCards(){
 
-        if (allSelectedCheckBox.size() == 0){
+        if ( allSelectedCards.size() == 0){
 
             //Prompt that the selected cards has nothing to delete
         }else{
 
-            for(CheckBox cBox : allSelectedCheckBox){
-
+            for(CheckBox cBox : allSelectedCards.keySet()){
                 if(cBox.isSelected()){
-
-                    allSelectedCheckBox.remove(cBox);
+                    allSelectedCards.remove(cBox);
                 }
             }
-            recieveArrayListCheckBox(allSelectedCheckBox);
+            recieveArrayListCheckBox( allSelectedCards);
 
         }
 
@@ -356,22 +361,88 @@ public class PrimaryController{
 
     //We reicieve the parameters from the selecrCards view here and display anything that is needed
 
-    public void recieveArrayListCheckBox(ArrayList<CheckBox> allCheckedBoxes){
+    public void recieveArrayListCheckBox(HashMap<CheckBox,Card> selectedCards) {
+        // Display all of the checkedBoxes
+        //Somehow remove the dublicated from the all selectedCsrds
 
-        //Display all of the checkedBoxes
-        allSelectedCheckBox = allCheckedBoxes;
+
+// Assuming allSelectedCards and selectedCards are HashMap<CheckBox, Card>
+
+        for (Map.Entry<CheckBox, Card> availableCards : allSelectedCards.entrySet()) {
+            Card availableCard = availableCards.getValue();
+
+            Iterator<Map.Entry<CheckBox, Card>> iterator = selectedCards.entrySet().iterator();
+            while (iterator.hasNext()) {
+                Map.Entry<CheckBox, Card> sentCardsMap = iterator.next();
+                Card sentCard = sentCardsMap.getValue();
+                CheckBox sentCheckBox = sentCardsMap.getKey();
+                if (sentCard.getCode().equals(availableCard.getCode())) {
+                    iterator.remove();  // Safe removal using iterator's remove()
+                    break;
+                }
+            }
+        }
+
+        System.out.println("Available cards number: " + allSelectedCards.size());
+        System.out.println("Sent cards number: " + selectedCards.size());
+
+
+        allSelectedCards.putAll(selectedCards);
+
         selectedCardsView.getChildren().clear();
         selectedCardsView.setPrefColumns(4);
 
-        for(CheckBox cBox: allCheckedBoxes){
+        for (CheckBox cBox : allSelectedCards.keySet()) {
             cBox.setSelected(false);
             selectedCardsView.getChildren().add(cBox);
-
-            System.out.println("The cards itself : " + cBox);
-
         }
 
-        System.out.println("These came from another page: " + allCheckedBoxes.size());
+        System.out.println("These came from another page: " + selectedCards.size());
+    }
+
+@FXML
+    public void createPlan() throws IOException{
+
+        String fileName = planTitle.getText();
+
+
+        if (fileName.isEmpty()){
+
+            //Prompt user to write the name of the plan
+        }else{
+            //Create a CSV and then update it with the card Information here
+
+            fileName = "AllPlans/" +fileName + "_Plan.csv";
+
+            //if() Plan name already exists overwrite or dont make any changes
+
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+
+                for(Card card : allSelectedCards.values()){
+
+                    String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                            card.getCode(), card.getEvent(), card.getCategory(), card.getTitle(),
+                            card.getImage(), card.getGender(), card.getSex(), card.getLevel(),
+                            card.getEquipment(), card.getKeywords());
+                    // Write the CSV line to the file
+                    writer.write("\n" + csvLine);
+                }
+
+                writer.close();
+                System.out.println("Sucessfully created the plan! ");
+
+                planTitle.clear();
+                selectedCardsView.getChildren().clear();
+
+            }
+
+
+
+
+
+            }
+
+
 
     }
 

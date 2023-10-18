@@ -51,45 +51,36 @@ public class SlectCardsController {
         private HashMap<String, HashMap> cardsDictionary;
 
         ArrayList<CheckBox> allCardsCheckBox;
-
-
-    public SlectCardsController() throws IOException {
-
+        HashMap<CheckBox,Card> checkBoxsCard;
+        HashMap<CheckBox,Card> selectedCardsToCheckBox;
 
 
 
-    }
-
-@FXML
+    @FXML
     private void  addCardsToPlan(){
 
 
-
             //add all the checked boxed cards into this
-
             //either I can go through all of the cards that are there and then see things that are checked
             //or I can create a array that is updated the when a checkbox is clicked or not
             //i think the second onw will require more array access
             int count = 0 ;
 
-            ArrayList<CheckBox> allSelectedCards = new ArrayList<>();
+            selectedCardsToCheckBox = new HashMap<>();
 
             for(CheckBox cBox: allCardsCheckBox){
 
                 if(cBox.isSelected()){
                     // Now I need to figure out a way to send all the information for this particular checkBox to my selected cards view
                     // Can I just send the arraylist of the selected cards? Most probably!!!
-
-                    allSelectedCards.add(cBox);
+                    selectedCardsToCheckBox.put(cBox , checkBoxsCard.get(cBox));
                     count ++;
-
                 }
             }
 
             System.out.println("Num of all of the selected cards: " + count);
-
             //Send the array list to the my Create Plan tab
-            primaryController.recieveArrayListCheckBox(allSelectedCards);
+            primaryController.recieveArrayListCheckBox(selectedCardsToCheckBox);
 
 
             //Close the this particular tab
@@ -103,6 +94,7 @@ public class SlectCardsController {
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
 
         allCardsCheckBox = new ArrayList<>();
+        checkBoxsCard = new HashMap<>();
         for (Card card : filteredCards) {
             CheckBox checkbox = new CheckBox();
 
@@ -128,6 +120,7 @@ public class SlectCardsController {
                 //How does it work? Is this like an object and we dont have to think about everything being the same?
                 //We might need a fxId and access via that
                 allCardsCheckBox.add(checkbox);
+                checkBoxsCard.put(checkbox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();
