@@ -1,6 +1,7 @@
 package edu.augustana;
 
 import java.io.*;
+import java.nio.file.DirectoryIteratorException;
 import java.util.*;
 
 import javafx.fxml.FXML;
@@ -26,11 +27,18 @@ public class PrimaryController{
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private ArrayList<Card> allCards;
 
+    private ArrayList<Plan> allPlans;
+
+    private String dataPlanPath = "AllPlans";
+
     @FXML
     private TextField searchedWord;
 
     @FXML
     Button searchButton;
+
+    @FXML
+    private Button showPlan;
 
     @FXML
     private CheckBox FemaleCheckBox;
@@ -447,7 +455,44 @@ public class PrimaryController{
     }
 
 
+    @FXML
+    void showPlan() throws IOException{
+        App.setRoot("ShowPlan");
+    }
 
-}
+    void buildPlans() throws  IOException{
+        File[] planFiles = new File(dataPlanPath).listFiles();
+        if (planFiles.length != 0){
+            for (File file: planFiles){
+                Scanner fileReader = new Scanner(file.getPath());
+                String input = fileReader.nextLine();
+                do {
+                    FileReader csvFile = new FileReader(input);
+                    BufferedReader reader = new BufferedReader(csvFile);
+                    String line = reader.readLine();
+                    while (line != null) {
+                        String[] data = line.split(",");
+                        System.out.println(input.substring(9, input.length() - 9));
+                      //  String title = input.substring(9, -9);
+                     //   Plan newPlan = new Plan(title, data);
+                   //     allPlans.add(newPlan);
+                        line = reader.readLine();
+                    }
+                } while(fileReader.hasNextLine());
+            }
+        }
+
+        //creates new cards for all csv files data
+
+            //map Created for searching
+
+
+        }
+
+
+    }
+
+
+
 
 

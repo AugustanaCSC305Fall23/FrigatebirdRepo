@@ -25,6 +25,7 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
         primaryController.buildCards();
+        primaryController.buildPlans();
 
     }
 
