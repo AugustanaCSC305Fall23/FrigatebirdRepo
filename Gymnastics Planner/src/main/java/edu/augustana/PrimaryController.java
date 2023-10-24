@@ -1,17 +1,13 @@
 package edu.augustana;
 
 import java.io.*;
-import java.nio.file.DirectoryIteratorException;
 import java.util.*;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -21,15 +17,15 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PrimaryController{
 
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private ArrayList<Card> allCards;
 
-    private ArrayList<Plan> allPlans;
 
-    private String dataPlanPath = "AllPlans";
+    private String allPlansDir = "AllPlans";
 
     @FXML
     private TextField searchedWord;
@@ -57,6 +53,10 @@ public class PrimaryController{
 
     @FXML
     private TilePane selectedCardsView;
+
+    @FXML
+    private VBox showPlanList;
+
 
     @FXML
     void searchButtonAction() {
@@ -294,6 +294,11 @@ public class PrimaryController{
 
     This is for the work of the select card we need to move this to the createPlanController.java later somehow
 
+
+    Anuthing bwlow this ----------------------------------
+
+
+
      */
 
 
@@ -341,7 +346,6 @@ public class PrimaryController{
             } catch (IOException e) {
                 throw new RuntimeException("Error loading selectCards.fxml", e);
             }
-
     }
 
 
@@ -353,6 +357,7 @@ public class PrimaryController{
         if ( allSelectedCards.size() == 0){
 
             //Prompt that the selected cards has nothing to delete
+            prompt("No cards to delete!",false);
         }else{
 
             for(CheckBox cBox : allSelectedCards.keySet()){
@@ -371,10 +376,7 @@ public class PrimaryController{
 
     public void recieveArrayListCheckBox(HashMap<CheckBox,Card> selectedCards) {
         // Display all of the checkedBoxes
-        //Somehow remove the dublicated from the all selectedCsrds
-
-
-// Assuming allSelectedCards and selectedCards are HashMap<CheckBox, Card>
+        // remove the dublicated from the all selectedCsrds
 
         for (Map.Entry<CheckBox, Card> availableCards : allSelectedCards.entrySet()) {
             Card availableCard = availableCards.getValue();
@@ -409,24 +411,48 @@ public class PrimaryController{
     }
 
 @FXML
-    public void createPlan() throws IOException{
+    public void createPlan() throws IOException {
 
-        String fileName = planTitle.getText();
+    String fileName = planTitle.getText();
 
 
-        if (fileName.isEmpty()){
+    if (fileName.isEmpty() || allSelectedCards.size() == 0) {
 
-            //Prompt user to write the name of the plan
-        }else{
-            //Create a CSV and then update it with the card Information here
+        //Prompt user to write the name of the plan
+        System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
+    } else {
+        //Create a CSV and then update it with the card Information here
+        fileName = fileName + "_Plan.csv";
+        //Plan name already exists overwrite or dont make any changes
+        File allPlans = new File("AllPlans");
+        File[] files = allPlans.listFiles();
 
-            fileName = "AllPlans/" +fileName + "_Plan.csv";
+        Boolean fileThere = false;
+        for (File oneFile : files) {
+            if (oneFile.getName().equals(fileName)) {
+                fileThere = true;
+                break;
+            }
+        }
 
-            //if() Plan name already exists overwrite or dont make any changes
+        Boolean override = false;
+        if(fileThere) {
+
+            System.out.println("Plan already created do you want to ovverride?");
+            override = prompt(" Plan already created do you want to replace the existing plan?", true);
+        }
+
+        System.out.println("File there or not: " + fileThere);
+
+        if (!fileThere || override) {
+            fileName = "AllPlans/Plan.csv" + fileName;
 
             try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
 
-                for(Card card : allSelectedCards.values()){
+
+                writer.write(planTitle.getText()+"\n");
+
+                for (Card card : allSelectedCards.values()) {
 
                     String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
                             card.getCode(), card.getEvent(), card.getCategory(), card.getTitle(),
@@ -434,59 +460,107 @@ public class PrimaryController{
                             card.getEquipment(), card.getKeywords());
                     // Write the CSV line to the file
                     writer.write("\n" + csvLine);
-                }
 
-                writer.close();
+                }
+                prompt("Sucessfully created the plan!" ,false);
                 System.out.println("Sucessfully created the plan! ");
+                writer.close();
 
                 planTitle.clear();
                 selectedCardsView.getChildren().clear();
 
             }
+        }
+    }
+
+    }
+
+//jsut for prompting different things based on the needs
+
+    private boolean prompt(String value ,Boolean buttonsNeeded){
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Confirmation");
+        alert.setContentText(value);
+
+        AtomicBoolean choice = new AtomicBoolean(false);
+
+        if(buttonsNeeded) {
+
+            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
+
+            // Show the alert and handle the user's choice
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                    // User clicked "Yes", handle the positive action
+                    choice.set(true);
+                    System.out.println("User clicked Yes");
+                } else if (response == ButtonType.NO) {
+                    // User clicked "No", handle the negative action
+                    System.out.println("User clicked No");
+
+                }
+            });
+
+        }else{
+
+            alert.getButtonTypes().setAll(ButtonType.OK);
+
+            alert.showAndWait().ifPresent(response -> {
+                if (response == ButtonType.YES) {
+                   alert.close();
+                }
+            });
 
 
+        }
 
-
-
-            }
-
-
-
+        return choice.get();
     }
 
 
     @FXML
-    void showPlan() throws IOException{
-        App.setRoot("ShowPlan");
+    void showPlan(Button button) throws IOException{
+    //    PlanCollection.selectedPlan = planListView.getSelectionModel().getSelectedItem();
+        FXMLLoader loader = new FXMLLoader(App.class.getResource("ShowPlan.fxml"));
+        Parent root = loader.load();
+        ShowPlanController controller = loader.getController();  // Initialize the controller
+        Scene scene = new Scene(root, 1500, 1500);
+        Stage showPlanStage = new Stage();
+        showPlanStage.setTitle("Show Plan");
+        showPlanStage.setScene(scene);
+        showPlanStage.show();
+        controller.buildPlans(button.getText(), "test");
     }
 
+    String selectedPlan;
+    String sortPlansBy;
     void buildPlans() throws  IOException{
-        File[] planFiles = new File(dataPlanPath).listFiles();
+        File[] planFiles = new File(allPlansDir).listFiles();
+
         if (planFiles.length != 0){
             for (File file: planFiles){
                 Scanner fileReader = new Scanner(file.getPath());
                 String input = fileReader.nextLine();
-                do {
-                    FileReader csvFile = new FileReader(input);
-                    BufferedReader reader = new BufferedReader(csvFile);
-                    String line = reader.readLine();
-                    while (line != null) {
-                        String[] data = line.split(",");
-                        System.out.println(input.substring(9, input.length() - 9));
-                      //  String title = input.substring(9, -9);
-                     //   Plan newPlan = new Plan(title, data);
-                   //     allPlans.add(newPlan);
-                        line = reader.readLine();
-                    }
-                } while(fileReader.hasNextLine());
+                    String[] titleData = input.split("_");
+                    String title = titleData[0];
+                    title = title.substring(9);
+                    Button button = new Button();
+                    button.setText(title);
+                    //make button show full plan on click
+                    button.setOnMouseClicked(evt -> {
+                        try {
+                            showPlan(button);
+                        } catch (IOException e) {
+                            throw new RuntimeException(e);
+                        }
+                    });
+                    showPlanList.getChildren().add(button);
+                //    Plan newPlan = new Plan(title, );
+                //    PlanCollection.allPlans.add(newPlan);
+             //   } while(fileReader.hasNextLine());
             }
         }
-
-        //creates new cards for all csv files data
-
-            //map Created for searching
-
-
         }
 
 
