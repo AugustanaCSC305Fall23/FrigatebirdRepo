@@ -61,7 +61,10 @@ public class PrimaryController{
     @FXML
     private VBox showPlanList;
 
-
+    @FXML
+    void initialize() {
+        filterSelect.getItems().addAll("none", "event", "category", "gender", "sex", "level");
+    }
 
     @FXML
     void searchButtonAction() {
@@ -656,6 +659,14 @@ public class PrimaryController{
     }
 
 
+
+
+
+
+
+    @FXML
+    private ComboBox<String> filterSelect;
+
     @FXML
     void showPlan(Button button) throws IOException{
     //    PlanCollection.selectedPlan = planListView.getSelectionModel().getSelectedItem();
@@ -667,11 +678,10 @@ public class PrimaryController{
         showPlanStage.setTitle("Show Plan");
         showPlanStage.setScene(scene);
         showPlanStage.show();
-        controller.buildPlans(button.getText(), "test", allCards);
+        String segmentType = filterSelect.getSelectionModel().getSelectedItem();
+        controller.buildPlans(button.getText(), segmentType, allCards);
     }
 
-    String selectedPlan;
-    String sortPlansBy;
     void buildPlans() throws  IOException{
         File[] planFiles = new File(allPlansDir).listFiles();
 

@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.Tab?>
@@ -66,7 +67,13 @@
             <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0">
                <children>
-                  <VBox fx:id="showPlanList" layoutX="14.0" layoutY="46.0" prefHeight="560.0" prefWidth="587.0" />
+                  <VBox fx:id="showPlanList" layoutX="7.0" layoutY="70.0" prefHeight="594.0" prefWidth="661.0" />
+                  <ComboBox fx:id="filterSelect" layoutX="300.0" layoutY="14.0" prefWidth="150.0" />
+                  <Label alignment="CENTER" layoutX="205.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
             </content>
         </Tab>
