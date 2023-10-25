@@ -22,7 +22,7 @@
       </AnchorPane>
       <ScrollPane hbarPolicy="NEVER" prefHeight="500.0" prefWidth="200.0" vbarPolicy="ALWAYS">
          <content>
-            <TilePane prefHeight="243.0" prefWidth="291.0" />
+            <TilePane fx:id="cardPane" prefHeight="495.0" prefWidth="981.0" />
          </content>
       </ScrollPane>
    </children>

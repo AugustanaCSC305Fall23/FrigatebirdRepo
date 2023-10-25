@@ -62,6 +62,7 @@ public class PrimaryController{
     private VBox showPlanList;
 
 
+
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
@@ -666,7 +667,7 @@ public class PrimaryController{
         showPlanStage.setTitle("Show Plan");
         showPlanStage.setScene(scene);
         showPlanStage.show();
-        controller.buildPlans(button.getText(), "test");
+        controller.buildPlans(button.getText(), "test", allCards);
     }
 
     String selectedPlan;
