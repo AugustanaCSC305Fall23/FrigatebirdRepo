@@ -20,7 +20,6 @@ import java.io.FileWriter;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PrimaryController{
-
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private ArrayList<Card> allCards;
 
@@ -31,10 +30,10 @@ public class PrimaryController{
     Button searchButton;
 
     @FXML
-    private CheckBox FemaleCheckBox;
+    private CheckBox femaleCheckBox;
 
     @FXML
-    private CheckBox MaleCheckBox;
+    private CheckBox maleCheckBox;
 
     @FXML
     private TilePane allCardContent;
@@ -45,15 +44,13 @@ public class PrimaryController{
     private String lastSearch = "";
     private HashMap<String, HashMap> cardsDictionary;
 
-    @FXML
-    private TilePane selectedCardsView;
+
 
     @FXML
     void searchButtonAction() {
         searchButton.setOnAction(event -> {
-            MaleCheckBox.setSelected(false);
-            FemaleCheckBox.setSelected(false);
-
+            maleCheckBox.setSelected(false);
+            femaleCheckBox.setSelected(false);
 
                     String searchText = searchedWord.getText().strip();
 
@@ -67,11 +64,11 @@ public class PrimaryController{
                     }else{
                         if (searchText.equals("")) {
                             allCardContent.getChildren().clear();
-                            dynamicCarAddingToView(allCards);
+                            dynamicCardAddingToView(allCards);
 
                         } else {
                             allCardContent.getChildren().clear();
-                            dynamicCarAddingToView(searchFilteredCards);
+                            dynamicCardAddingToView(searchFilteredCards);
                         }
                     }
         });
@@ -79,11 +76,11 @@ public class PrimaryController{
 
     @FXML
     void showFemaleAction() {
-        FemaleCheckBox.setOnAction(event -> {
+        femaleCheckBox.setOnAction(event -> {
 
             allCardContent.getChildren().clear();
 
-            if (FemaleCheckBox.isSelected()) {
+            if (femaleCheckBox.isSelected()) {
                 // when female box is selected
                 checkBoxFilteredCards.clear();
 
@@ -97,7 +94,7 @@ public class PrimaryController{
                 }
 
                 //add the fresh set of cards to view
-                dynamicCarAddingToView(checkBoxFilteredCards);
+                dynamicCardAddingToView(checkBoxFilteredCards);
             } else {
 
                     //get cards from the search view
@@ -109,16 +106,16 @@ public class PrimaryController{
 
                     // add the cards
 
-                    dynamicCarAddingToView(checkBoxFilteredCards);
+                    dynamicCardAddingToView(checkBoxFilteredCards);
                 }
             } else{
 
                 //if not selected un checked
 
                 if(searchFilteredCards.isEmpty()){
-                    dynamicCarAddingToView(allCards);
+                    dynamicCardAddingToView(allCards);
                 }else{
-                    dynamicCarAddingToView(searchFilteredCards);
+                    dynamicCardAddingToView(searchFilteredCards);
                 }
             }
 
@@ -127,10 +124,10 @@ public class PrimaryController{
 
     @FXML
     void showMaleAction() {
-            MaleCheckBox.setOnAction(event -> {
+            maleCheckBox.setOnAction(event -> {
                 allCardContent.getChildren().clear();
 
-                if (MaleCheckBox.isSelected()) {
+                if (maleCheckBox.isSelected()) {
                     // when female box is selected
                     checkBoxFilteredCards.clear();
 
@@ -144,7 +141,7 @@ public class PrimaryController{
                         }
 
                         //add the fresh set of cards to view
-                        dynamicCarAddingToView(checkBoxFilteredCards);
+                        dynamicCardAddingToView(checkBoxFilteredCards);
                     } else {
 
                         //get cards from the search view
@@ -155,15 +152,15 @@ public class PrimaryController{
                         }
 
                         // add the cards
-                        dynamicCarAddingToView(checkBoxFilteredCards);
+                        dynamicCardAddingToView(checkBoxFilteredCards);
                     }
                 } else{
 
                     //if not selected un checked
                     if(searchFilteredCards.isEmpty()){
-                        dynamicCarAddingToView(allCards);
+                        dynamicCardAddingToView(allCards);
                     }else{
-                        dynamicCarAddingToView(searchFilteredCards);
+                        dynamicCardAddingToView(searchFilteredCards);
                     }
                 }
 
@@ -198,7 +195,7 @@ public class PrimaryController{
         }
 
         printCardsDictionary(cardsDictionary);
-        dynamicCarAddingToView(allCards);
+        dynamicCardAddingToView(allCards);
     }
 
     public static void printCardsDictionary(HashMap<String, HashMap> cardsDictionary) {
@@ -234,12 +231,12 @@ public class PrimaryController{
 
 
         allCardContent.getChildren().clear();
-        dynamicCarAddingToView(searchFilteredCards);
+        dynamicCardAddingToView(searchFilteredCards);
 
 
     }
 
-    private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
+    private void dynamicCardAddingToView(ArrayList<Card> filteredCards) {
         for (Card card : filteredCards) {
             Button button = new Button();
 
@@ -292,16 +289,14 @@ public class PrimaryController{
      */
 
 
-
-
-
     @FXML
-    Button selectCards;
-    HashMap<CheckBox,Card> allSelectedCards = new HashMap<>();
+    private HashMap<CheckBox,Card> allSelectedCards = new HashMap<>();
 
     @FXML
     TextField planTitle;
 
+    @FXML
+    private TilePane selectedCardsView;
 
 
     @FXML
@@ -501,7 +496,6 @@ public class PrimaryController{
                    alert.close();
                 }
             });
-
 
         }
 

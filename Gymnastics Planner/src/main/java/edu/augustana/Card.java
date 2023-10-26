@@ -91,7 +91,6 @@ public class Card {
         return keywords;
     }
 
-
     @Override
     public String toString() {
         return "Card{" +

@@ -24,8 +24,8 @@
                                 <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
                                 <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
                                 <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
-                                <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-                                <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                                <CheckBox fx:id="femaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+                                <CheckBox fx:id="maleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
                             </children></AnchorPane>
                         <ScrollPane prefHeight="774.0" prefWidth="1214.0">
                             <content>
