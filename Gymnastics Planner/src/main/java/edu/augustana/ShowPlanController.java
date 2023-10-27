@@ -38,7 +38,9 @@ public class ShowPlanController {
     private ArrayList<Card> segmentedCards;
     @FXML
     void initialize() {
-        }
+
+
+    }
 
         public void buildPlans(String planName, String segmentType, ArrayList<Card> cards) throws IOException{
         shortCodes = new ArrayList<>();
@@ -69,7 +71,6 @@ public class ShowPlanController {
             }
             System.out.println(cardsList.size());
             //write the logic to segment the cards into the segment type
-
             switch (segmentType) {
                 case "event":
                     while (cardsList.size() != 0) {
@@ -91,7 +92,6 @@ public class ShowPlanController {
                         dynamicCarAddingToView(segmentedCards);
                     }
                     break;
-
                 case "category":
                     while (cardsList.size() != 0) {
                         Label eventLabel = new Label();
@@ -108,7 +108,7 @@ public class ShowPlanController {
                                 cardsList.remove(i);
                             }
                         }
-                        System.out.println(segmentedCards.size());
+                        System.out.println("sIZE SEGMENTEDcARDS: " + segmentedCards.size());
                         dynamicCarAddingToView(segmentedCards);
                     }
                     break;
@@ -252,7 +252,8 @@ public class ShowPlanController {
 
     @FXML
     void exitShowPlanView() throws IOException {
-        App.setRoot("Primary");
+
+
     }
 
     }

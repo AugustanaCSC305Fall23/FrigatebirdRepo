@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.augustana.AllPlansController"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0">
+        <children>
+            <VBox fx:id="showPlanList" layoutX="7.0" layoutY="70.0" prefHeight="594.0" prefWidth="661.0" />
+            <ComboBox fx:id="filterSelect" layoutX="300.0" layoutY="14.0" prefWidth="150.0" />
+            <Label alignment="CENTER" layoutX="205.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Label>
+        </children></AnchorPane>
+
+
+</AnchorPane>

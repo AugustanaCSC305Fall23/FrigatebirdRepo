@@ -21,7 +21,7 @@ import java.util.*;
 
 public class SlectCardsController {
 
-        PrimaryController primaryController;
+        CreatePlanController createPlanController;
 
         @FXML
         Button selectTheseCards;
@@ -80,7 +80,7 @@ public class SlectCardsController {
 
             System.out.println("Num of all of the selected cards: " + count);
             //Send the array list to the my Create Plan tab
-            primaryController.recieveArrayListCheckBox(selectedCardsToCheckBox);
+            createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox);
 
 
             //Close the this particular tab
@@ -262,9 +262,9 @@ public class SlectCardsController {
         }
 
 
-       public void buildCards(PrimaryController primaryController) throws IOException {
+       public void buildCards(CreatePlanController createPlanController) throws IOException {
 
-            this.primaryController =  primaryController;
+            this.createPlanController =  createPlanController;
             //map for the cards
             cardsDictionary = new HashMap<>();
 
