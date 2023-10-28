@@ -1,8 +1,11 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,17 +13,23 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.layout.TilePane;
+import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShowPlanController {
+    private static Scene scene;
+    private PrimaryController primaryController;
     @FXML
     private Label Title;
 
     @FXML
     private Button exitButton;
+
+    @FXML
+    private VBox cardBox;
 
     @FXML
     private TilePane cardPane;
@@ -40,146 +49,149 @@ public class ShowPlanController {
     void initialize() {
         }
 
-        public void buildPlans(String planName, String segmentType, ArrayList<Card> cards) throws IOException{
-        shortCodes = new ArrayList<>();
-        cardsList = new ArrayList<>();
-        System.out.println(segmentType);
-        allCards = cards;
-        allPlansDir = "AllPlans";
-        Title.setText(planName);
-        //write logic to read through the csv file and collect the short codes
+        public void buildPlans(String planName, String segmentType, ArrayList<Card> cards) throws IOException {
+            shortCodes = new ArrayList<>();
+            cardsList = new ArrayList<>();
+            System.out.println(segmentType);
+            allCards = cards;
+            allPlansDir = "AllPlans";
+            Title.setText(planName);
+            //write logic to read through the csv file and collect the short codes
             filePath = getFilePath(planName);
             try {
                 Scanner reader = new Scanner(new File(filePath));
                 System.out.println(filePath);
                 String line = reader.nextLine();
-                while (reader.hasNextLine()){
+                while (reader.hasNextLine()) {
                     line = reader.nextLine();
                     String[] data = line.split(",");
                     shortCodes.add(data[0]);
                 }
 
-            }catch(FileNotFoundException e){
+            } catch (FileNotFoundException e) {
                 throw new RuntimeException(e);
-                }
-            System.out.println(shortCodes.get(2));
+            }
             //write the logic to gather the list of cards used in the plan
-            for (String code: shortCodes){
+            for (String code : shortCodes) {
                 cardsList.add(getCard(code));
             }
-            System.out.println(cardsList.size());
             //write the logic to segment the cards into the segment type
 
-            switch (segmentType) {
-                case "event":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getEvent());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getEvent();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getEvent().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
+            if (segmentType == null || segmentType.equals("none")) {
+                dynamicCarAddingToView(cardsList);
+            } else {
+                switch (segmentType) {
+                    case "event":
+                        while (cardsList.size() != 0) {
+                            Label eventLabel = new Label();
+                            eventLabel.setText(cardsList.get(0).getEvent());
+                            eventLabel.setFont(new Font("Arial", 20));
+                            eventLabel.setAlignment(Pos.TOP_CENTER);
+                            eventLabel.setPrefWidth(500);
+                            eventLabel.setPrefHeight(100);
+                            cardBox.getChildren().add(eventLabel);
+                            segmentedCards = new ArrayList<>();
+                            String segment = cardsList.get(0).getEvent();
+                            for (int i = cardsList.size() - 1; i >= 0; i--) {
+                                if (cardsList.get(i).getEvent().equals(segment)) {
+                                    segmentedCards.add(cardsList.get(i));
+                                    cardsList.remove(i);
+                                }
                             }
+                            System.out.println(segmentedCards.size());
+                            dynamicCarAddingToView(segmentedCards);
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+                        break;
 
-                case "category":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getCategory());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getCategory();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getCategory().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
+                    case "category":
+                        while (cardsList.size() != 0) {
+                            Label eventLabel = new Label();
+                            eventLabel.setText(cardsList.get(0).getCategory());
+                            eventLabel.setFont(new Font("Ariel", 20));
+                            eventLabel.setAlignment(Pos.TOP_CENTER);
+                            eventLabel.setPrefWidth(500);
+                            cardPane.getChildren().add(eventLabel);
+                            segmentedCards = new ArrayList<>();
+                            String segment = cardsList.get(0).getCategory();
+                            for (int i = cardsList.size() - 1; i >= 0; i--) {
+                                if (cardsList.get(i).getCategory().equals(segment)) {
+                                    segmentedCards.add(cardsList.get(i));
+                                    cardsList.remove(i);
+                                }
                             }
+                            System.out.println(segmentedCards.size());
+                            dynamicCarAddingToView(segmentedCards);
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+                        break;
 
-                case "gender":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getGender());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getGender();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getGender().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
+                    case "gender":
+                        while (cardsList.size() != 0) {
+                            Label eventLabel = new Label();
+                            eventLabel.setText(cardsList.get(0).getGender());
+                            eventLabel.setFont(new Font("Ariel", 20));
+                            eventLabel.setAlignment(Pos.TOP_CENTER);
+                            eventLabel.setPrefWidth(500);
+                            cardPane.getChildren().add(eventLabel);
+                            segmentedCards = new ArrayList<>();
+                            String segment = cardsList.get(0).getGender();
+                            for (int i = cardsList.size() - 1; i >= 0; i--) {
+                                if (cardsList.get(i).getGender().equals(segment)) {
+                                    segmentedCards.add(cardsList.get(i));
+                                    cardsList.remove(i);
+                                }
                             }
+                            System.out.println(segmentedCards.size());
+                            dynamicCarAddingToView(segmentedCards);
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+                        break;
 
-                case "sex":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getSex());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getSex();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getSex().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
+                    case "sex":
+                        while (cardsList.size() != 0) {
+                            Label eventLabel = new Label();
+                            eventLabel.setText(cardsList.get(0).getSex());
+                            eventLabel.setFont(new Font("Ariel", 20));
+                            eventLabel.setAlignment(Pos.TOP_CENTER);
+                            eventLabel.setPrefWidth(500);
+                            cardPane.getChildren().add(eventLabel);
+                            segmentedCards = new ArrayList<>();
+                            String segment = cardsList.get(0).getSex();
+                            for (int i = cardsList.size() - 1; i >= 0; i--) {
+                                if (cardsList.get(i).getSex().equals(segment)) {
+                                    segmentedCards.add(cardsList.get(i));
+                                    cardsList.remove(i);
+                                }
                             }
+                            System.out.println(segmentedCards.size());
+                            dynamicCarAddingToView(segmentedCards);
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+                        break;
 
-                case "level":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getLevel());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getLevel();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getLevel().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
+                    case "level":
+                        while (cardsList.size() != 0) {
+                            Label eventLabel = new Label();
+                            eventLabel.setText(cardsList.get(0).getLevel());
+                            eventLabel.setFont(new Font("Ariel", 20));
+                            eventLabel.setAlignment(Pos.TOP_CENTER);
+                            eventLabel.setPrefWidth(500);
+                            cardPane.getChildren().add(eventLabel);
+                            segmentedCards = new ArrayList<>();
+                            String segment = cardsList.get(0).getLevel();
+                            for (int i = cardsList.size() - 1; i >= 0; i--) {
+                                if (cardsList.get(i).getLevel().equals(segment)) {
+                                    segmentedCards.add(cardsList.get(i));
+                                    cardsList.remove(i);
+                                }
                             }
+                            System.out.println(segmentedCards.size());
+                            dynamicCarAddingToView(segmentedCards);
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+                        break;
 
-                case "default":
-                    dynamicCarAddingToView(cardsList);
+                    case "default":
+                        dynamicCarAddingToView(cardsList);
+                }
+                //write the logic to show the cards
             }
-            //write the logic to show the cards
         }
 
     /**
@@ -252,7 +264,7 @@ public class ShowPlanController {
 
     @FXML
     void exitShowPlanView() throws IOException {
-        App.setRoot("Primary");
+
     }
 
     }
