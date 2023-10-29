@@ -105,8 +105,6 @@ public class AllCardsController {
     }
 
 
-
-
     public void buildCards() {
 
         dynamicCardAddingToView(handleSearch.getAllCards());

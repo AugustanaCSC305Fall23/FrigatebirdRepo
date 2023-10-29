@@ -21,80 +21,57 @@ import java.util.*;
 
 public class SlectCardsController {
 
-        CreatePlanController createPlanController;
 
-        @FXML
-        Button selectTheseCards;
-
-        private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
-        private ArrayList<Card> allCards;
-
-        @FXML
-        private TextField searchedWord;
-
-        @FXML
-        Button searchButton;
-
-        @FXML
-        private CheckBox FemaleCheckBox;
-
-        @FXML
-        private CheckBox MaleCheckBox;
-
-        @FXML
-        private TilePane allCardContent;
-        private ArrayList<Card> searchFilteredCards = new ArrayList<>();
-
-        private ArrayList<Card> checkBoxFilteredCards = new ArrayList<>();
-
-        private String lastSearch = "";
-        private HashMap<String, HashMap> cardsDictionary;
-
-        ArrayList<CheckBox> allCardsCheckBox;
-        HashMap<CheckBox,Card> checkBoxsCard;
-        HashMap<CheckBox,Card> selectedCardsToCheckBox;
+    @FXML
+    Button selectTheseCards;
 
 
 
     @FXML
-    private void  addCardsToPlan(){
+    private TextField searchedWord;
+
+    @FXML
+    Button searchButton;
+
+    @FXML
+    private CheckBox femaleCheckBox;
+
+    @FXML
+    private CheckBox maleCheckBox;
+
+    @FXML
+    private TilePane allCardContent;
 
 
-            //add all the checked boxed cards into this
-            //either I can go through all of the cards that are there and then see things that are checked
-            //or I can create a array that is updated the when a checkbox is clicked or not
-            //i think the second onw will require more array access
-            int count = 0 ;
-
-            selectedCardsToCheckBox = new HashMap<>();
-
-            for(CheckBox cBox: allCardsCheckBox){
-
-                if(cBox.isSelected()){
-                    // Now I need to figure out a way to send all the information for this particular checkBox to my selected cards view
-                    // Can I just send the arraylist of the selected cards? Most probably!!!
-                    selectedCardsToCheckBox.put(cBox , checkBoxsCard.get(cBox));
-                    count ++;
-                }
-            }
-
-            System.out.println("Num of all of the selected cards: " + count);
-            //Send the array list to the my Create Plan tab
-            createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox);
+    private String lastSearch = "";
+    HashMap<CheckBox, Card> selectedCardsToCheckBox;
+    CreatePlanController createPlanController;
+    private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
+    private PlansDB planDB;
+    private CardListDB cardListDB;
+    private  HandleSearch handleSearch;
 
 
-            //Close the this particular tab
-            Stage stage = (Stage) selectTheseCards.getScene().getWindow();
-            stage.close();
+    @FXML
+    private void addCardsToPlan() {
 
+        //add all the checked boxed cards into this
+        //either I can go through all of the cards that are there and then see things that are checked
+        //or I can create a array that is updated the when a checkbox is clicked or not
+        //i think the second onw will require more array access
+
+        selectedCardsToCheckBox = planDB.getFilterSelectedTempCards();
+        createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox, true);
+
+        //Close the this particular tab
+        Stage stage = (Stage) selectTheseCards.getScene().getWindow();
+        stage.close();
 
 
     }
 
-    private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
+    private void dynamicCardAddingToView(ArrayList<Card> filteredCards) {
 
-        allCardsCheckBox = new ArrayList<>();
-        checkBoxsCard = new HashMap<>();
         for (Card card : filteredCards) {
             CheckBox checkbox = new CheckBox();
 
@@ -117,10 +94,7 @@ public class SlectCardsController {
                 allCardContent.setPrefColumns(5);
                 allCardContent.getChildren().add(checkbox);
 
-                //How does it work? Is this like an object and we dont have to think about everything being the same?
-                //We might need a fxId and access via that
-                allCardsCheckBox.add(checkbox);
-                checkBoxsCard.put(checkbox, card);
+                planDB.addToDict(checkbox,card);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -131,209 +105,87 @@ public class SlectCardsController {
         allCardContent.setHgap(10);
         allCardContent.setVgap(20);
 
-        System.out.println("All filter: " + allCards.size());
-        System.out.println("Search filter: " + searchFilteredCards.size());
-        System.out.println("Check box filter: " + checkBoxFilteredCards.size());
     }
-
-
 
     @FXML
-       private void searchButtonAction() {
-            searchButton.setOnAction(event -> {
-                MaleCheckBox.setSelected(false);
-                FemaleCheckBox.setSelected(false);
+    private void searchButtonAction() {
+        maleCheckBox.setSelected(false);
+        femaleCheckBox.setSelected(false);
 
+        String searchText = searchedWord.getText().strip();
 
-                String searchText = searchedWord.getText().strip();
-
-                if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
-                    lastSearch = searchText;
-                    searchFilteredCards.clear();
-
-                    allCardContent.getChildren().clear();
-
-                    searchList(searchText);
-                }else{
-                    if (searchText.equals("")) {
-                        allCardContent.getChildren().clear();
-                        dynamicCarAddingToView(allCards);
-
-                    } else {
-                        allCardContent.getChildren().clear();
-                        dynamicCarAddingToView(searchFilteredCards);
-                    }
-                }
-            });
-        }
-
-        @FXML
-       private void showFemaleAction() {
-            FemaleCheckBox.setOnAction(event -> {
-
-                allCardContent.getChildren().clear();
-
-                if (FemaleCheckBox.isSelected()) {
-                    // when female box is selected
-                    checkBoxFilteredCards.clear();
-
-                    if (searchFilteredCards.isEmpty()) {
-                        //get cards from fresh set
-
-                        for (Card card : allCards) {
-                            if (card.getGender().equals("N") || card.getGender().equals("F")) {
-                                checkBoxFilteredCards.add(card);
-                            }
-                        }
-
-                        //add the fresh set of cards to view
-                        dynamicCarAddingToView(checkBoxFilteredCards);
-                    } else {
-
-                        //get cards from the search view
-                        for (Card card : searchFilteredCards) {
-                            if (card.getGender().equals("N") || card.getGender().equals("F")) {
-                                checkBoxFilteredCards.add(card);
-                            }
-                        }
-
-                        // add the cards
-
-                        dynamicCarAddingToView(checkBoxFilteredCards);
-                    }
-                } else{
-
-                    //if not selected un checked
-
-                    if(searchFilteredCards.isEmpty()){
-                        dynamicCarAddingToView(allCards);
-                    }else{
-                        dynamicCarAddingToView(searchFilteredCards);
-                    }
-                }
-
-            });
-        }
-
-
-        @FXML
-      private void showMaleAction() {
-            MaleCheckBox.setOnAction(event -> {
-                allCardContent.getChildren().clear();
-
-                if (MaleCheckBox.isSelected()) {
-                    // when female box is selected
-                    checkBoxFilteredCards.clear();
-
-                    if (searchFilteredCards.isEmpty()) {
-                        //get cards from fresh set
-
-                        for (Card card : allCards) {
-                            if (card.getGender().equals("N") || card.getGender().equals("M")) {
-                                checkBoxFilteredCards.add(card);
-                            }
-                        }
-
-                        //add the fresh set of cards to view
-                        dynamicCarAddingToView(checkBoxFilteredCards);
-                    } else {
-
-                        //get cards from the search view
-                        for (Card card : searchFilteredCards) {
-                            if (card.getGender().equals("N") || card.getGender().equals("M")) {
-                                checkBoxFilteredCards.add(card);
-                            }
-                        }
-
-                        // add the cards
-                        dynamicCarAddingToView(checkBoxFilteredCards);
-                    }
-                } else{
-
-                    //if not selected un checked
-                    if(searchFilteredCards.isEmpty()){
-                        dynamicCarAddingToView(allCards);
-                    }else{
-                        dynamicCarAddingToView(searchFilteredCards);
-                    }
-                }
-
-            });
-        }
-
-
-       public void buildCards(CreatePlanController createPlanController) throws IOException {
-
-            this.createPlanController =  createPlanController;
-            //map for the cards
-            cardsDictionary = new HashMap<>();
-
-            //Reads the csv file
-            FileReader csvFile = new FileReader(dataCsvPath);
-            BufferedReader reader = new BufferedReader(csvFile);
-            allCards = new ArrayList<>();
-            String line = reader.readLine();
-
-            //creates new cards for all csv files data
-            while (line != null) {
-                String[] splittedLine = line.split(",");
-                Card newCard = new Card(splittedLine);
-                allCards.add(newCard);
-
-                //map Created for searching
-                HashMap<String, Card> genderMap = new HashMap<>();
-                genderMap.put(newCard.getGender(), newCard);
-                cardsDictionary.put(newCard.getEvent(), genderMap);
-
-
-                line = reader.readLine();
-            }
-
-            dynamicCarAddingToView(allCards);
-        }
-
-
-
-        private void searchList(String inputWord) {
-            List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
-            for (Card card : allCards) {
-                for (String word : searchWordArray) {
-                    for (String data : card.getData()) {
-                        if (data.toLowerCase().equals(word.toLowerCase())) {
-                            searchFilteredCards.add(card);
-                            break;
-                        }
-                    }
-                }
-            }
-
+        if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
+            lastSearch = searchText;
+            handleSearch.clearSearchBoxFilter();
             allCardContent.getChildren().clear();
-            dynamicCarAddingToView(searchFilteredCards);
 
+            searchList(searchText);
+        }else{
+            if (searchText.equals("")) {
+                allCardContent.getChildren().clear();
+                dynamicCardAddingToView(handleSearch.getAllCards());
+
+            } else {
+                allCardContent.getChildren().clear();
+                dynamicCardAddingToView(handleSearch.getFilteredSearchBoxCards());
+            }
+        }
+    }
+
+    @FXML
+    void showFemaleAction() {
+
+        allCardContent.getChildren().clear();
+        maleCheckBox.setSelected(false);
+
+        if (femaleCheckBox.isSelected()) {
+            // when female box is selected
+            handleSearch.clearCheckBoxFilter();
+            dynamicCardAddingToView(handleSearch.checkBoxSearch("F" , "N"));
+        } else{
+
+            //if not selected un checked
+            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
 
         }
+    }
+
+    @FXML
+    void showMaleAction() {
+
+        allCardContent.getChildren().clear();
+        femaleCheckBox.setSelected(false);
+        if (maleCheckBox.isSelected()) {
+            // when female box is selected
+            // handleCards.clearCheckBoxFilter();
+            // add the cards
+            dynamicCardAddingToView(handleSearch.checkBoxSearch("M" , "N"));
+        } else{
+
+            //if not selected un checked
+            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
+
+        }
+    }
 
 
+    public void buildCards(PlansDB plansDB ,CreatePlanController createPlanController) throws IOException {
 
-
-    /*
-
-    This is for the work of the select card we need to move this to the createPlanController.java later somehow
-
-     */
-
-
-
-
+        this.createPlanController = createPlanController;
+        //map for the cards
+        this.planDB = plansDB;
+        cardListDB = new CardListDB();
+        handleSearch = new HandleSearch(cardListDB);
+        dynamicCardAddingToView(handleSearch.getAllCards());
     }
 
 
 
+    private void searchList(String inputWord) {
+        allCardContent.getChildren().clear();
+        dynamicCardAddingToView(handleSearch.textBoxSearch(inputWord));
 
-    /*
-
-    Select card function prompts the user with another window where the user can select cards and hit select button to add it to the plan
-     */
+    }
 
 
-
+}

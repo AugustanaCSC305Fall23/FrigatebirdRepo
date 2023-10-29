@@ -15,15 +15,41 @@ import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlansDB {
 
-
     String fileName;
-
     HashMap<CheckBox,Card> allSelectedCards;
+    HashMap<CheckBox,Card> tempAllSelectedCards;
+
+
 
     public PlansDB() {
 
         allSelectedCards = new HashMap<>();
+        tempAllSelectedCards = new HashMap<>();
     }
+
+    public void addToDict(CheckBox cBox,Card card){
+        tempAllSelectedCards.put(cBox, card);
+    }
+
+
+    public void filterSelectedTempCards(){
+
+        Iterator<CheckBox> iterator = tempAllSelectedCards.keySet().iterator();
+        while (iterator.hasNext()) {
+            CheckBox cBox = iterator.next();
+            if (!cBox.isSelected()) {
+                iterator.remove(); // Remove the current CheckBox from the map
+            }
+        }
+    }
+
+    public HashMap<CheckBox,Card> getFilterSelectedTempCards(){
+
+        this.filterSelectedTempCards();
+        return tempAllSelectedCards;
+    }
+
+
 
     public void recieveCheckBox(HashMap<CheckBox,Card> selectedCards){
 
@@ -72,13 +98,17 @@ public class PlansDB {
         return fileThere;
     }
 
-    public HashMap<CheckBox,Card>  deleteCheckBox(){
+    public HashMap<CheckBox,Card> deleteCheckBox(){
 
-        for(CheckBox cBox : allSelectedCards.keySet()){
-            if(cBox.isSelected()){
-                allSelectedCards.remove(cBox);
+
+        Iterator<CheckBox> iterator = allSelectedCards.keySet().iterator();
+        while (iterator.hasNext()) {
+            CheckBox cBox = iterator.next();
+            if (cBox.isSelected()) {
+                iterator.remove(); // Remove the current CheckBox from the map
             }
         }
+
         return getAllCheckBox();
     }
 
@@ -103,50 +133,6 @@ public class PlansDB {
             writer.close();
         }
 
-    }
-
-
-
-
-
-    private boolean prompt(String value ,Boolean buttonsNeeded){
-
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle("Confirmation");
-        alert.setContentText(value);
-
-        AtomicBoolean choice = new AtomicBoolean(false);
-
-        if(buttonsNeeded) {
-
-            alert.getButtonTypes().setAll(ButtonType.YES, ButtonType.NO);
-
-            // Show the alert and handle the user's choice
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.YES) {
-                    // User clicked "Yes", handle the positive action
-                    choice.set(true);
-                    System.out.println("User clicked Yes");
-                } else if (response == ButtonType.NO) {
-                    // User clicked "No", handle the negative action
-                    System.out.println("User clicked No");
-
-                }
-            });
-
-        }else{
-
-            alert.getButtonTypes().setAll(ButtonType.OK);
-
-            alert.showAndWait().ifPresent(response -> {
-                if (response == ButtonType.YES) {
-                    alert.close();
-                }
-            });
-
-        }
-
-        return choice.get();
     }
 
 

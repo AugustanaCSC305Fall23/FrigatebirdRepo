@@ -57,7 +57,7 @@ public class CreatePlanController {
                 // This will be called after the stage is shown
                 SlectCardsController createPlanController = loader.getController();
                 try {
-                    createPlanController.buildCards(this);
+                    createPlanController.buildCards(plansDB,this);
                 } catch (IOException ex) {
                     throw new RuntimeException(ex);
                 }
@@ -83,7 +83,7 @@ public class CreatePlanController {
             prompt("No cards to delete!",false);
         }else{
 
-            recieveArrayListCheckBox(plansDB.deleteCheckBox());
+            recieveArrayListCheckBox(plansDB.deleteCheckBox(),false);
 
         }
 
@@ -92,11 +92,13 @@ public class CreatePlanController {
 
     //We reicieve the parameters from the selecrCards view here and display anything that is needed
 
-    public void recieveArrayListCheckBox(HashMap<CheckBox,Card> selectedCards) {
+    public void recieveArrayListCheckBox(HashMap<CheckBox,Card> selectedCards, Boolean recieve) {
         // Display all of the checkedBoxes
         // remove the dublicated from the all selectedCsrds
 
-        plansDB.recieveCheckBox(selectedCards);
+        if(recieve) {
+            plansDB.recieveCheckBox(selectedCards);
+        }
 
         selectedCardsView.getChildren().clear();
         selectedCardsView.setPrefColumns(4);
