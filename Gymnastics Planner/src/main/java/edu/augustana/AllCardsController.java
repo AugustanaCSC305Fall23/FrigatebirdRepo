@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 public class AllCardsController {
 
 
-
     @FXML
     private TextField searchedWord;
 
@@ -29,7 +28,6 @@ public class AllCardsController {
     private TilePane allCardContent;
 
     private String lastSearch = "";
-
 
 
 

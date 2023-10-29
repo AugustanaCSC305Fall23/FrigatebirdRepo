@@ -24,11 +24,18 @@ public class CreatePlanController {
 
 
     @FXML
-    private HashMap<CheckBox,Card> allSelectedCards = new HashMap<>();
-    @FXML
     TextField planTitle;
     @FXML
     private TilePane selectedCardsView;
+
+    private PlansDB plansDB;
+
+
+    public CreatePlanController(){
+
+        plansDB = new PlansDB();
+
+    }
 
     @FXML
     public void selectCard() {
@@ -70,18 +77,13 @@ public class CreatePlanController {
     @FXML
     private void deleteSelectedCards(){
 
-        if ( allSelectedCards.size() == 0){
+        if (plansDB.getAllCheckBox().size() == 0){
 
             //Prompt that the selected cards has nothing to delete
             prompt("No cards to delete!",false);
         }else{
 
-            for(CheckBox cBox : allSelectedCards.keySet()){
-                if(cBox.isSelected()){
-                    allSelectedCards.remove(cBox);
-                }
-            }
-            recieveArrayListCheckBox( allSelectedCards);
+            recieveArrayListCheckBox(plansDB.deleteCheckBox());
 
         }
 
@@ -94,104 +96,50 @@ public class CreatePlanController {
         // Display all of the checkedBoxes
         // remove the dublicated from the all selectedCsrds
 
-        for (Map.Entry<CheckBox, Card> availableCards : allSelectedCards.entrySet()) {
-            Card availableCard = availableCards.getValue();
-
-            Iterator<Map.Entry<CheckBox, Card>> iterator = selectedCards.entrySet().iterator();
-            while (iterator.hasNext()) {
-                Map.Entry<CheckBox, Card> sentCardsMap = iterator.next();
-                Card sentCard = sentCardsMap.getValue();
-                CheckBox sentCheckBox = sentCardsMap.getKey();
-                if (sentCard.getCode().equals(availableCard.getCode())) {
-                    iterator.remove();  // Safe removal using iterator's remove()
-                    break;
-                }
-            }
-        }
-
-        System.out.println("Available cards number: " + allSelectedCards.size());
-        System.out.println("Sent cards number: " + selectedCards.size());
-
-
-        allSelectedCards.putAll(selectedCards);
+        plansDB.recieveCheckBox(selectedCards);
 
         selectedCardsView.getChildren().clear();
         selectedCardsView.setPrefColumns(4);
 
-        for (CheckBox cBox : allSelectedCards.keySet()) {
+        for (CheckBox cBox : plansDB.getAllCheckBox().keySet()) {
             cBox.setSelected(false);
             selectedCardsView.getChildren().add(cBox);
         }
 
-        System.out.println("These came from another page: " + selectedCards.size());
     }
 
     @FXML
     public void createPlan() throws IOException {
 
-        String fileName = planTitle.getText();
+        String planTitleName = planTitle.getText().strip();
 
-
-        if (fileName.isEmpty() || allSelectedCards.size() == 0) {
-
+        if (planTitleName.isEmpty() || plansDB.getAllCheckBox().size() == 0) {
             //Prompt user to write the name of the plan
             System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
         } else {
-            //Create a CSV and then update it with the card Information here
-            fileName = fileName + "_Plan.csv";
-            //Plan name already exists overwrite or dont make any changes
-            File allPlans = new File("AllPlans");
-            File[] files = allPlans.listFiles();
-
-            Boolean fileThere = false;
-            for (File oneFile : files) {
-                if (oneFile.getName().equals(fileName)) {
-                    fileThere = true;
-                    break;
-                }
-            }
-
+            // see if file exits and if user wants to override
+            Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName);
+            System.out.println("Is file there? " + fileThere);
             Boolean override = false;
-            if(fileThere) {
-
+            if (fileThere) {
                 System.out.println("Plan already created do you want to ovverride?");
                 override = prompt(" Plan already created do you want to replace the existing plan?", true);
             }
 
-            System.out.println("File there or not: " + fileThere);
-
+            //if file is not there or override then write file
             if (!fileThere || override) {
-                fileName = "AllPlans/Plan.csv" + fileName;
-
-                try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-
-
-                    writer.write(planTitle.getText()+"\n");
-
-                    for (Card card : allSelectedCards.values()) {
-
-                        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                                card.getCode(), card.getEvent(), card.getCategory(), card.getTitle(),
-                                card.getImage(), card.getGender(), card.getSex(), card.getLevel(),
-                                card.getEquipment(), card.getKeywords());
-                        // Write the CSV line to the file
-                        writer.write("\n" + csvLine);
-
-                    }
-                    prompt("Sucessfully created the plan!" ,false);
-                    System.out.println("Sucessfully created the plan! ");
-                    writer.close();
-
-                    planTitle.clear();
-                    selectedCardsView.getChildren().clear();
-
-                }
+                plansDB.overrideOrCreateNewPlan(planTitleName);
+                prompt("Sucessfully created the plan!", false);
+                planTitle.clear();
+                selectedCardsView.getChildren().clear();
             }
-        }
 
+
+        }
     }
 
 //jsut for prompting different things based on the needs
+
 
     private boolean prompt(String value ,Boolean buttonsNeeded){
 
