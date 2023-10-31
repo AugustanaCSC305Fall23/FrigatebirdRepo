@@ -14,114 +14,27 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<TabPane prefHeight="906.0" prefWidth="1214.0" tabClosingPolicy="UNAVAILABLE" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.PrimaryController">
+<AnchorPane xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Primary">
+
+<TabPane prefHeight="906.0" prefWidth="1214.0" tabClosingPolicy="UNAVAILABLE" >
     <tabs>
         <Tab fx:id="allCardTab" text="All Cards">
+
+        </Tab>
+        <Tab fx:id="createPlan" text="Create Plan">
             <content>
-                <VBox prefHeight="200.0" prefWidth="100.0">
-                    <children>
-                        <AnchorPane prefHeight="101.0" prefWidth="865.0">
-                            <children>
-                                <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
-                                <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
-                                <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
-                                <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-                                <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
-                            </children></AnchorPane>
-                        <ScrollPane prefHeight="774.0" prefWidth="1214.0">
-                            <content>
-                                <TilePane fx:id="allCardContent" prefHeight="758.0" prefWidth="1198.0" />
-                            </content>
-                        </ScrollPane>
-                    </children>
-                </VBox>
             </content>
         </Tab>
-        <Tab text="Create Plan">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1298.0">
-               <children>
-                  <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="868.0" prefWidth="1198.0">
-                     <children>
-                        <AnchorPane prefHeight="142.0" prefWidth="850.0">
-                           <children>
-                              <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
-                              <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" />
-                              <Button layoutX="1086.0" layoutY="19.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="45.0" prefWidth="92.0" text="Create Plan" />
-                              <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
-                                 <font>
-                                    <Font size="36.0" />
-                                 </font>
-                              </Label>
-                              <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="92.0" text="Select Cards" />
-                              <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="139.0" text="Delete Selected Cards" />
-                           </children>
-                        </AnchorPane>
-                        <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />
-                     </children>
-                  </VBox>
-               </children></AnchorPane>
-            </content>
+        <Tab fx:id="allPlans" text="All Plans">
+
         </Tab>
-        <Tab text="All Plans">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0">
-               <children>
-                  <VBox fx:id="showPlanList" layoutX="7.0" layoutY="70.0" prefHeight="594.0" prefWidth="661.0" />
-                  <ComboBox fx:id="filterSelect" layoutX="300.0" layoutY="14.0" prefWidth="150.0" />
-                  <Label alignment="CENTER" layoutX="205.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Label>
-               </children></AnchorPane>
-            </content>
+        <Tab fx:id="addCards" text="Add Cards">
         </Tab>
-        <Tab text="Add Cards">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-               <children>
-                  <Label layoutX="88.0" layoutY="94.0" text="Code:" />
-                  <Label layoutX="81.0" layoutY="147.0" text="Event:" />
-                  <Label layoutX="84.0" layoutY="248.0" text="Title" />
-                  <Label layoutX="63.0" layoutY="296.0" text="Equipment:" />
-                  <TextField fx:id="codeInput" layoutX="177.0" layoutY="89.0" prefHeight="26.0" prefWidth="455.0" />
-                  <TextField fx:id="eventInput" layoutX="177.0" layoutY="143.0" prefHeight="26.0" prefWidth="455.0" />
-                  <TextField fx:id="titleInput" layoutX="177.0" layoutY="244.0" prefHeight="26.0" prefWidth="455.0" />
-                  <TextField fx:id="equipmentInput" layoutX="177.0" layoutY="292.0" prefHeight="26.0" prefWidth="455.0" />
-                  <Button fx:id="Select_Image_Button" layoutX="648.0" layoutY="593.0" mnemonicParsing="false" onAction="#Select_Image_Action" text="Select Image" />
-                  <Label layoutX="81.0" layoutY="430.0" text="Gender:" />
-                  <TextField fx:id="imageName" layoutX="177.0" layoutY="593.0" prefHeight="26.0" prefWidth="455.0" />
-                  <Label layoutX="68.0" layoutY="597.0" text="Image Name:" />
-                  <CheckBox fx:id="Female" layoutX="266.0" layoutY="430.0" mnemonicParsing="false" text="Female" />
-                  <CheckBox fx:id="Neutral" layoutX="356.0" layoutY="430.0" mnemonicParsing="false" text="Neutral" />
-                  <CheckBox fx:id="Male" layoutX="177.0" layoutY="430.0" mnemonicParsing="false" text="Male" />
-                  <Button fx:id="done_Button" layoutX="356.0" layoutY="636.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" text="Done">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Button>
-                  <TextField fx:id="categoryInput" layoutX="177.0" layoutY="193.0" prefHeight="26.0" prefWidth="455.0" />
-                  <Label layoutX="81.0" layoutY="197.0" text="Category" />
-                  <Label layoutX="67.0" layoutY="346.0" text="Level:" />
-                  <TextField fx:id="levelInput" layoutX="177.0" layoutY="342.0" prefHeight="26.0" prefWidth="455.0" />
-                  <Label layoutX="81.0" layoutY="395.0" text="Sex:" />
-                  <CheckBox fx:id="sexFemale" layoutX="266.0" layoutY="395.0" mnemonicParsing="false" text="Female" />
-                  <CheckBox fx:id="sexMale" layoutX="177.0" layoutY="395.0" mnemonicParsing="false" text="Male" />
-                  <TextField fx:id="keyword" layoutX="177.0" layoutY="488.0" prefHeight="26.0" prefWidth="455.0" />
-                  <Label layoutX="73.0" layoutY="492.0" text="Keyword:" />
-                  <TextField fx:id="data" layoutX="177.0" layoutY="539.0" prefHeight="26.0" prefWidth="455.0" promptText="Add a comma between descriptors" />
-                  <Label layoutX="77.0" layoutY="543.0" text="Data:" />
-               </children></AnchorPane>
-            </content>
-        </Tab>
-        <Tab text="Exit">
-            <content>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-            </content>
+        <Tab fx:id="exit" text="Exit">
         </Tab>
     </tabs>
     <opaqueInsets>
         <Insets right="3.0" top="1.0" />
     </opaqueInsets>
 </TabPane>
+</AnchorPane>

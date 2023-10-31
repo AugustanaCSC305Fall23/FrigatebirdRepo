@@ -1,10 +1,7 @@
 package edu.augustana;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
@@ -20,8 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShowPlanController {
-    private static Scene scene;
-    private PrimaryController primaryController;
+    private AllPlansController allPlansController;
     @FXML
     private Label Title;
 
@@ -47,17 +43,21 @@ public class ShowPlanController {
     private ArrayList<Card> segmentedCards;
     @FXML
     void initialize() {
-        }
 
-        public void buildPlans(String planName, String segmentType, ArrayList<Card> cards) throws IOException {
+
+    }
+
+        public void buildPlans(String planName, String segmentType) throws IOException {
             shortCodes = new ArrayList<>();
             cardsList = new ArrayList<>();
+            FileTool fileTool = new FileTool();
             System.out.println(segmentType);
-            allCards = cards;
-            allPlansDir = "AllPlans";
+            CardListDB dataBase = new CardListDB();
+            allCards = dataBase.getAllCards();
+            allPlansDir = fileTool.getPlansDirectory();
             Title.setText(planName);
             //write logic to read through the csv file and collect the short codes
-            filePath = getFilePath(planName);
+            filePath = fileTool.getPlanFilePath(planName);
             try {
                 Scanner reader = new Scanner(new File(filePath));
                 System.out.println(filePath);
@@ -76,7 +76,7 @@ public class ShowPlanController {
                 cardsList.add(getCard(code));
             }
             //write the logic to segment the cards into the segment type
-
+            HandleSearch searchTool = new HandleSearch(dataBase);
             if (segmentType == null || segmentType.equals("none")) {
                 dynamicCarAddingToView(cardsList);
             } else {
@@ -88,8 +88,8 @@ public class ShowPlanController {
                             eventLabel.setFont(new Font("Arial", 20));
                             eventLabel.setAlignment(Pos.TOP_CENTER);
                             eventLabel.setPrefWidth(500);
-                            eventLabel.setPrefHeight(100);
-                            cardBox.getChildren().add(eventLabel);
+                            eventLabel.setPrefHeight(400);
+                            cardPane.getChildren().add(eventLabel);
                             segmentedCards = new ArrayList<>();
                             String segment = cardsList.get(0).getEvent();
                             for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -119,30 +119,31 @@ public class ShowPlanController {
                                     cardsList.remove(i);
                                 }
                             }
-                            System.out.println(segmentedCards.size());
-                            dynamicCarAddingToView(segmentedCards);
-                        }
-                        break;
+                        System.out.println(segmentedCards.size());
+                        dynamicCarAddingToView(segmentedCards);
+                    }
+                    break;
 
                     case "gender":
-                        while (cardsList.size() != 0) {
-                            Label eventLabel = new Label();
-                            eventLabel.setText(cardsList.get(0).getGender());
-                            eventLabel.setFont(new Font("Ariel", 20));
-                            eventLabel.setAlignment(Pos.TOP_CENTER);
-                            eventLabel.setPrefWidth(500);
-                            cardPane.getChildren().add(eventLabel);
-                            segmentedCards = new ArrayList<>();
-                            String segment = cardsList.get(0).getGender();
-                            for (int i = cardsList.size() - 1; i >= 0; i--) {
-                                if (cardsList.get(i).getGender().equals(segment)) {
-                                    segmentedCards.add(cardsList.get(i));
-                                    cardsList.remove(i);
-                                }
+                    while (cardsList.size() != 0) {
+                        Label eventLabel = new Label();
+                        eventLabel.setText(cardsList.get(0).getGender());
+                        eventLabel.setFont(new Font("Ariel", 20));
+                        eventLabel.setAlignment(Pos.TOP_CENTER);
+                        eventLabel.setPrefWidth(500);
+                        cardPane.getChildren().add(eventLabel);
+                        segmentedCards = new ArrayList<>();
+                        String segment = cardsList.get(0).getGender();
+                        for (int i = cardsList.size() - 1; i >= 0; i--) {
+                            if (cardsList.get(i).getGender().equals(segment)) {
+                                segmentedCards.add(cardsList.get(i));
+                                cardsList.remove(i);
                             }
+                        }
                             System.out.println(segmentedCards.size());
                             dynamicCarAddingToView(segmentedCards);
-                        }
+
+                    }
                         break;
 
                     case "sex":
@@ -186,29 +187,11 @@ public class ShowPlanController {
                             dynamicCarAddingToView(segmentedCards);
                         }
                         break;
-
-                    case "default":
-                        dynamicCarAddingToView(cardsList);
                 }
                 //write the logic to show the cards
             }
         }
 
-    /**
-     * gets the file path from the plan name given.
-     * @param planName - the planName passed in
-     * @return - a usable file path
-     */
-    private String getFilePath(String planName){
-            File[] files = new File(allPlansDir).listFiles();
-            for(File file: files){
-                String path = file.getPath();
-                if (path.contains(planName)){
-                    return path;
-                }
-            }
-            return "no File Found";
-        }
 
     /**
      * gets the card from the short codes collected from the csv file
@@ -264,7 +247,8 @@ public class ShowPlanController {
 
     @FXML
     void exitShowPlanView() throws IOException {
-
+        Stage stage = (Stage) exitButton.getScene().getWindow();
+        stage.close();
     }
 
     }

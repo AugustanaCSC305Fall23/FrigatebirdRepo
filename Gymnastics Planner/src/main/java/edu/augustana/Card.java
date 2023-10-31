@@ -15,6 +15,7 @@ public class Card {
         private String level;
         private String equipment;
         private String keywords;
+        private boolean favorite;
         private String[] allData;
 
     public Card(String[] data) {
@@ -90,7 +91,6 @@ public class Card {
     public String getKeywords() {
         return keywords;
     }
-
 
     @Override
     public String toString() {

@@ -21,7 +21,7 @@ import java.util.*;
 
 public class SlectCardsController {
 
-        PrimaryController primaryController;
+        CreatePlanController createPlanController;
 
         @FXML
         Button selectTheseCards;
@@ -80,7 +80,7 @@ public class SlectCardsController {
 
             System.out.println("Num of all of the selected cards: " + count);
             //Send the array list to the my Create Plan tab
-            primaryController.recieveArrayListCheckBox(selectedCardsToCheckBox);
+            createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox);
 
 
             //Close the this particular tab
@@ -131,8 +131,6 @@ public class SlectCardsController {
         allCardContent.setHgap(10);
         allCardContent.setVgap(20);
 
-
-
         System.out.println("All filter: " + allCards.size());
         System.out.println("Search filter: " + searchFilteredCards.size());
         System.out.println("Check box filter: " + checkBoxFilteredCards.size());
@@ -141,7 +139,7 @@ public class SlectCardsController {
 
 
     @FXML
-        void searchButtonAction() {
+       private void searchButtonAction() {
             searchButton.setOnAction(event -> {
                 MaleCheckBox.setSelected(false);
                 FemaleCheckBox.setSelected(false);
@@ -170,7 +168,7 @@ public class SlectCardsController {
         }
 
         @FXML
-        void showFemaleAction() {
+       private void showFemaleAction() {
             FemaleCheckBox.setOnAction(event -> {
 
                 allCardContent.getChildren().clear();
@@ -217,8 +215,9 @@ public class SlectCardsController {
             });
         }
 
+
         @FXML
-        void showMaleAction() {
+      private void showMaleAction() {
             MaleCheckBox.setOnAction(event -> {
                 allCardContent.getChildren().clear();
 
@@ -263,9 +262,9 @@ public class SlectCardsController {
         }
 
 
-        void buildCards(PrimaryController primaryController) throws IOException {
+       public void buildCards(CreatePlanController createPlanController) throws IOException {
 
-            this.primaryController =  primaryController;
+            this.createPlanController =  createPlanController;
             //map for the cards
             cardsDictionary = new HashMap<>();
 
@@ -290,22 +289,7 @@ public class SlectCardsController {
                 line = reader.readLine();
             }
 
-            printCardsDictionary(cardsDictionary);
             dynamicCarAddingToView(allCards);
-        }
-
-        public static void printCardsDictionary(HashMap<String, HashMap> cardsDictionary) {
-            for (Map.Entry<String, HashMap> entry : cardsDictionary.entrySet()) {
-                String event = entry.getKey();
-                Map<String, Card> genderMap = entry.getValue();
-
-
-                for (Map.Entry<String, Card> genderEntry : genderMap.entrySet()) {
-                    String gender = genderEntry.getKey();
-                    Card card = genderEntry.getValue();
-
-                }
-            }
         }
 
 
@@ -322,7 +306,6 @@ public class SlectCardsController {
                     }
                 }
             }
-
 
             allCardContent.getChildren().clear();
             dynamicCarAddingToView(searchFilteredCards);

@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="edu.augustana.CreateCardController"
+            prefHeight="400.0" prefWidth="600.0">
+
+
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+        <children>
+            <Label layoutX="88.0" layoutY="94.0" text="Code:" />
+            <Label layoutX="81.0" layoutY="147.0" text="Event:" />
+            <Label layoutX="84.0" layoutY="248.0" text="Title" />
+            <Label layoutX="63.0" layoutY="296.0" text="Equipment:" />
+            <TextField fx:id="codeInput" layoutX="177.0" layoutY="89.0" prefHeight="26.0" prefWidth="455.0" />
+            <TextField fx:id="eventInput" layoutX="177.0" layoutY="143.0" prefHeight="26.0" prefWidth="455.0" />
+            <TextField fx:id="titleInput" layoutX="177.0" layoutY="244.0" prefHeight="26.0" prefWidth="455.0" />
+            <TextField fx:id="equipmentInput" layoutX="177.0" layoutY="292.0" prefHeight="26.0" prefWidth="455.0" />
+            <Button fx:id="Select_Image_Button" layoutX="648.0" layoutY="593.0" mnemonicParsing="false" onAction="#Select_Image_Action" text="Select Image" />
+            <Label layoutX="81.0" layoutY="430.0" text="Gender:" />
+            <TextField fx:id="imageName" layoutX="177.0" layoutY="593.0" prefHeight="26.0" prefWidth="455.0" />
+            <Label layoutX="68.0" layoutY="597.0" text="Image Name:" />
+            <CheckBox fx:id="Female" layoutX="266.0" layoutY="430.0" mnemonicParsing="false" text="Female" />
+            <CheckBox fx:id="Neutral" layoutX="356.0" layoutY="430.0" mnemonicParsing="false" text="Neutral" />
+            <CheckBox fx:id="Male" layoutX="177.0" layoutY="430.0" mnemonicParsing="false" text="Male" />
+            <Button fx:id="done_Button" layoutX="356.0" layoutY="636.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" text="Done">
+                <font>
+                    <Font size="17.0" />
+                </font>
+            </Button>
+            <TextField fx:id="categoryInput" layoutX="177.0" layoutY="193.0" prefHeight="26.0" prefWidth="455.0" />
+            <Label layoutX="81.0" layoutY="197.0" text="Category" />
+            <Label layoutX="67.0" layoutY="346.0" text="Level:" />
+            <TextField fx:id="levelInput" layoutX="177.0" layoutY="342.0" prefHeight="26.0" prefWidth="455.0" />
+            <Label layoutX="81.0" layoutY="395.0" text="Sex:" />
+            <CheckBox fx:id="sexFemale" layoutX="266.0" layoutY="395.0" mnemonicParsing="false" text="Female" />
+            <CheckBox fx:id="sexMale" layoutX="177.0" layoutY="395.0" mnemonicParsing="false" text="Male" />
+            <TextField fx:id="keyword" layoutX="177.0" layoutY="488.0" prefHeight="26.0" prefWidth="455.0" />
+            <Label layoutX="73.0" layoutY="492.0" text="Keyword:" />
+            <TextField fx:id="data" layoutX="177.0" layoutY="539.0" prefHeight="26.0" prefWidth="455.0" promptText="Add a comma between descriptors" />
+            <Label layoutX="77.0" layoutY="543.0" text="Data:" />
+        </children></AnchorPane>
+
+
+
+</AnchorPane>
