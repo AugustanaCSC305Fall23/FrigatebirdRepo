@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="edu.augustana.AllPlansController"
-            prefHeight="400.0" prefWidth="600.0">
 
-
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="169.0" prefWidth="343.0">
-        <children>
-            <VBox fx:id="showPlanList" layoutX="7.0" layoutY="70.0" prefHeight="594.0" prefWidth="661.0" />
-            <ComboBox fx:id="filterSelect" layoutX="300.0" layoutY="14.0" prefWidth="150.0" />
-            <Label alignment="CENTER" layoutX="205.0" layoutY="15.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
-                <font>
-                    <Font size="14.0" />
-                </font>
-            </Label>
-        </children></AnchorPane>
+<AnchorPane prefHeight="621.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
+   <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="516.0" prefWidth="619.0" />
+      <ComboBox fx:id="filterSelect" layoutX="108.0" layoutY="28.0" prefWidth="150.0" />
+      <Label alignment="CENTER" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
+          <font>
+              <Font size="14.0" />
+          </font>
+      </Label>
+   <Button fx:id="showPlanButton" layoutX="284.0" layoutY="15.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="54.0" prefWidth="79.0" text="Show Plan" />
 
 
 </AnchorPane>

@@ -1,14 +1,18 @@
 package edu.augustana;
 
+import javafx.scene.control.CheckBox;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class CardListDB {
 
 
     private  ArrayList<Card> allCards;
+    private ArrayList<CheckBox> allCheckBoxes;
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     public CardListDB(){
 
@@ -18,6 +22,20 @@ public class CardListDB {
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public void makeFavorite(HashMap<CheckBox, Card> cardMap) throws  IOException{
+        ArrayList<Card> selectedCards = new ArrayList<>();
+        System.out.println(cardMap.size());
+        for(CheckBox checkBox: cardMap.keySet()){
+            selectedCards.add(cardMap.get(checkBox));
+            System.out.println(cardMap.get(checkBox).getCode());;
+        }
+        for (Card card: selectedCards){
+            card.makeFavorite(card);
+        }
+
+
     }
 
     private void buildCardsObjectList() throws IOException {

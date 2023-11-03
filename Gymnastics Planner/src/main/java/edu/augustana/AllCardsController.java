@@ -1,5 +1,6 @@
 package edu.augustana;
 
+import java.io.IOException;
 import java.util.*;
 
 import javafx.fxml.FXML;
@@ -15,7 +16,6 @@ import javafx.scene.text.Text;
 public class AllCardsController {
 
 
-
     @FXML
     private TextField searchedWord;
 
@@ -27,8 +27,13 @@ public class AllCardsController {
 
     @FXML
     private TilePane allCardContent;
+    @FXML
+    private Button makeFavoriteButton;
 
     private String lastSearch = "";
+
+    private PlansDB plansDB;
+    private CardListDB dataBase;
 
 
 
@@ -70,6 +75,12 @@ public class AllCardsController {
             }
     }
 
+
+    @FXML
+    void makeFavorite() throws IOException {
+        dataBase.makeFavorite(plansDB.getFilterSelectedTempCards());
+    }
+
     @FXML
     void showFemaleAction() {
 
@@ -107,18 +118,17 @@ public class AllCardsController {
     }
 
 
-
-
     public void buildCards() {
-
+        dataBase = new CardListDB();
         dynamicCardAddingToView(handleSearch.getAllCards());
     }
 
 
 
     private void dynamicCardAddingToView(ArrayList<Card> filteredCards) {
+        plansDB = new PlansDB();
         for (Card card : filteredCards) {
-            Button button = new Button();
+            CheckBox checkBox = new CheckBox();
 
             String imageLink = card.getImage();
 
@@ -134,12 +144,14 @@ public class AllCardsController {
                 event.setFont(Font.font(20));
 
                 VBox cardContentBox = new VBox(imgView, event);
-                button.setGraphic(cardContentBox);
+                checkBox.setGraphic(cardContentBox);
 
                 allCardContent.getChildren();
                 allCardContent.setPrefColumns(5);
 
-                allCardContent.getChildren().add(button);
+                allCardContent.getChildren().add(checkBox);
+
+                plansDB.addToDict(checkBox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();

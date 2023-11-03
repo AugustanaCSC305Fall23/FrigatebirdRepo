@@ -42,7 +42,7 @@
       <TextField fx:id="searchedWord" layoutX="91.0" layoutY="49.0" prefHeight="26.0" prefWidth="509.0" />
       <Button fx:id="searchButton" layoutX="622.0" layoutY="49.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
       <Label layoutX="91.0" layoutY="24.0" text="Search Word" />
-      <CheckBox fx:id="FemaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-      <CheckBox fx:id="MaleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+      <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+      <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
    </children>
 </AnchorPane>

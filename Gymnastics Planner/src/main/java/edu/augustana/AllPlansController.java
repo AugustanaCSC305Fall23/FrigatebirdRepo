@@ -4,8 +4,10 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
+import javafx.scene.control.ListView;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
@@ -22,7 +24,10 @@ public class AllPlansController {
     private String allPlansDir;
 
     @FXML
-    private VBox showPlanList;
+    private ListView<String> plansView;
+
+    @FXML
+    private Button showPlanButton;
 
     @FXML
     void initialize() {
@@ -33,7 +38,12 @@ public class AllPlansController {
     private ComboBox<String> filterSelect;
 
     @FXML
-    void showPlan(Button button) throws IOException {
+    void showPlan() throws IOException {
+        if (plansView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
+            alert.show();
+        }
+        else{
         FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
         Parent root = loader.load();
         ShowPlanController controller = loader.getController();  // Initialize the controller
@@ -43,13 +53,14 @@ public class AllPlansController {
         showPlanStage.setScene(scene);
         showPlanStage.show();
         String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-        controller.buildPlans(button.getText(), segmentType);
+
+        controller.buildPlans(plansView.getSelectionModel().getSelectedItem(), segmentType);
+        }
     }
 
     void buildPlans() throws  IOException{
         allPlansDir = new FileTool().getPlansDirectory();
         File[] planFiles = new File(allPlansDir).listFiles();
-
         if (planFiles.length != 0){
             for (File file: planFiles){
                 Scanner fileReader = new Scanner(file.getPath());
@@ -57,17 +68,16 @@ public class AllPlansController {
                 String[] titleData = input.split("_");
                 String title = titleData[0];
                 title = title.substring(9);
-                Button button = new Button();
-                button.setText(title);
+                plansView.getItems().add(title);
                 //make button show full plan on click
-                button.setOnMouseClicked(evt -> {
-                    try {
-                        showPlan(button);
-                    } catch (IOException e) {
-                        throw new RuntimeException(e);
-                    }
-                });
-                showPlanList.getChildren().add(button);
+//                button.setOnMouseClicked(evt -> {
+//                    try {
+//                        showPlan(button);
+//                    } catch (IOException e) {
+//                        throw new RuntimeException(e);
+//                    }
+//                });
+//                showPlanList.getChildren().add(button);
             }
         }
     }

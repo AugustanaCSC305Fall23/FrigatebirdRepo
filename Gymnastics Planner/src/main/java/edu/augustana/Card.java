@@ -1,10 +1,12 @@
 package edu.augustana;
 
 
+import java.io.*;
 import java.util.ArrayList; // import the ArrayList class
 import java.util.Arrays;
 
 public class Card {
+        private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
         private String code;
         private String event;
         private String category;
@@ -48,6 +50,12 @@ public class Card {
     public String[] getData(){
 
         return allData;
+
+    }
+
+    public void makeFavorite(Card card) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(dataCsvPath));
+        BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath));
 
     }
 
