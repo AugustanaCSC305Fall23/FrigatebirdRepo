@@ -1,17 +1,15 @@
 package edu.augustana;
 
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.concurrent.atomic.AtomicBoolean;
 
 public class PlansDB {
 
@@ -27,8 +25,12 @@ public class PlansDB {
         tempAllSelectedCards = new HashMap<>();
     }
 
-    public void addToDict(CheckBox cBox,Card card){
+    public void addCardsToPlans(CheckBox cBox, Card card){
         tempAllSelectedCards.put(cBox, card);
+    }
+
+    public void addCardsToAllSelectedCatds(CheckBox cBox, Card card){
+        allSelectedCards.put(cBox, card);
     }
 
 
@@ -113,27 +115,41 @@ public class PlansDB {
     }
 
 
-    public void overrideOrCreateNewPlan( String planTitle) throws IOException {
-
-        String filePath = "AllPlans/"+fileName;
+    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle) throws IOException {
+        String filePath;
+        if(isPlanTitle) {
+             filePath = "AllPlans/" + fileName;
+        }else{
+             filePath = "AllPlans/" + planTitle;
+        }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(planTitle);
 
+            System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
+
             for (Card card : allSelectedCards.values()) {
 
-                String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
-                        card.getCode(), card.getEvent(), card.getCategory(), card.getTitle(),
-                        card.getImage(), card.getGender(), card.getSex(), card.getLevel(),
+                String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s",
+                        card.getCode(), card.getEvent(), card.getCategory(), card.getTitle(),card.getPackFolder(),
+                        card.getImageName(), card.getGender(), card.getSex(), card.getLevel(),
                         card.getEquipment(), card.getKeywords());
+                System.out.println(csvLine);
                 // Write the CSV line to the file
                 writer.write("\n" + csvLine);
-
             }
+
             allSelectedCards.clear();
             writer.close();
         }
 
     }
+
+
+    public int getCardsInViewSize(){
+        return allSelectedCards.size();
+    }
+
+
 
 
 }

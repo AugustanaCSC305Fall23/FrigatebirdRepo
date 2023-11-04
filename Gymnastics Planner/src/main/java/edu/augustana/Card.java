@@ -17,32 +17,45 @@ public class Card {
         private String level;
         private String equipment;
         private String keywords;
+
+        private String packFolder;
         private boolean favorite;
         private String[] allData;
+        private String imageName;
+
 
     public Card(String[] data) {
-        if (data.length >= 10) {
+
+        System.out.println("===================================================================");
+        System.out.println("Lenght of the card: " + data.length);
+
+        for(String s : data){
+
+            System.out.println(s);
+        }
+
+        if (data.length > 10) {
 
             //all data array
-
-             allData = new String[data.length];
+            allData = new String[data.length];
             for (int i = 0 ; i < data.length ; i++){
-
                 allData[i] = data[i];
             }
 
             this.code = data[0].strip();
             this.event = data[1].strip();
             this.category = data[2].strip();
-            this.title = data[4].strip();
+            this.title = data[3].strip();
+            this.packFolder = data[4].strip();
             this.image = "file:DEMO1Pack/Images/" + data[5].strip();
+            this.imageName = data[5].strip();
             this.gender = data[6].strip();
             this.sex = data[7].strip();
             this.level = data[8].strip();
             this.equipment = data[9].strip();
             this.keywords = data[10].strip();
         } else {
-            throw new IllegalArgumentException("Insufficient data in the provided array.");
+            System.out.println("Insufficient data in the provided array.");
         }
     }
 
@@ -58,6 +71,9 @@ public class Card {
         BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath));
 
     }
+
+
+    public String getImageName(){return imageName; }
 
 
     public String getCode() {
@@ -99,6 +115,8 @@ public class Card {
     public String getKeywords() {
         return keywords;
     }
+
+    public  String getPackFolder(){return packFolder;}
 
     @Override
     public String toString() {

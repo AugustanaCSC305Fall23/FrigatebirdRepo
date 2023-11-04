@@ -14,15 +14,25 @@ public class CardListDB {
     private  ArrayList<Card> allCards;
     private ArrayList<CheckBox> allCheckBoxes;
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
-    public CardListDB(){
-
+    public CardListDB(Boolean forPlans){
 
         try {
-            buildCardsObjectList();
+            buildCardsObjectList(forPlans);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+
+    public CardListDB(String filePath , Boolean forPlans){
+
+        dataCsvPath = filePath;
+        try {
+            buildCardsObjectList(forPlans);
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+    }
+
 
     public void makeFavorite(HashMap<CheckBox, Card> cardMap) throws  IOException{
         ArrayList<Card> selectedCards = new ArrayList<>();
@@ -38,7 +48,7 @@ public class CardListDB {
 
     }
 
-    private void buildCardsObjectList() throws IOException {
+    private void buildCardsObjectList(Boolean forPlans) throws IOException {
 
         //Reads the csv file
         FileReader csvFile = new FileReader(dataCsvPath);
@@ -46,13 +56,22 @@ public class CardListDB {
         allCards = new ArrayList<>();
         String line = null;
         line = reader.readLine();
+        if (forPlans){
+            line = reader.readLine();
+        }
+
+        System.out.println("The line file reader is reading in CardaListDB: " + line);
 
         //creates new cards for all csv files data
         while (line != null) {
             String[] splittedLine = line.split(",");
-            Card newCard = new Card(splittedLine);
-            allCards.add(newCard);
+            if(splittedLine.length >= 11) {
+                Card newCard = new Card(splittedLine);
+                allCards.add(newCard);
+            }
             line = reader.readLine();
+            System.out.println("The line file reader is reading in CardaListDB: " + line);
+
         }
     }
 

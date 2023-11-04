@@ -46,7 +46,7 @@ public class AllCardsController {
     private HandleSearch handleSearch;
 
     public AllCardsController(){
-        CardListDB cardListDB = new CardListDB();
+        CardListDB cardListDB = new CardListDB(false);
         handleSearch = new HandleSearch(cardListDB);
     }
 
@@ -119,7 +119,7 @@ public class AllCardsController {
 
 
     public void buildCards() {
-        dataBase = new CardListDB();
+        dataBase = new CardListDB(false);
         dynamicCardAddingToView(handleSearch.getAllCards());
     }
 
@@ -151,7 +151,7 @@ public class AllCardsController {
 
                 allCardContent.getChildren().add(checkBox);
 
-                plansDB.addToDict(checkBox, card);
+                plansDB.addCardsToPlans(checkBox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.TilePane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.EditPlanController">
+
+
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1298.0">
+        <children>
+            <VBox layoutX="-1.0" layoutY="-1.0" prefHeight="868.0" prefWidth="1198.0">
+                <children>
+                    <AnchorPane prefHeight="142.0" prefWidth="850.0">
+                        <children>
+                            <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
+                            <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" />
+                            <Button layoutX="1068.0" layoutY="19.0" mnemonicParsing="false" onAction="#makeChanges" prefHeight="45.0" prefWidth="110.0" text="Make Changes" />
+                            <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
+                                <font>
+                                    <Font size="36.0" />
+                                </font>
+                            </Label>
+                            <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="92.0" text="Select Cards" />
+                            <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="139.0" text="Delete Selected Cards" />
+                        </children>
+                    </AnchorPane>
+                    <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />
+                </children>
+            </VBox>
+        </children></AnchorPane>
+
+
+
+
+</AnchorPane>

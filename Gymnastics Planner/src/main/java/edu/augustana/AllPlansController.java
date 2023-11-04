@@ -12,6 +12,7 @@ import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -19,15 +20,10 @@ import java.util.Scanner;
 public class AllPlansController {
 
 
-    private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
-
     private String allPlansDir;
 
     @FXML
     private ListView<String> plansView;
-
-    @FXML
-    private Button showPlanButton;
 
     @FXML
     void initialize() {
@@ -53,7 +49,6 @@ public class AllPlansController {
         showPlanStage.setScene(scene);
         showPlanStage.show();
         String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-
         controller.buildPlans(plansView.getSelectionModel().getSelectedItem(), segmentType);
         }
     }
@@ -69,17 +64,41 @@ public class AllPlansController {
                 String title = titleData[0];
                 title = title.substring(9);
                 plansView.getItems().add(title);
-                //make button show full plan on click
-//                button.setOnMouseClicked(evt -> {
-//                    try {
-//                        showPlan(button);
-//                    } catch (IOException e) {
-//                        throw new RuntimeException(e);
-//                    }
-//                });
-//                showPlanList.getChildren().add(button);
             }
         }
+    }
+
+    @FXML
+    private void editPlan() throws IOException {
+
+        if (plansView.getSelectionModel().getSelectedItem() == null){
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
+            alert.show();
+        }
+        else {
+            String planName = plansView.getSelectionModel().getSelectedItem();
+            FileTool fileTool = new FileTool();
+            String filePath = fileTool.getPlanFilePath(planName);
+            buildEditPlanStage(filePath , planName);
+        }
+    }
+
+    private void buildEditPlanStage(String filePath , String planTitle) throws IOException {
+
+        FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("Edit Plans.fxml"));
+        Parent root = loader.load();
+        EditPlanController controller = loader.getController();  // Initialize the controller
+        Scene scene = new Scene(root, 1500, 1500);
+        Stage showPlanStage = new Stage();
+        showPlanStage.setTitle("Edit Plan");
+        showPlanStage.setScene(scene);
+        showPlanStage.show();
+
+        controller.buildLayout(filePath , planTitle);
+
+
+
+
     }
 
 }

@@ -12,8 +12,6 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
@@ -24,8 +22,6 @@ public class SlectCardsController {
 
     @FXML
     Button selectTheseCards;
-
-
 
     @FXML
     private TextField searchedWord;
@@ -42,10 +38,12 @@ public class SlectCardsController {
     @FXML
     private TilePane allCardContent;
 
-
     private String lastSearch = "";
     HashMap<CheckBox, Card> selectedCardsToCheckBox;
     CreatePlanController createPlanController;
+
+    EditPlanController editPlanController;
+
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private PlansDB planDB;
     private CardListDB cardListDB;
@@ -61,7 +59,18 @@ public class SlectCardsController {
         //i think the second onw will require more array access
 
         selectedCardsToCheckBox = planDB.getFilterSelectedTempCards();
-        createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox, true);
+        try {
+            createPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox, true);
+        }catch (Exception e){
+
+        }
+
+        try {
+            editPlanController.recieveArrayListCheckBox(selectedCardsToCheckBox, true);
+
+        }catch (Exception e){
+
+        }
 
         //Close the this particular tab
         Stage stage = (Stage) selectTheseCards.getScene().getWindow();
@@ -94,7 +103,7 @@ public class SlectCardsController {
                 allCardContent.setPrefColumns(5);
                 allCardContent.getChildren().add(checkbox);
 
-                planDB.addToDict(checkbox,card);
+                planDB.addCardsToPlans(checkbox,card);
 
             } catch (Exception e) {
                 e.printStackTrace();
@@ -174,7 +183,17 @@ public class SlectCardsController {
         this.createPlanController = createPlanController;
         //map for the cards
         this.planDB = plansDB;
-        cardListDB = new CardListDB();
+        cardListDB = new CardListDB(false);
+        handleSearch = new HandleSearch(cardListDB);
+        dynamicCardAddingToView(handleSearch.getAllCards());
+    }
+
+    public void buildCards(PlansDB plansDB , EditPlanController editPlanController) throws IOException {
+
+        this.editPlanController = editPlanController;
+        //map for the cards
+        this.planDB = plansDB;
+        cardListDB = new CardListDB(false);
         handleSearch = new HandleSearch(cardListDB);
         dynamicCardAddingToView(handleSearch.getAllCards());
     }

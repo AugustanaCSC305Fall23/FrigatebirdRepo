@@ -17,7 +17,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ShowPlanController {
-    private AllPlansController allPlansController;
+
     @FXML
     private Label Title;
 
@@ -52,7 +52,7 @@ public class ShowPlanController {
             cardsList = new ArrayList<>();
             FileTool fileTool = new FileTool();
             System.out.println(segmentType);
-            CardListDB dataBase = new CardListDB();
+            CardListDB dataBase = new CardListDB(false);
             allCards = dataBase.getAllCards();
             allPlansDir = fileTool.getPlansDirectory();
             Title.setText(planName);

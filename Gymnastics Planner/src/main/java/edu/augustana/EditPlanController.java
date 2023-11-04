@@ -8,31 +8,81 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
+import javafx.scene.layout.VBox;
+import javafx.scene.text.Font;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
-public class CreatePlanController {
+public class EditPlanController {
 
-
-    @FXML
-    TextField planTitle;
     @FXML
     private TilePane selectedCardsView;
+
+    @FXML
+    private TextField planTitle;
     private PlansDB plansDB;
+    private CardListDB cardListDB;
+
+    private String officialPlanTitle;
 
 
-    public CreatePlanController(){
+    public void buildLayout(String filePath , String planName){
+        planTitle.setText(planName);
         plansDB = new PlansDB();
+        cardListDB = new CardListDB(filePath,false);
+        this.officialPlanTitle = planName;
+
+
+        //create cBox and then create Cards and add it to plansDb
+        for(Card card : cardListDB.getAllCards()){
+            System.out.println("Whats  in the care: " + card.toString());
+            CheckBox checkBox = new CheckBox();
+            String imageLink = card.getImage();
+
+
+            try {
+                // Load the image and create an ImageView
+
+                Image img = new Image(imageLink);
+                ImageView imgView = new ImageView(img);
+                imgView.setFitHeight(250);
+                imgView.setFitWidth(250);
+
+                Text event = new Text(card.getEvent() + " " + card.getGender());
+                event.setFont(Font.font(20));
+
+                VBox cardContentBox = new VBox(imgView, event);
+                checkBox.setGraphic(cardContentBox);
+
+                selectedCardsView.getChildren();
+                selectedCardsView.setPrefColumns(5);
+
+                selectedCardsView.getChildren().add(checkBox);
+                plansDB.addCardsToAllSelectedCatds(checkBox, card);
+
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+        }
+        // Set gaps for the TilePane
+        selectedCardsView.setHgap(10);
+        selectedCardsView.setVgap(20);
+
+
+        System.out.println("The num of the cards in the tile pane after buildin the cards: " + plansDB.getCardsInViewSize());
+
     }
+
 
     @FXML
     public void selectCard() {
@@ -69,26 +119,6 @@ public class CreatePlanController {
     }
 
 
-    //This is the delete functionality for selected cards here
-
-    @FXML
-    private void deleteSelectedCards(){
-
-        if (plansDB.getAllCheckBox().size() == 0){
-
-            //Prompt that the selected cards has nothing to delete
-            prompt("No cards to delete!",false);
-        }else{
-
-            recieveArrayListCheckBox(plansDB.deleteCheckBox(),false);
-
-        }
-
-    }
-
-
-    //We reicieve the parameters from the selecrCards view here and display anything that is needed
-
     public void recieveArrayListCheckBox(HashMap<CheckBox,Card> selectedCards, Boolean recieve) {
         // Display all of the checkedBoxes
         // remove the dublicated from the all selectedCsrds
@@ -107,37 +137,23 @@ public class CreatePlanController {
 
     }
 
+
     @FXML
-    public void createPlan() throws IOException {
+    private void deleteSelectedCards(){
 
-        String planTitleName = planTitle.getText().strip();
+        if (plansDB.getAllCheckBox().size() == 0){
 
-        if (planTitleName.isEmpty() || plansDB.getAllCheckBox().size() == 0) {
-            //Prompt user to write the name of the plan
-            System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
-        } else {
-            // see if file exits and if user wants to override
-            Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName);
-            System.out.println("Is file there? " + fileThere);
-            Boolean override = false;
-            if (fileThere) {
-                System.out.println("Plan already created do you want to ovverride?");
-                override = prompt(" Plan already created do you want to replace the existing plan?", true);
-            }
+            //Prompt that the selected cards has nothing to delete
+            prompt("No cards to delete!",false);
+        }else{
 
-            //if file is not there or override then write file
-            if (!fileThere || override) {
-                plansDB.overrideOrCreateNewPlan(planTitleName ,true);
-                prompt("Sucessfully created the plan!", false);
-                planTitle.clear();
-                selectedCardsView.getChildren().clear();
-            }
-
+            recieveArrayListCheckBox(plansDB.deleteCheckBox(),false);
 
         }
+
     }
 
-//jsut for prompting different things based on the needs
+
 
     private boolean prompt(String value ,Boolean buttonsNeeded){
 
@@ -167,7 +183,6 @@ public class CreatePlanController {
         }else{
 
             alert.getButtonTypes().setAll(ButtonType.OK);
-
             alert.showAndWait().ifPresent(response -> {
                 if (response == ButtonType.YES) {
                     alert.close();
@@ -178,5 +193,23 @@ public class CreatePlanController {
 
         return choice.get();
     }
+
+    @FXML
+    public void makeChanges() throws IOException {
+
+        System.out.println("Plan title in make changes for edit plans for final csv edit: " + officialPlanTitle+"_Plan.csv");
+        plansDB.overrideOrCreateNewPlan(officialPlanTitle+"_Plan.csv" ,false);
+
+        Boolean wantToChange =  prompt("Sucessfully Made the change! \n Do you want to make more changes? ",true);
+
+
+
+        if(!wantToChange){
+            Stage stage = (Stage) planTitle.getScene().getWindow();
+            stage.close();
+        }
+
+    }
+
 
 }
