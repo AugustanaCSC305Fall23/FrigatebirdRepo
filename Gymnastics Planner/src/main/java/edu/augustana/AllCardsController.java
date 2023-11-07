@@ -15,7 +15,6 @@ import javafx.scene.text.Text;
 
 public class AllCardsController {
 
-
     @FXML
     private TextField searchedWord;
 
@@ -50,6 +49,11 @@ public class AllCardsController {
         handleSearch = new HandleSearch(cardListDB);
     }
 
+
+    public void clearAllContent(){
+
+        allCardContent.getChildren().clear();
+    }
     @FXML
    private void searchButtonAction() {
             maleCheckBox.setSelected(false);

@@ -60,7 +60,6 @@ public class CardListDB {
             line = reader.readLine();
         }
 
-        System.out.println("The line file reader is reading in CardaListDB: " + line);
 
         //creates new cards for all csv files data
         while (line != null) {
@@ -70,7 +69,6 @@ public class CardListDB {
                 allCards.add(newCard);
             }
             line = reader.readLine();
-            System.out.println("The line file reader is reading in CardaListDB: " + line);
 
         }
     }

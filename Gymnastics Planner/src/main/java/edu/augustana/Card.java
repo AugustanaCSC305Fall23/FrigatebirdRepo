@@ -26,8 +26,6 @@ public class Card {
 
     public Card(String[] data) {
 
-        System.out.println("===================================================================");
-        System.out.println("Lenght of the card: " + data.length);
 
         for(String s : data){
 

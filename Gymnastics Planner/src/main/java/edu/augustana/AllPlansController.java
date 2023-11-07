@@ -22,6 +22,8 @@ public class AllPlansController {
 
     private String allPlansDir;
 
+
+
     @FXML
     private ListView<String> plansView;
 
@@ -51,6 +53,11 @@ public class AllPlansController {
         String segmentType = filterSelect.getSelectionModel().getSelectedItem();
         controller.buildPlans(plansView.getSelectionModel().getSelectedItem(), segmentType);
         }
+    }
+
+    public void clearAllContent(){
+
+    plansView.getItems().clear();
     }
 
     void buildPlans() throws  IOException{

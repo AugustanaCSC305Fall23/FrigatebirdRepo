@@ -16,7 +16,6 @@ import static javafx.application.Application.launch;
 public class Primary  {
 
 
-
     @FXML
     private Tab allCardTab;
 
@@ -86,8 +85,30 @@ public class Primary  {
             AnchorPane pane4 = loader4.load();
             exit.setContent(pane4);
 
+         clickedOnTabs(ac,pc);
+
+    }
 
 
+    public void clickedOnTabs(AllCardsController ac , AllPlansController pc){
+
+        allCardTab.setOnSelectionChanged(event -> {
+
+            ac.clearAllContent();
+            ac.buildCards();
+
+
+        });
+
+        allPlans.setOnSelectionChanged(event -> {
+            try {
+                pc.clearAllContent();
+                pc.buildPlans();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
     }
 
 
