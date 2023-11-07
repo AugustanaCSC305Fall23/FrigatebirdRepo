@@ -17,8 +17,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -124,7 +122,7 @@ public class EditPlanController {
         // remove the dublicated from the all selectedCsrds
 
         if(recieve) {
-            plansDB.recieveCheckBox(selectedCards);
+            plansDB.removeDublicates(selectedCards);
         }
 
         selectedCardsView.getChildren().clear();

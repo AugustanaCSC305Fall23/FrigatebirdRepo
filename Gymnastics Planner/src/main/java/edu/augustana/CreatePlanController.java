@@ -11,13 +11,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.layout.TilePane;
 import javafx.stage.Stage;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CreatePlanController {
@@ -94,15 +89,17 @@ public class CreatePlanController {
         // remove the dublicated from the all selectedCsrds
 
         if(recieve) {
-            plansDB.recieveCheckBox(selectedCards);
+            plansDB.removeDublicates(selectedCards);
         }
 
         selectedCardsView.getChildren().clear();
         selectedCardsView.setPrefColumns(4);
 
         for (CheckBox cBox : plansDB.getAllCheckBox().keySet()) {
+
             cBox.setSelected(false);
             selectedCardsView.getChildren().add(cBox);
+
         }
 
     }
