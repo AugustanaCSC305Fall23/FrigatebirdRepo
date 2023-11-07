@@ -149,14 +149,6 @@ public class PlansDB {
 
     //segement and return dictionary of code for events
 
-    public HashMap<String,CheckBox> segmentCheckBox(PlansDB plans){
-
-
-
-        return null;
-
-    }
-
 
 
 

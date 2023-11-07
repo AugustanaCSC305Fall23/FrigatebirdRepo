@@ -24,7 +24,6 @@ public class CreatePlanController {
     private TilePane selectedCardsView;
     private PlansDB plansDB;
 
-
     public CreatePlanController(){
         plansDB = new PlansDB();
     }
@@ -96,10 +95,8 @@ public class CreatePlanController {
         selectedCardsView.setPrefColumns(4);
 
         for (CheckBox cBox : plansDB.getAllCheckBox().keySet()) {
-
             cBox.setSelected(false);
             selectedCardsView.getChildren().add(cBox);
-
         }
 
     }

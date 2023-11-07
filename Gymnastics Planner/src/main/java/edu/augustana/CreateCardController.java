@@ -54,7 +54,7 @@ public class CreateCardController {
     @FXML
     private TextField keyword;
     @FXML
-    private TextField data;
+    private TextField packFolder;
     @FXML
     Button done_Button;
 
@@ -78,7 +78,7 @@ public class CreateCardController {
         String Gender = Male.isSelected() ? "M" : Female.isSelected() ? "F" : Neutral.isSelected() ? "N" : "";
         String Sex = sexMale.isSelected() ? "M" : sexFemale.isSelected() ? "F" : "";
         String Keyword = keyword.getText();
-        String Data = data.getText();
+        String Data = packFolder.getText();
         addCard.addCard(ID, Event, Category, Name, Equipment, Level, Gender, Sex, Keyword, Data);
         clear();
     }
@@ -95,7 +95,7 @@ public class CreateCardController {
         sexMale.setSelected(false);
         sexFemale.setSelected(false);
         keyword.clear();
-        data.clear();
+        packFolder.clear();
         imageName.clear();
     }
 

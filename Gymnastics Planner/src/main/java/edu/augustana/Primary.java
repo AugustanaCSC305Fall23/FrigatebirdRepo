@@ -93,11 +93,8 @@ public class Primary  {
     public void clickedOnTabs(AllCardsController ac , AllPlansController pc){
 
         allCardTab.setOnSelectionChanged(event -> {
-
             ac.clearAllContent();
             ac.buildCards();
-
-
         });
 
         allPlans.setOnSelectionChanged(event -> {
@@ -107,8 +104,8 @@ public class Primary  {
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
-
         });
+
     }
 
 
