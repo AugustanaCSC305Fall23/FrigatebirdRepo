@@ -8,13 +8,13 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="765.0" prefWidth="859.0" style="-fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="765.0" prefWidth="759.0" style="-fx-background-radius: 15px;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
 
-
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="758.0" prefWidth="850.0" style="-fx-background-radius: 15px;">
+      
+          <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="0.0" minWidth="0.0" prefHeight="771.0" prefWidth="752.0" style="-fx-background-radius: 15px;">
         <children>
-         <VBox layoutX="165.0" layoutY="-5.0" prefHeight="773.0" prefWidth="695.0" style="-fx-background-color: #FBEEC1;" />
-         <VBox layoutX="-2.0" layoutY="-8.0" prefHeight="774.0" prefWidth="167.0" style="-fx-background-color: #BC986A;" />
+         <VBox layoutY="-3.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="771.0" prefWidth="759.0" style="-fx-background-color: #FBEEC1;" />
+         <VBox layoutX="45.0" layoutY="77.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="568.0" prefWidth="599.0" style="-fx-background-color: #BC986A; -fx-background-radius: 15px;" />
             <Label layoutX="66.0" layoutY="93.0" style="-fx-font-weight: 700;" text="Code" />
             <Label layoutX="65.0" layoutY="147.0" style="-fx-font-weight: 700;" text="Event" />
             <Label layoutX="69.0" layoutY="248.0" style="-fx-font-weight: 700;" text="Title" />
@@ -23,14 +23,14 @@
             <TextField fx:id="eventInput" layoutX="177.0" layoutY="143.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
             <TextField fx:id="titleInput" layoutX="177.0" layoutY="244.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
             <TextField fx:id="equipmentInput" layoutX="177.0" layoutY="292.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Button fx:id="Select_Image_Button" layoutX="648.0" layoutY="593.0" mnemonicParsing="false" onAction="#Select_Image_Action" style="-fx-background-radius: 15px; -fx-background-color: #000000; -fx-font-weight: 700;" text="Select Image" textFill="WHITE" />
+            <Button fx:id="Select_Image_Button" layoutX="649.0" layoutY="594.0" mnemonicParsing="false" onAction="#Select_Image_Action" style="-fx-background-radius: 15px; -fx-background-color: #000000; -fx-font-weight: 700;" text="Select Image" textFill="WHITE" />
             <Label layoutX="81.0" layoutY="430.0" style="-fx-font-weight: 700;" text="Gender" />
             <TextField fx:id="imageName" layoutX="177.0" layoutY="593.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
             <Label layoutX="70.0" layoutY="597.0" style="-fx-font-weight: 700;" text="Image Name" />
             <CheckBox fx:id="Female" layoutX="266.0" layoutY="430.0" mnemonicParsing="false" text="Female" />
             <CheckBox fx:id="Neutral" layoutX="356.0" layoutY="430.0" mnemonicParsing="false" text="Neutral" />
             <CheckBox fx:id="Male" layoutX="177.0" layoutY="430.0" mnemonicParsing="false" text="Male" />
-            <Button fx:id="done_Button" layoutX="356.0" layoutY="636.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" style="-fx-background-radius: 15px; -fx-background-color: #000000; -fx-font-weight: 700;" text="Done" textFill="WHITE">
+            <Button fx:id="done_Button" layoutX="308.0" layoutY="653.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" style="-fx-background-radius: 15px; -fx-background-color: #000000; -fx-font-weight: 700;" text="Done" textFill="WHITE">
                 <font>
                     <Font size="17.0" />
                 </font>
@@ -46,7 +46,13 @@
             <Label layoutX="73.0" layoutY="492.0" style="-fx-font-weight: 700;" text="Keyword" />
             <TextField fx:id="packFolder" layoutX="177.0" layoutY="539.0" prefHeight="26.0" prefWidth="455.0" promptText="Add a comma between descriptors" style="-fx-background-radius: 15px;" />
             <Label layoutX="68.0" layoutY="543.0" prefHeight="17.0" prefWidth="75.0" style="-fx-font-weight: 700;" text="Pack Folder" />
-        </children></AnchorPane>
+         <Label layoutX="308.0" layoutY="37.0" style="-fx-font-weight: 700;" text="Add Cards">
+            <font>
+               <Font size="20.0" />
+            </font>
+         </Label>
+        </children>
+   </AnchorPane>
 
 
 
