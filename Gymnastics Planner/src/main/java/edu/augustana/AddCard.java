@@ -63,8 +63,8 @@ public class AddCard {
 
     public void addCard(String ID, String Event, String Category, String Name, String Equipment, String Level,
                         String Gender, String Sex, String Keyword, String packFolder) {
-        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
-                ID, Event, Category, Name, "Demo1", (allCards.size() + 1) + ".png", Gender, Sex, Level, Keyword, Equipment, packFolder);
+        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
+                ID, Event, Category, Name, packFolder, (allCards.size() + 2) + ".png", Gender, Sex, Level, Equipment, Keyword);
 
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath, true))) {
