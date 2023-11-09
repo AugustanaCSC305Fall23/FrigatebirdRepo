@@ -126,13 +126,15 @@ public class SlectCardsController {
         if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
             lastSearch = searchText;
             handleSearch.clearSearchBoxFilter();
+            handleSearch.clearFavoriteCards();
             allCardContent.getChildren().clear();
 
             searchList(searchText);
         }else{
             if (searchText.equals("")) {
                 allCardContent.getChildren().clear();
-                dynamicCardAddingToView(handleSearch.getAllCards());
+                dynamicCardAddingToView(handleSearch.getFavoriteCards());
+                dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
 
             } else {
                 allCardContent.getChildren().clear();
@@ -150,7 +152,10 @@ public class SlectCardsController {
         if (femaleCheckBox.isSelected()) {
             // when female box is selected
             handleSearch.clearCheckBoxFilter();
-            dynamicCardAddingToView(handleSearch.checkBoxSearch("F" , "N"));
+            handleSearch.clearFavoriteCards();
+            ArrayList<Card> tempList = handleSearch.checkBoxSearch("F" , "N");
+            dynamicCardAddingToView(handleSearch.getFavoriteCards());
+            dynamicCardAddingToView(tempList);
         } else{
 
             //if not selected un checked
@@ -166,9 +171,12 @@ public class SlectCardsController {
         femaleCheckBox.setSelected(false);
         if (maleCheckBox.isSelected()) {
             // when female box is selected
-            // handleCards.clearCheckBoxFilter();
+            handleSearch.clearCheckBoxFilter();
             // add the cards
-            dynamicCardAddingToView(handleSearch.checkBoxSearch("M" , "N"));
+            handleSearch.clearFavoriteCards();
+            ArrayList<Card> tempList = handleSearch.checkBoxSearch("M" , "N");
+            dynamicCardAddingToView(handleSearch.getFavoriteCards());
+            dynamicCardAddingToView(tempList);
         } else{
 
             //if not selected un checked
@@ -185,7 +193,8 @@ public class SlectCardsController {
         this.planDB = plansDB;
         cardListDB = new CardListDB(false);
         handleSearch = new HandleSearch(cardListDB);
-        dynamicCardAddingToView(handleSearch.getAllCards());
+        dynamicCardAddingToView(handleSearch.getFavoriteCards());
+        dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
     }
 
     public void buildCards(PlansDB plansDB , EditPlanController editPlanController) throws IOException {
@@ -195,7 +204,8 @@ public class SlectCardsController {
         this.planDB = plansDB;
         cardListDB = new CardListDB(false);
         handleSearch = new HandleSearch(cardListDB);
-        dynamicCardAddingToView(handleSearch.getAllCards());
+        dynamicCardAddingToView(handleSearch.getFavoriteCards());
+        dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
     }
 
 

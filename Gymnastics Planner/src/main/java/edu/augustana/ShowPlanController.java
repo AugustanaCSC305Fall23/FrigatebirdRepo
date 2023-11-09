@@ -27,9 +27,6 @@ public class ShowPlanController {
     @FXML
     private VBox cardBox;
 
-    @FXML
-    private TilePane cardPane;
-
     private String filePath;
 
     private String allPlansDir;
@@ -81,15 +78,17 @@ public class ShowPlanController {
                 dynamicCarAddingToView(cardsList);
             } else {
                 switch (segmentType) {
+
                     case "event":
                         while (cardsList.size() != 0) {
                             Label eventLabel = new Label();
-                            eventLabel.setText(cardsList.get(0).getEvent());
                             eventLabel.setFont(new Font("Arial", 20));
                             eventLabel.setAlignment(Pos.TOP_CENTER);
                             eventLabel.setPrefWidth(500);
-                            eventLabel.setPrefHeight(400);
-                            cardPane.getChildren().add(eventLabel);
+                            eventLabel.setPrefHeight(60);
+                            eventLabel.setText(cardsList.get(0).getEvent());
+                            cardBox.getChildren().add(eventLabel);
+                            cardBox.setSpacing(60);
                             segmentedCards = new ArrayList<>();
                             String segment = cardsList.get(0).getEvent();
                             for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -110,7 +109,7 @@ public class ShowPlanController {
                             eventLabel.setFont(new Font("Ariel", 20));
                             eventLabel.setAlignment(Pos.TOP_CENTER);
                             eventLabel.setPrefWidth(500);
-                            cardPane.getChildren().add(eventLabel);
+//                            cardPane.getChildren().add(eventLabel);
                             segmentedCards = new ArrayList<>();
                             String segment = cardsList.get(0).getCategory();
                             for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -127,11 +126,12 @@ public class ShowPlanController {
                     case "gender":
                     while (cardsList.size() != 0) {
                         Label eventLabel = new Label();
+                        eventLabel = new Label();
                         eventLabel.setText(cardsList.get(0).getGender());
                         eventLabel.setFont(new Font("Ariel", 20));
                         eventLabel.setAlignment(Pos.TOP_CENTER);
                         eventLabel.setPrefWidth(500);
-                        cardPane.getChildren().add(eventLabel);
+//                        cardPane.getChildren().add(eventLabel);
                         segmentedCards = new ArrayList<>();
                         String segment = cardsList.get(0).getGender();
                         for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -149,11 +149,12 @@ public class ShowPlanController {
                     case "sex":
                         while (cardsList.size() != 0) {
                             Label eventLabel = new Label();
+                            eventLabel = new Label();
                             eventLabel.setText(cardsList.get(0).getSex());
                             eventLabel.setFont(new Font("Ariel", 20));
                             eventLabel.setAlignment(Pos.TOP_CENTER);
                             eventLabel.setPrefWidth(500);
-                            cardPane.getChildren().add(eventLabel);
+//                            cardPane.getChildren().add(eventLabel);
                             segmentedCards = new ArrayList<>();
                             String segment = cardsList.get(0).getSex();
                             for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -170,11 +171,12 @@ public class ShowPlanController {
                     case "level":
                         while (cardsList.size() != 0) {
                             Label eventLabel = new Label();
+                            eventLabel = new Label();
                             eventLabel.setText(cardsList.get(0).getLevel());
                             eventLabel.setFont(new Font("Ariel", 20));
                             eventLabel.setAlignment(Pos.TOP_CENTER);
                             eventLabel.setPrefWidth(500);
-                            cardPane.getChildren().add(eventLabel);
+//                            cardPane.getChildren().add(eventLabel);
                             segmentedCards = new ArrayList<>();
                             String segment = cardsList.get(0).getLevel();
                             for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -211,6 +213,8 @@ public class ShowPlanController {
 
     }
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
+        TilePane cardPane = new TilePane();
+        cardBox.getChildren().add(cardPane);
         for (Card card : filteredCards) {
             Button button = new Button();
 

@@ -4,9 +4,12 @@ package edu.augustana;
 import java.io.*;
 import java.util.ArrayList; // import the ArrayList class
 import java.util.Arrays;
+import java.util.NoSuchElementException;
+import java.util.Scanner;
 
 public class Card {
         private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
+        private String favoriteCSVPath = "FavoriteCards.csv";
         private String code;
         private String event;
         private String category;
@@ -19,12 +22,12 @@ public class Card {
         private String keywords;
 
         private String packFolder;
-        private boolean favorite;
         private String[] allData;
         private String imageName;
+        private boolean isFavorite;
 
 
-    public Card(String[] data) {
+    public Card(String[] data) throws  IOException{
 
 
         for(String s : data){
@@ -52,6 +55,7 @@ public class Card {
             this.level = data[8].strip();
             this.equipment = data[9].strip();
             this.keywords = data[10].strip();
+            setFavoriteStatus(this.code);
         } else {
             System.out.println("Insufficient data in the provided array.");
         }
@@ -65,11 +69,36 @@ public class Card {
     }
 
     public void makeFavorite(Card card) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(dataCsvPath));
-        BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath));
-
+        BufferedWriter writer = new BufferedWriter(new FileWriter(new FileTool().getFavoriteCSVPath(), true));
+        String csvLine = String.format("%s,%s", card.getCode(), "Y");
+        System.out.println(csvLine);
+        writer.write("\n" + csvLine);
+        writer.close();
+        card.isFavorite = true;
     }
 
+    private void setFavoriteStatus(String code) throws IOException{
+        Scanner reader = new Scanner(new File(new FileTool().getFavoriteCSVPath()));
+        if (reader.hasNextLine()) {
+            reader.nextLine();
+        }
+        while (reader.hasNextLine()){
+            String input = reader.nextLine();
+            String[] data = input.split(",");
+            if (data[0].equals(code)){
+                if(data[1].equals("Y")){
+                    this.isFavorite = true;
+                    break;
+                }
+                if (data[1].equals("N")){
+                    this.isFavorite = false;
+                    break;
+                }
+            }
+            this.isFavorite = false;
+        }
+        reader.close();
+    }
 
     public String getImageName(){return imageName; }
 
@@ -114,6 +143,8 @@ public class Card {
         return keywords;
     }
 
+    public boolean getFavoriteStatus(){
+        return isFavorite;}
     public  String getPackFolder(){return packFolder;}
 
     @Override

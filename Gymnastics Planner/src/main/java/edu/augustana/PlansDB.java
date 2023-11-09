@@ -6,6 +6,7 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
@@ -28,7 +29,7 @@ public class PlansDB {
         tempAllSelectedCards.put(cBox, card);
     }
 
-    public void addCardsToAllSelectedCatds(CheckBox cBox, Card card){
+    public void addCardsToAllSelectedCards(CheckBox cBox, Card card){
         allSelectedCards.put(cBox, card);
     }
 
@@ -43,6 +44,17 @@ public class PlansDB {
                 iterator.remove(); // Remove the current CheckBox from the map
             }
         }
+    }
+
+    public ArrayList<Card> getAllSelectedCards(){
+        ArrayList<Card> selectedCards = new ArrayList<>();
+        for (CheckBox cBox: allSelectedCards.keySet()){
+            if(cBox.isSelected()){
+                selectedCards.add(allSelectedCards.get(cBox));
+                cBox.setSelected(false);
+            }
+        }
+        return selectedCards;
     }
 
     public HashMap<CheckBox,Card> getFilterSelectedTempCards(){

@@ -65,7 +65,7 @@ public class EditPlanController {
                 selectedCardsView.setPrefColumns(5);
 
                 selectedCardsView.getChildren().add(checkBox);
-                plansDB.addCardsToAllSelectedCatds(checkBox, card);
+                plansDB.addCardsToAllSelectedCards(checkBox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();

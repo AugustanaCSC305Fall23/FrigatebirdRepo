@@ -23,7 +23,6 @@ public class AllPlansController {
     private String allPlansDir;
 
 
-
     @FXML
     private ListView<String> plansView;
 
@@ -37,75 +36,76 @@ public class AllPlansController {
 
     @FXML
     void showPlan() throws IOException {
-        if (plansView.getSelectionModel().getSelectedItem() == null){
+        if (plansView.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
             alert.show();
-        }
-        else{
-        FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
-        Parent root = loader.load();
-        ShowPlanController controller = loader.getController();  // Initialize the controller
-        Scene scene = new Scene(root, 1500, 1500);
-        Stage showPlanStage = new Stage();
-        showPlanStage.setTitle("Show Plan");
-        showPlanStage.setScene(scene);
-        showPlanStage.show();
-        String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-        controller.buildPlans(plansView.getSelectionModel().getSelectedItem(), segmentType);
-        }
-    }
-
-    public void clearAllContent(){
-
-    plansView.getItems().clear();
-    }
-
-    void buildPlans() throws  IOException{
-        allPlansDir = new FileTool().getPlansDirectory();
-        File[] planFiles = new File(allPlansDir).listFiles();
-        if (planFiles.length != 0){
-            for (File file: planFiles){
-                Scanner fileReader = new Scanner(file.getPath());
-                String input = fileReader.nextLine();
-                String[] titleData = input.split("_");
-                String title = titleData[0];
-                title = title.substring(9);
-                plansView.getItems().add(title);
-            }
+        } else {
+            FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
+            Parent root = loader.load();
+            ShowPlanController controller = loader.getController();  // Initialize the controller
+            Scene scene = new Scene(root, 1500, 1500);
+            Stage showPlanStage = new Stage();
+            showPlanStage.setTitle("Show Plan");
+            showPlanStage.setScene(scene);
+            showPlanStage.show();
+            String segmentType = filterSelect.getSelectionModel().getSelectedItem();
+            controller.buildPlans(plansView.getSelectionModel().getSelectedItem(), segmentType);
         }
     }
 
     @FXML
-    private void editPlan() throws IOException {
+    public void addPlanToListView(String Title) {
+        plansView.getItems().add(Title);
+    }
+        public void clearAllContent () {
 
-        if (plansView.getSelectionModel().getSelectedItem() == null){
-            Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
-            alert.show();
+            plansView.getItems().clear();
         }
-        else {
-            String planName = plansView.getSelectionModel().getSelectedItem();
-            FileTool fileTool = new FileTool();
-            String filePath = fileTool.getPlanFilePath(planName);
-            buildEditPlanStage(filePath , planName);
+
+        public void buildPlans () {
+            allPlansDir = new FileTool().getPlansDirectory();
+            File[] planFiles = new File(allPlansDir).listFiles();
+            if (planFiles.length != 0) {
+                for (File file : planFiles) {
+                    Scanner fileReader = new Scanner(file.getPath());
+                    String input = fileReader.nextLine();
+                    String[] titleData = input.split("_");
+                    String title = titleData[0];
+                    title = title.substring(9);
+                    plansView.getItems().add(title);
+                }
+            }
         }
+
+        @FXML
+        private void editPlan () throws IOException {
+
+            if (plansView.getSelectionModel().getSelectedItem() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
+                alert.show();
+            } else {
+                String planName = plansView.getSelectionModel().getSelectedItem();
+                FileTool fileTool = new FileTool();
+                String filePath = fileTool.getPlanFilePath(planName);
+                buildEditPlanStage(filePath, planName);
+            }
+        }
+
+        private void buildEditPlanStage (String filePath, String planTitle) throws IOException {
+
+            FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("Edit Plans.fxml"));
+            Parent root = loader.load();
+            EditPlanController controller = loader.getController();  // Initialize the controller
+            Scene scene = new Scene(root, 1500, 1500);
+            Stage showPlanStage = new Stage();
+            showPlanStage.setTitle("Edit Plan");
+            showPlanStage.setScene(scene);
+            showPlanStage.show();
+
+            controller.buildLayout(filePath, planTitle);
+
+
+        }
+
     }
 
-    private void buildEditPlanStage(String filePath , String planTitle) throws IOException {
-
-        FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("Edit Plans.fxml"));
-        Parent root = loader.load();
-        EditPlanController controller = loader.getController();  // Initialize the controller
-        Scene scene = new Scene(root, 1500, 1500);
-        Stage showPlanStage = new Stage();
-        showPlanStage.setTitle("Edit Plan");
-        showPlanStage.setScene(scene);
-        showPlanStage.show();
-
-        controller.buildLayout(filePath , planTitle);
-
-
-
-
-    }
-
-}

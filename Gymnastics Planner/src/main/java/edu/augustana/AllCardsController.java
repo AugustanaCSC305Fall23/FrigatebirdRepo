@@ -82,7 +82,7 @@ public class AllCardsController {
 
     @FXML
     void makeFavorite() throws IOException {
-        dataBase.makeFavorite(plansDB.getFilterSelectedTempCards());
+        dataBase.makeFavorite(plansDB.getAllSelectedCards());
     }
 
     @FXML
@@ -94,12 +94,14 @@ public class AllCardsController {
             if (femaleCheckBox.isSelected()) {
                 // when female box is selected
                 handleSearch.clearCheckBoxFilter();
-                dynamicCardAddingToView(handleSearch.checkBoxSearch("F" , "N"));
+                handleSearch.clearFavoriteCards();
+                ArrayList<Card>tempList = handleSearch.checkBoxSearch("F" , "N");
+                dynamicCardAddingToView(handleSearch.getFavoriteCards());
+                dynamicCardAddingToView(tempList);
             } else{
 
                 //if not selected un checked
                 dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
-
             }
     }
 
@@ -111,8 +113,14 @@ public class AllCardsController {
             if (maleCheckBox.isSelected()) {
                 // when female box is selected
                 handleSearch.clearCheckBoxFilter();
+
                     // add the cards
                     dynamicCardAddingToView(handleSearch.checkBoxSearch("M" , "N"));
+                handleSearch.clearFavoriteCards();
+                // add the cards
+                ArrayList<Card> tempList = new ArrayList<>(handleSearch.checkBoxSearch("M" , "N"));
+                dynamicCardAddingToView(handleSearch.getFavoriteCards());
+                dynamicCardAddingToView(tempList);
             } else{
 
                 //if not selected un checked
@@ -124,7 +132,8 @@ public class AllCardsController {
 
     public void buildCards() {
         dataBase = new CardListDB(false);
-        dynamicCardAddingToView(handleSearch.getAllCards());
+        dynamicCardAddingToView(handleSearch.getFavoriteCards());
+        dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
     }
 
 
@@ -155,7 +164,7 @@ public class AllCardsController {
 
                 allCardContent.getChildren().add(checkBox);
 
-                plansDB.addCardsToPlans(checkBox, card);
+                plansDB.addCardsToAllSelectedCards(checkBox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();

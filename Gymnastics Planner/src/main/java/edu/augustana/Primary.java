@@ -98,12 +98,9 @@ public class Primary  {
         });
 
         allPlans.setOnSelectionChanged(event -> {
-            try {
                 pc.clearAllContent();
                 pc.buildPlans();
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+
         });
 
     }
