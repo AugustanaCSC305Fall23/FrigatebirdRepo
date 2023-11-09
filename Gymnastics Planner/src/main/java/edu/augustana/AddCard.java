@@ -49,10 +49,14 @@ public class AddCard {
                     Files.copy(sourcePath, destinationPath);
                     System.out.println("File copied successfully to: " + destinationPath);
 
-                    String newFileName = allCards.size() + 2 + ".png"; // Specify the new file name
+                    int num = allCards.size() + 2;
+
+
+                    String newFileName =  Integer.toString(num) + ".png"; // Specify the new file name
                     Path newFilePath = Paths.get("DEMO1Pack/Images", newFileName);
                     Files.move(destinationPath, newFilePath);
                     System.out.println("File renamed successfully to: " + newFilePath);
+
 
 
                 } catch (Exception ex) {
@@ -63,7 +67,7 @@ public class AddCard {
 
     public void addCard(String ID, String Event, String Category, String Name, String Equipment, String Level,
                         String Gender, String Sex, String Keyword, String packFolder) {
-        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s\"%s\"",
+        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
                 ID, Event, Category, Name, packFolder, (allCards.size() + 2) + ".png", Gender, Sex, Level, Equipment, Keyword);
 
 

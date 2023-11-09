@@ -124,6 +124,7 @@ public class AllCardsController {
 
     public void buildCards() {
         dataBase = new CardListDB(false);
+        this.handleSearch = new HandleSearch(dataBase);
         dynamicCardAddingToView(handleSearch.getAllCards());
     }
 
@@ -135,6 +136,8 @@ public class AllCardsController {
             CheckBox checkBox = new CheckBox();
 
             String imageLink = card.getImage();
+
+            System.out.println(imageLink);
 
             try {
                 // Load the image and create an ImageView

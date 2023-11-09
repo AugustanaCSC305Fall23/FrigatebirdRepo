@@ -45,7 +45,6 @@ public class CardListDB {
             card.makeFavorite(card);
         }
 
-
     }
 
     private void buildCardsObjectList(Boolean forPlans) throws IOException {
@@ -64,6 +63,8 @@ public class CardListDB {
         //creates new cards for all csv files data
         while (line != null) {
             String[] splittedLine = line.split(",");
+
+            System.out.println(line);
             if(splittedLine.length >= 11) {
                 Card newCard = new Card(splittedLine);
                 allCards.add(newCard);
