@@ -11,12 +11,13 @@
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0">
          <children>
-            <Label fx:id="Title" alignment="CENTER" layoutX="417.0" layoutY="19.0" prefHeight="63.0" prefWidth="389.0" text="Label">
+            <Label fx:id="Title" alignment="CENTER" layoutX="270.0" layoutY="10.0" prefHeight="63.0" prefWidth="389.0" text="Label">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
             <Button fx:id="exitButton" layoutX="43.0" layoutY="19.0" mnemonicParsing="false" onAction="#exitShowPlanView" prefHeight="46.0" prefWidth="138.0" text="Back" />
+            <Button layoutX="726.0" layoutY="19.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="46.0" prefWidth="138.0" text="Print" />
          </children>
       </AnchorPane>
       <ScrollPane hbarPolicy="NEVER" prefHeight="500.0" prefWidth="200.0" vbarPolicy="ALWAYS">

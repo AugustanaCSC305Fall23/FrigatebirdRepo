@@ -38,9 +38,19 @@ public class ShowPlanController {
     private ArrayList<Card> allCards;
 
     private ArrayList<Card> segmentedCards;
+
+
     @FXML
     void initialize() {
 
+
+    }
+
+    @FXML
+    void  printPlan(){
+
+        Print print = new Print();
+        print.printAnchorPane(cardBox);
 
     }
 
@@ -209,9 +219,7 @@ public class ShowPlanController {
         return null;
         }
 
-    private void addSegmentedCardsToView(){
 
-    }
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
         TilePane cardPane = new TilePane();
         cardBox.getChildren().add(cardPane);

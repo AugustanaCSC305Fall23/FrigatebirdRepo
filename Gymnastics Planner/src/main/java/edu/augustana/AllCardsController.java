@@ -83,6 +83,8 @@ public class AllCardsController {
     @FXML
     void makeFavorite() throws IOException {
         dataBase.makeFavorite(plansDB.getAllSelectedCards());
+        allCardContent.getChildren().clear();
+        buildCards();
     }
 
     @FXML
