@@ -122,7 +122,7 @@ public class EditPlanController {
         // remove the dublicated from the all selectedCsrds
 
         if(recieve) {
-            plansDB.recieveCheckBox(selectedCards);
+            plansDB.removeDublicates(selectedCards);
         }
 
         selectedCardsView.getChildren().clear();

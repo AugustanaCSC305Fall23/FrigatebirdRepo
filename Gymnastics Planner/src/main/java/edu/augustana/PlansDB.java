@@ -34,6 +34,7 @@ public class PlansDB {
     }
 
 
+    //So in the selected cards view I created a new set of cards that the user can select and remove
     public void filterSelectedTempCards(){
 
         Iterator<CheckBox> iterator = tempAllSelectedCards.keySet().iterator();
@@ -57,15 +58,13 @@ public class PlansDB {
     }
 
     public HashMap<CheckBox,Card> getFilterSelectedTempCards(){
-
         this.filterSelectedTempCards();
         return tempAllSelectedCards;
     }
 
 
 
-    public void recieveCheckBox(HashMap<CheckBox,Card> selectedCards){
-
+    public void removeDublicates(HashMap<CheckBox,Card> selectedCards){
 
         for (Map.Entry<CheckBox, Card> availableCards : allSelectedCards.entrySet()) {
             Card availableCard = availableCards.getValue();
@@ -113,7 +112,6 @@ public class PlansDB {
 
     public HashMap<CheckBox,Card> deleteCheckBox(){
 
-
         Iterator<CheckBox> iterator = allSelectedCards.keySet().iterator();
         while (iterator.hasNext()) {
             CheckBox cBox = iterator.next();
@@ -159,6 +157,9 @@ public class PlansDB {
     public int getCardsInViewSize(){
         return allSelectedCards.size();
     }
+
+
+    //segement and return dictionary of code for events
 
 
 

@@ -29,8 +29,6 @@ public class Card {
 
     public Card(String[] data) throws  IOException{
 
-        System.out.println("===================================================================");
-        System.out.println("Lenght of the card: " + data.length);
 
         for(String s : data){
 
