@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="621.0" prefWidth="821.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
-   <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="516.0" prefWidth="619.0" />
-      <ComboBox fx:id="filterSelect" layoutX="108.0" layoutY="28.0" prefWidth="150.0" />
+<AnchorPane prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
+   <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="760.0" prefWidth="1260.0" />
+      <ComboBox fx:id="filterSelect" layoutX="116.0" layoutY="29.0" prefHeight="25.0" prefWidth="341.0" style="-fx-background-radius: 15px;" />
       <Label alignment="CENTER" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
           <font>
               <Font size="14.0" />
           </font>
       </Label>
-   <Button fx:id="showPlanButton" layoutX="284.0" layoutY="15.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="54.0" prefWidth="79.0" text="Show Plan" />
-   <Button layoutX="389.0" layoutY="15.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="54.0" prefWidth="79.0" text="Edit Plan" />
+   <Button fx:id="showPlanButton" layoutX="499.0" layoutY="15.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="54.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
+   <Button layoutX="613.0" layoutY="15.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="54.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
 
 
 </AnchorPane>

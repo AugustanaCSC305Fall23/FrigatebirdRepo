@@ -9,9 +9,9 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane prefHeight="1061.0" prefWidth="1318.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
    <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="1042.0" prefWidth="1306.0">
+      <VBox layoutX="10.0" layoutY="10.0" prefHeight="852.0" prefWidth="1283.0">
          <children>
             <AnchorPane prefHeight="101.0" prefWidth="865.0">
                <children>
@@ -22,9 +22,9 @@
                   <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
                </children>
             </AnchorPane>
-            <ScrollPane prefHeight="942.0" prefWidth="1306.0">
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1276.0">
                <content>
-                  <TilePane fx:id="allCardContent" prefHeight="934.0" prefWidth="1303.0" />
+                  <TilePane fx:id="allCardContent" prefHeight="742.0" prefWidth="1279.0" style="-fx-background-color: white;" />
                </content>
             </ScrollPane>
          </children>
@@ -36,11 +36,11 @@
             <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
             <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
             <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
-            <Button fx:id="selectTheseCards" layoutX="1023.0" layoutY="41.0" mnemonicParsing="false" onAction="#addCardsToPlan" text="Select these cards" />
+            <Button fx:id="selectTheseCards" layoutX="813.0" layoutY="29.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="38.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white;" text="Select these cards" textFill="#5d3fd3" />
+            <Button fx:id="searchButton" layoutX="599.0" layoutY="29.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="69.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white;" text="Search" textFill="#5d3fd3" />
          </children>
       </AnchorPane>
-      <TextField fx:id="searchedWord" layoutX="91.0" layoutY="49.0" prefHeight="26.0" prefWidth="509.0" />
-      <Button fx:id="searchButton" layoutX="622.0" layoutY="49.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+      <TextField fx:id="searchedWord" layoutX="91.0" layoutY="49.0" prefHeight="26.0" prefWidth="509.0" style="-fx-background-radius: 15px;" />
       <Label layoutX="91.0" layoutY="24.0" text="Search Word" />
       <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
       <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />

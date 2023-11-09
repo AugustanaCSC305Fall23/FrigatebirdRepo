@@ -134,6 +134,7 @@ public class AllCardsController {
 
     public void buildCards() {
         dataBase = new CardListDB(false);
+        handleSearch = new HandleSearch(dataBase);
         dynamicCardAddingToView(handleSearch.getFavoriteCards());
         dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
     }

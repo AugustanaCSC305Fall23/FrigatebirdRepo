@@ -8,7 +8,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.EditPlanController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.EditPlanController">
 
 
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1298.0">
@@ -18,15 +18,15 @@
                     <AnchorPane prefHeight="142.0" prefWidth="850.0">
                         <children>
                             <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
-                            <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" />
-                            <Button layoutX="1068.0" layoutY="19.0" mnemonicParsing="false" onAction="#makeChanges" prefHeight="45.0" prefWidth="110.0" text="Make Changes" />
+                            <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 15px;" />
+                            <Button layoutX="1068.0" layoutY="19.0" mnemonicParsing="false" onAction="#makeChanges" prefHeight="45.0" prefWidth="110.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-background-color: white; -fx-border-color: #5D3FD3;" text="Make Changes" textFill="#5d3fd3" />
                             <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
                                 <font>
                                     <Font size="36.0" />
                                 </font>
                             </Label>
-                            <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="92.0" text="Select Cards" />
-                            <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="139.0" text="Delete Selected Cards" />
+                            <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="92.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-background-color: white; -fx-border-color: #5D3FD3;" text="Select Cards" textFill="#5d3fd3" />
+                            <Button layoutX="898.0" layoutY="88.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="139.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-background-color: white; -fx-border-color: #5D3FD3;" text="Delete Selected Cards" textFill="#5d3fd3" />
                         </children>
                     </AnchorPane>
                     <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />
