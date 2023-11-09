@@ -110,7 +110,7 @@ public class AllCardsController {
             femaleCheckBox.setSelected(false);
             if (maleCheckBox.isSelected()) {
                 // when female box is selected
-               // handleCards.clearCheckBoxFilter();
+                handleSearch.clearCheckBoxFilter();
                     // add the cards
                     dynamicCardAddingToView(handleSearch.checkBoxSearch("M" , "N"));
             } else{

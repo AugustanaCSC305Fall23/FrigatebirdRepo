@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 
 <AnchorPane prefHeight="736.0" prefWidth="1179.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllCardsController">
-    <VBox prefHeight="727.0" prefWidth="1173.0">
+    <VBox prefHeight="733.0" prefWidth="1177.0">
         <children>
             <AnchorPane prefHeight="65.0" prefWidth="1063.0">
                 <children>
@@ -21,9 +21,9 @@
                     <CheckBox fx:id="maleCheckBox" layoutX="587.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
                <Button fx:id="makeFavoriteButton" layoutX="724.0" layoutY="38.0" mnemonicParsing="false" onAction="#makeFavorite" text="Make Favorite" />
                 </children></AnchorPane>
-            <ScrollPane prefHeight="774.0" prefWidth="1214.0">
+            <ScrollPane prefHeight="673.0" prefWidth="1177.0">
                 <content>
-                    <TilePane fx:id="allCardContent" prefHeight="657.0" prefWidth="1223.0" />
+                    <TilePane fx:id="allCardContent" prefHeight="662.0" prefWidth="1173.0" vgap="10.0" />
                 </content>
             </ScrollPane>
         </children>
