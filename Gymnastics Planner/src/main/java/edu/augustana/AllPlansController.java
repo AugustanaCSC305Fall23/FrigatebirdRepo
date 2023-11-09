@@ -53,6 +53,11 @@ public class AllPlansController {
         }
     }
 
+    @FXML
+    public void addPlanToListView(String Title){
+        plansView.getItems().add(Title);
+    }
+
     void buildPlans() throws  IOException{
         allPlansDir = new FileTool().getPlansDirectory();
         File[] planFiles = new File(allPlansDir).listFiles();

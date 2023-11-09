@@ -17,8 +17,6 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.concurrent.atomic.AtomicBoolean;
 
@@ -67,7 +65,7 @@ public class EditPlanController {
                 selectedCardsView.setPrefColumns(5);
 
                 selectedCardsView.getChildren().add(checkBox);
-                plansDB.addCardsToAllSelectedCatds(checkBox, card);
+                plansDB.addCardsToAllSelectedCards(checkBox, card);
 
             } catch (Exception e) {
                 e.printStackTrace();

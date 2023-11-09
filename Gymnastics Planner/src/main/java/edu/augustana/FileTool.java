@@ -9,6 +9,8 @@ import java.util.Scanner;
 public class FileTool {
     private final String allPlansDir = "AllPlans";
 
+    private final String favoriteCSVPath = "FavoriteCards.csv";
+
     public FileTool(){
 
     }
@@ -16,6 +18,8 @@ public class FileTool {
     public String getPlansDirectory(){
         return allPlansDir;
     }
+
+    public String getFavoriteCSVPath(){return  favoriteCSVPath;}
 
     public String getPlanFilePath(String planName){
         File[] files = new File(allPlansDir).listFiles();

@@ -17,9 +17,10 @@ public class HandleSearch {
 
 
     private ArrayList<Card> allCards;
-
+    private ArrayList<Card> allCardsExceptFavorites;
     private ArrayList<Card> filteredSearchBoxCards;
     private ArrayList<Card> filteredCheckBoxCards;
+    private ArrayList<Card> favoriteCards;
 
 
 
@@ -29,13 +30,18 @@ public class HandleSearch {
         this.allCards = allCards.getAllCards();
         filteredSearchBoxCards = new ArrayList<>();
         filteredCheckBoxCards = new ArrayList<>();
-
+        favoriteCards = allCards.getFavoriteCards();
+        allCardsExceptFavorites = allCards.getAllCardsExceptfavorites();
     }
-
     public ArrayList<Card> getAllCards() {
         return allCards;
     }
-
+    public ArrayList<Card> getAllCardsExceptFavorites(){
+        return allCardsExceptFavorites;
+    }
+    public ArrayList<Card> getFavoriteCards(){
+        return favoriteCards;
+    }
 
     public ArrayList<Card> textBoxSearch(String inputWord) {
 
@@ -67,6 +73,9 @@ public class HandleSearch {
             for (Card card : filteredSearchBoxCards) {
                 if (card.getGender().equals(filterOne) || card.getGender().equals(filterTwo)) {
                     filteredCheckBoxCards.add(card);
+                    if(card.getFavoriteStatus()){
+                        favoriteCards.add(card);
+                    }
                 }
             }
 
@@ -77,6 +86,9 @@ public class HandleSearch {
             for (Card card : allCards) {
                 if (card.getGender().equals(filterOne) || card.getGender().equals(filterTwo)) {
                     filteredCheckBoxCards.add(card);
+                    if (card.getFavoriteStatus()){
+                        favoriteCards.add(card);
+                    }
                 }
             }
         }
@@ -108,6 +120,10 @@ public class HandleSearch {
 
         filteredCheckBoxCards.clear();
 
+    }
+
+    public void clearFavoriteCards(){
+        favoriteCards.clear();
     }
 
 

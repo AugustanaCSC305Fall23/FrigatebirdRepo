@@ -4,11 +4,10 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ShowPlanController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" spacing="40.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ShowPlanController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0">
          <children>
@@ -22,11 +21,7 @@
       </AnchorPane>
       <ScrollPane hbarPolicy="NEVER" prefHeight="500.0" prefWidth="200.0" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="cardBox" prefHeight="497.0" prefWidth="980.0">
-               <children>
-                  <TilePane fx:id="cardPane" prefHeight="495.0" prefWidth="980.0" />
-               </children>
-            </VBox>
+            <VBox fx:id="cardBox" prefHeight="497.0" prefWidth="980.0" />
          </content>
       </ScrollPane>
    </children>
