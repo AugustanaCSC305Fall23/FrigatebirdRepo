@@ -32,8 +32,6 @@ public class Primary  {
     private Tab exit;
 
 
-
-
     /*
 
     In this class we want to be able to set the layout for each of the tab.
@@ -85,8 +83,7 @@ public class Primary  {
             AnchorPane pane4 = loader4.load();
             exit.setContent(pane4);
 
-         clickedOnTabs(ac,pc);
-
+            clickedOnTabs(ac,pc);
     }
 
 
@@ -99,8 +96,10 @@ public class Primary  {
 
         allPlans.setOnSelectionChanged(event -> {
             try {
+
                 pc.clearAllContent();
                 pc.buildPlans();
+
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }
