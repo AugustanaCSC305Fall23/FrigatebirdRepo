@@ -63,25 +63,33 @@ public class AddCard {
 
     public void addCard(String ID, String Event, String Category, String Name, String Equipment, String Level,
                         String Gender, String Sex, String Keyword, String packFolder) {
-        String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
-                ID, Event, Category, Name, packFolder, (allCards.size() + 2) + ".png", Gender, Sex, Level, Equipment, Keyword);
+        if(!ID.isEmpty() && !Event.isEmpty () && !Category.isEmpty() && !Name.isEmpty() && !Equipment.isEmpty() &&  !Level.isEmpty() && !Gender.isEmpty() && !Sex.isEmpty() && !Keyword.isEmpty() && !packFolder.isEmpty()){
+            String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
+                    ID, Event, Category, Name, packFolder, (allCards.size() + 2) + ".png", Gender, Sex, Level, Equipment, Keyword);
 
 
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath, true))) {
-            writer.write(csvLine + "\n");
+            try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath, true))) {
+                writer.write(csvLine + "\n");
 
-            Alert alert = new Alert(AlertType.INFORMATION);
-            alert.setTitle("Success");
-            alert.setHeaderText(null);
-            alert.setContentText("Card Added!");
-            alert.showAndWait();
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Success");
+                alert.setHeaderText(null);
+                alert.setContentText("Card Added!");
+                alert.showAndWait();
 
 
-        } catch (IOException ex) {
+            } catch (IOException ex) {
+                Alert alert = new Alert(AlertType.INFORMATION);
+                alert.setTitle("Failed");
+                alert.setHeaderText(null);
+                alert.setContentText("Unable to Add Card.");
+                alert.showAndWait();
+            }
+        }else{
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
             alert.setHeaderText(null);
-            alert.setContentText("Unable to Add Card.");
+            alert.setContentText("Fill out all the fields!");
             alert.showAndWait();
         }
     }
