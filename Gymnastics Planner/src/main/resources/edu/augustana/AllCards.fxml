@@ -11,10 +11,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllCardsController">
-    <VBox prefHeight="868.0" prefWidth="1298.0">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllCardsController">
+    <VBox minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0">
         <children>
-            <AnchorPane prefHeight="131.0" prefWidth="1278.0" style="-fx-background-color: #51A3B2; -fx-background-radius: 15px;">
+            <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="1278.0" style="-fx-background-color: #51A3B2; -fx-background-radius: 15px;">
                 <children>
                     <TextField fx:id="searchedWord" layoutX="12.0" layoutY="45.0" prefHeight="26.0" prefWidth="509.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
                     <Button fx:id="searchButton" layoutX="529.0" layoutY="43.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="30.0" prefWidth="95.0" style="-fx-border-radius: 50px; -fx-background-radius: 50px; -fx-border-width: 2px; -fx-background-color: #51A3B2; -fx-border-color: white;" text="Search" textFill="WHITE" />
@@ -27,7 +27,7 @@
                <Button fx:id="makeFavoriteButton" layoutX="772.0" layoutY="42.0" mnemonicParsing="false" onAction="#makeFavorite" prefWidth="104.0" style="-fx-border-radius: 50px; -fx-background-radius: 50px; -fx-border-width: 2px; -fx-background-color: #51A3B2; -fx-border-color: white;" text="Make Favorite" textFill="WHITE" />
                <Line endX="246.60003662109375" endY="0.40000152587890625" layoutX="275.0" layoutY="71.0" startX="-263.0" startY="0.40000152587890625" stroke="WHITE" />
                 </children></AnchorPane>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="783.0" prefWidth="1197.0">
+            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1213.0">
                 <content>
                     <TilePane fx:id="allCardContent" prefHeight="788.0" prefWidth="1296.0" style="-fx-background-color: #99D0DA;" vgap="10.0" />
                 </content>

@@ -7,22 +7,22 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" spacing="40.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ShowPlanController">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" spacing="40.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.ShowPlanController">
    <children>
       <AnchorPane prefHeight="100.0" prefWidth="1000.0">
          <children>
-            <Label fx:id="Title" alignment="CENTER" layoutX="455.0" layoutY="19.0" prefHeight="63.0" prefWidth="389.0" text="Label">
+            <Label fx:id="Title" alignment="CENTER" layoutX="455.0" layoutY="19.0" prefHeight="63.0" prefWidth="389.0" text="Label" textFill="WHITE">
                <font>
                   <Font size="16.0" />
                </font>
             </Label>
-            <Button fx:id="exitButton" layoutX="102.0" layoutY="19.0" mnemonicParsing="false" onAction="#exitShowPlanView" prefHeight="46.0" prefWidth="138.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: whiet; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Back" textFill="#5d3fd3" />
-            <Button layoutX="1033.0" layoutY="27.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="46.0" prefWidth="138.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: whiet; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Print" textFill="#5d3fd3" />
+            <Button fx:id="exitButton" layoutX="102.0" layoutY="19.0" mnemonicParsing="false" onAction="#exitShowPlanView" prefHeight="46.0" prefWidth="110.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #51A3B2; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Back" textFill="WHITE" />
+            <Button layoutX="1061.0" layoutY="27.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="46.0" prefWidth="110.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #51A3B2; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Print" textFill="WHITE" />
          </children>
       </AnchorPane>
       <ScrollPane hbarPolicy="NEVER" prefHeight="727.0" prefWidth="1298.0" vbarPolicy="ALWAYS">
          <content>
-            <VBox fx:id="cardBox" prefHeight="725.0" prefWidth="1296.0" style="-fx-background-color: white;" />
+            <VBox fx:id="cardBox" prefHeight="725.0" prefWidth="1296.0" style="-fx-background-color: #99D0DA;" />
          </content>
       </ScrollPane>
    </children>

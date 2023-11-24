@@ -33,13 +33,17 @@ public class App extends Application {
         primary.setTabControllers();
 
         Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
+        // getting the width of the screen being used
+//        Rectangle2D bounds = screen.getVisualBounds();
 
-        Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+        Scene scene = new Scene(root, 1298, 868);
         stage.setScene(scene);
 
-        // Optional: If you want to set the stage to full screen
-         stage.setFullScreen(true);
+        // Optional: Icon addition and title addition
+        stage.setTitle("TumbleTech");
+        primary.setLogo(stage);
+
+
 
         stage.show();
     }
