@@ -7,16 +7,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
-   <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="760.0" prefWidth="1260.0" />
-      <ComboBox fx:id="filterSelect" layoutX="116.0" layoutY="29.0" prefHeight="25.0" prefWidth="341.0" style="-fx-background-radius: 15px;" />
-      <Label alignment="CENTER" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
+   <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="760.0" prefWidth="1260.0" style="-fx-background-color: #99D0DA;" />
+      <ComboBox fx:id="filterSelect" layoutX="116.0" layoutY="29.0" prefHeight="25.0" prefWidth="341.0" style="-fx-background-radius: 15px; -fx-background-color: #99D0DA;" />
+      <Label alignment="CENTER" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:" textFill="WHITE">
           <font>
               <Font size="14.0" />
           </font>
       </Label>
-   <Button fx:id="showPlanButton" layoutX="499.0" layoutY="15.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="54.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
-   <Button layoutX="613.0" layoutY="15.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="54.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: white; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
+   <Button fx:id="showPlanButton" layoutX="487.0" layoutY="22.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
+   <Button layoutX="601.0" layoutY="22.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
 
 
 </AnchorPane>

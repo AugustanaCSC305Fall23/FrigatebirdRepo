@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Tab;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 
@@ -104,8 +106,9 @@ public class Primary  {
         });
 
     }
-
-
-
+    public void setLogo(Stage primaryStage){
+        Image image = new Image("C:\\git\\FrigatebirdRepo\\Logo\\Gymnastics Logo.jpg");
+        primaryStage.getIcons().add(image);
+    }
 
 }

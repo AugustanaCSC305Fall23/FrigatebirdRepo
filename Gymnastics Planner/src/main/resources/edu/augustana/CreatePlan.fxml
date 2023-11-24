@@ -6,9 +6,14 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
+<<<<<<< HEAD
 <AnchorPane prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
+=======
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white; -fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
+>>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
 
 
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="1298.0">
@@ -17,16 +22,29 @@
                 <children>
                     <AnchorPane prefHeight="142.0" prefWidth="850.0">
                         <children>
+<<<<<<< HEAD
                             <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" />
                             <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 15px;" />
                             <Button layoutX="891.0" layoutY="72.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="45.0" prefWidth="176.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: white; -fx-border-width: 2px;" text="Create Plan" textFill="#5d3fd3" />
                             <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="44.0" prefWidth="307.0" text="Selected Cards">
+=======
+                            <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" textFill="WHITE" />
+                            <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
+                            <Button layoutX="1053.0" layoutY="17.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="45.0" prefWidth="131.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Create Plan" textFill="WHITE" />
+                            <Label alignment="CENTER" layoutX="445.0" layoutY="93.0" prefHeight="45.0" prefWidth="294.0" text="Selected Cards" textFill="WHITE">
+>>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
                                 <font>
-                                    <Font size="36.0" />
+                                    <Font size="31.0" />
                                 </font>
                             </Label>
+<<<<<<< HEAD
                             <Button fx:id="selectCards" layoutX="794.0" layoutY="18.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="151.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: white; -fx-border-width: 2px;" text="Select Cards" textFill="#5d3fd3" />
                             <Button layoutX="1001.0" layoutY="21.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="40.0" prefWidth="158.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: white; -fx-border-width: 2px;" text="Delete Selected Cards" textFill="#5d3fd3" />
+=======
+                            <Button fx:id="selectCards" layoutX="903.0" layoutY="17.0" mnemonicParsing="false" onAction="#selectCard" prefHeight="45.0" prefWidth="131.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Select Cards" textFill="WHITE" />
+                            <Button layoutX="899.0" layoutY="87.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="45.0" prefWidth="139.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete Selected Cards" textFill="WHITE" />
+                     <Line endX="298.0" layoutX="213.0" layoutY="62.0" startX="-100.0" stroke="WHITE" />
+>>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
                         </children>
                     </AnchorPane>
                     <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />

@@ -35,6 +35,11 @@ public class App extends Application {
         stage.setScene(scene);
         stage.show();
 
+        // Optional: Icon addition and title addition
+        stage.setTitle("TumbleTech");
+        primary.setLogo(stage);
+
+
 
     }
 
