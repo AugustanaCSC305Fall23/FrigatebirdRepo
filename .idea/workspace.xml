@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="eb20ffad-320f-4933-a126-a7e3153ee776" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/FrigatebirdRepo.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/FrigatebirdRepo.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/encodings.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/encodings.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/jarRepositories.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/jarRepositories.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/uiDesigner.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/1CardPlan_Plan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/AllPlans/1CardPlan_Plan.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DEMO1Pack/DEMO1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/DEMO1Pack/DEMO1.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FavoriteCards.csv" beforeDir="false" afterPath="$PROJECT_DIR$/FavoriteCards.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/AddCard.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/AddCard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/App.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AddCards.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AddCards.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AllCards.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AllCards.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/CreatePlan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/CreatePlan.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/selectCards.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/selectCards.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/target/classes/edu/augustana/AddCards.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/target/classes/edu/augustana/AddCards.fxml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 8
+}]]></component>
+  <component name="ProjectId" id="2Xwjt8hoxPkxreAEO8QRmR2YVhe" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/anubhavrayamajhi/Downloads/FrigatebirdRepo",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="eb20ffad-320f-4933-a126-a7e3153ee776" name="Changes" comment="" />
+      <created>1699547247206</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1699547247206</updated>
+      <workItem from="1699547248260" duration="2664000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

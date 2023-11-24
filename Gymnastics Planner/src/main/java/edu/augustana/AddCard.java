@@ -44,13 +44,13 @@ public class AddCard {
                 imageName.setText(file.getName());
                 // Copy the selected file to a specified location
                 Path sourcePath = file.toPath();
-                Path destinationPath = Paths.get("C:\\git\\FrigatebirdRepo\\DEMO1Pack\\Images", file.getName()); // Specify the destination directory
+                Path destinationPath = Paths.get("DEMO1Pack/Images", file.getName()); // Specify the destination directory
                 try {
                     Files.copy(sourcePath, destinationPath);
                     System.out.println("File copied successfully to: " + destinationPath);
 
                     String newFileName = allCards.size() + 2 + ".png"; // Specify the new file name
-                    Path newFilePath = Paths.get("C:\\git\\FrigatebirdRepo\\DEMO1Pack\\Images", newFileName);
+                    Path newFilePath = Paths.get("DEMO1Pack/Images", newFileName);
                     Files.move(destinationPath, newFilePath);
                     System.out.println("File renamed successfully to: " + newFilePath);
 

@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.TilePane?>
 <?import javafx.scene.layout.VBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
    <children>
       <VBox layoutX="10.0" layoutY="10.0" prefHeight="852.0" prefWidth="1283.0">
          <children>
@@ -42,7 +42,7 @@
       </AnchorPane>
       <TextField fx:id="searchedWord" layoutX="91.0" layoutY="49.0" prefHeight="26.0" prefWidth="509.0" style="-fx-background-radius: 15px;" />
       <Label layoutX="91.0" layoutY="24.0" text="Search Word" />
-      <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-      <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+      <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" textFill="#5d3fd3" />
+      <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" textFill="#5d3fd3" />
    </children>
 </AnchorPane>

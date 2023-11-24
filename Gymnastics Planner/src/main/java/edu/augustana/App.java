@@ -23,8 +23,7 @@ public class App extends Application {
     }
 
     @Override
-    public void start(Stage stage) throws IOException {
-
+    public void start(Stage stage) throws Exception {
         FXMLLoader loader = new FXMLLoader(getClass().getResource("primary.fxml"));
         Parent root = loader.load();
 
@@ -32,16 +31,11 @@ public class App extends Application {
         Primary primary = loader.getController();
         primary.setTabControllers();
 
-        Screen screen = Screen.getPrimary();
-        Rectangle2D bounds = screen.getVisualBounds();
-
-        Scene scene = new Scene(root, bounds.getWidth(), bounds.getHeight());
+        Scene scene = new Scene(root, 1200, 868);
         stage.setScene(scene);
-
-        // Optional: If you want to set the stage to full screen
-         stage.setFullScreen(true);
-
         stage.show();
+
+
     }
 
 
