@@ -54,9 +54,11 @@ public class ShowPlanController {
 
     }
 
-        public void buildPlans(String planName, String segmentType) throws IOException {
+        public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path) throws IOException {
+
             shortCodes = new ArrayList<>();
             cardsList = new ArrayList<>();
+
             FileTool fileTool = new FileTool();
             System.out.println(segmentType);
             CardListDB dataBase = new CardListDB(false);
@@ -66,7 +68,12 @@ public class ShowPlanController {
             //write logic to read through the csv file and collect the short codes
             filePath = fileTool.getPlanFilePath(planName);
             try {
-                Scanner reader = new Scanner(new File(filePath));
+                Scanner reader;
+                if(diffLocation){
+                   reader = new Scanner(new File(path));
+                }else {
+                     reader = new Scanner(new File(filePath));
+                }
                 System.out.println(filePath);
                 String line = reader.nextLine();
                 while (reader.hasNextLine()) {

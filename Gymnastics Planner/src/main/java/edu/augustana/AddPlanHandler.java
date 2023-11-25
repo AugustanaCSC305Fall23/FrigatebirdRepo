@@ -11,18 +11,25 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
-public class PlansDB {
+public class AddPlanHandler {
+
 
     String fileName;
+
     HashMap<CheckBox,Card> allSelectedCards;
+
     HashMap<CheckBox,Card> tempAllSelectedCards;
 
+    ArrayList<Card> deletedCards;
 
-
-    public PlansDB() {
+    ArrayList<Card> allNoneSSelectedCards;
+    public AddPlanHandler() {
 
         allSelectedCards = new HashMap<>();
         tempAllSelectedCards = new HashMap<>();
+        deletedCards = new ArrayList<>();
+        allNoneSSelectedCards = new ArrayList<>();
+
     }
 
     public void addCardsToPlans(CheckBox cBox, Card card){
@@ -34,37 +41,37 @@ public class PlansDB {
     }
 
 
-    //So in the selected cards view I created a new set of cards that the user can select and remove
-    public void filterSelectedTempCards(){
-
-        Iterator<CheckBox> iterator = tempAllSelectedCards.keySet().iterator();
-        while (iterator.hasNext()) {
-            CheckBox cBox = iterator.next();
-            if (!cBox.isSelected()) {
-                iterator.remove(); // Remove the current CheckBox from the map
-            }
-        }
-    }
-
     public ArrayList<Card> getAllSelectedCards(){
         ArrayList<Card> selectedCards = new ArrayList<>();
         for (CheckBox cBox: allSelectedCards.keySet()){
             if(cBox.isSelected()){
                 selectedCards.add(allSelectedCards.get(cBox));
-                cBox.setSelected(false);
+                tempAllSelectedCards.put(cBox,allSelectedCards.get(cBox));
             }
         }
         return selectedCards;
     }
 
-    public HashMap<CheckBox,Card> getFilterSelectedTempCards(){
-        this.filterSelectedTempCards();
-        return tempAllSelectedCards;
+
+    //So in the selected cards view I created a new set of cards that the user can select and remove
+
+    public void removeFromSelectedCards(CheckBox cBox) {
+        // Assuming allSelectedCards is an instance variable
+
+        System.out.println("Before removing: " + allSelectedCards.size());
+        if (allSelectedCards != null) {
+            allSelectedCards.remove(cBox);
+        }
+        System.out.println("After removing: " + allSelectedCards.size());
     }
 
 
 
-    public void removeDublicates(HashMap<CheckBox,Card> selectedCards){
+    public HashMap<CheckBox,Card> removeDublicates(HashMap<CheckBox,Card> selectedCards){
+
+        System.out.println("Remove dublicates from where - " + allSelectedCards.size());
+        System.out.println("Currently the cards that are in the view- " + getAllCheckBox().size());
+
 
         for (Map.Entry<CheckBox, Card> availableCards : allSelectedCards.entrySet()) {
             Card availableCard = availableCards.getValue();
@@ -80,7 +87,10 @@ public class PlansDB {
             }
         }
 
-        allSelectedCards.putAll(selectedCards);
+        System.out.println("Remove post from where - " + selectedCards.size());
+        System.out.println("Post  the cards that are in the view- " + allSelectedCards.size());
+        System.out.println("");
+        return selectedCards;
 
     }
 
@@ -112,11 +122,13 @@ public class PlansDB {
 
     public HashMap<CheckBox,Card> deleteCheckBox(){
 
+        deletedCards.clear();
         Iterator<CheckBox> iterator = allSelectedCards.keySet().iterator();
         while (iterator.hasNext()) {
             CheckBox cBox = iterator.next();
             if (cBox.isSelected()) {
-                iterator.remove(); // Remove the current CheckBox from the map
+                deletedCards.add(allSelectedCards.get(cBox));
+                iterator.remove();
             }
         }
 
@@ -154,7 +166,13 @@ public class PlansDB {
     }
 
     public void createFileDifferentLocation(String planTitle , Boolean isPlanTitle , String locationPath) throws IOException {
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(locationPath))) {
+        String filePath;
+        if(isPlanTitle) {
+            filePath = locationPath+ "/" + fileName;
+        }else{
+            filePath = locationPath+ "/" + planTitle;
+        }
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(planTitle);
 
             System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
@@ -171,22 +189,36 @@ public class PlansDB {
             }
             allSelectedCards.clear();
             writer.close();
-
+            try (BufferedWriter planPathWriter = new BufferedWriter(new FileWriter("OutsidePlanLocation/AllPlansPathOutSideApp.csv"))){
+                planPathWriter.write(filePath);
+            }
 
 
         }
 
     }
 
-
     public int getCardsInViewSize(){
         return allSelectedCards.size();
     }
 
 
-    //segement and return dictionary of code for events
 
 
+    public HashMap<CheckBox,Card> getAllSelectedCardsToAdd(){
+
+        HashMap<CheckBox,Card> allCheckBoxCard = new HashMap<>();
+
+        for(CheckBox checkBox : tempAllSelectedCards.keySet()){
+            if(checkBox.isSelected()){
+
+                allCheckBoxCard.put(checkBox,tempAllSelectedCards.get(checkBox));
+                checkBox.setSelected(false);
+            }
+        }
+
+        return allCheckBoxCard;
+    }
 
 
 }

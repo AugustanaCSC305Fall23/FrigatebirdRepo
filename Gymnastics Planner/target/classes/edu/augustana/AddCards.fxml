@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.Label?>
@@ -9,37 +8,11 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<<<<<<< HEAD
-<AnchorPane prefHeight="868.0" prefWidth="1298.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
-=======
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
->>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
 
 
     <AnchorPane layoutX="262.0" layoutY="55.0" minHeight="0.0" minWidth="0.0" prefHeight="758.0" prefWidth="850.0">
         <children>
-<<<<<<< HEAD
-         <VBox layoutX="33.0" layoutY="54.0" prefHeight="619.0" prefWidth="624.0" style="-fx-background-color: #CCCCFF; -fx-background-radius: 15px;">
-            <padding>
-               <Insets bottom="25.0" left="25.0" right="25.0" top="25.0" />
-            </padding></VBox>
-            <Label layoutX="59.0" layoutY="94.0" text="Code:" />
-            <Label layoutX="58.0" layoutY="148.0" text="Event:" />
-            <Label layoutX="62.0" layoutY="249.0" text="Title" />
-            <Label layoutX="51.0" layoutY="297.0" text="Equipment:" />
-            <TextField fx:id="codeInput" layoutX="177.0" layoutY="89.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <TextField fx:id="eventInput" layoutX="177.0" layoutY="143.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <TextField fx:id="titleInput" layoutX="177.0" layoutY="244.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <TextField fx:id="equipmentInput" layoutX="177.0" layoutY="292.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Button fx:id="Select_Image_Button" layoutX="681.0" layoutY="594.0" mnemonicParsing="false" onAction="#Select_Image_Action" prefHeight="42.0" prefWidth="97.0" style="-fx-background-color: white; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-font-weight: 700; -fx-border-color: #5D3FD3;" text="Select Image" textFill="#5d3fd3" />
-            <Label layoutX="52.0" layoutY="430.0" text="Gender:" />
-            <TextField fx:id="imageName" layoutX="177.0" layoutY="593.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Label layoutX="53.0" layoutY="598.0" text="Image Name:" />
-            <CheckBox fx:id="Female" layoutX="266.0" layoutY="430.0" mnemonicParsing="false" text="Female" />
-            <CheckBox fx:id="Neutral" layoutX="356.0" layoutY="430.0" mnemonicParsing="false" text="Neutral" />
-            <CheckBox fx:id="Male" layoutX="177.0" layoutY="430.0" mnemonicParsing="false" text="Male" />
-            <Button fx:id="done_Button" layoutX="338.0" layoutY="685.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" style="-fx-background-color: white; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-font-weight: 700; -fx-border-color: #5D3FD3;" text="Done" textFill="#5d3fd3">
-=======
             <Label layoutX="59.0" layoutY="94.0" style="-fx-font-weight: 700;" text="Code:" textFill="WHITE" />
             <Label layoutX="58.0" layoutY="148.0" style="-fx-font-weight: 700;" text="Event:" textFill="WHITE" />
             <Label layoutX="62.0" layoutY="249.0" style="-fx-font-weight: 700;" text="Title" textFill="WHITE" />
@@ -49,9 +22,9 @@
             <TextField fx:id="titleInput" layoutX="177.0" layoutY="244.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
             <TextField fx:id="equipmentInput" layoutX="177.0" layoutY="292.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
             <Button fx:id="Select_Image_Button" layoutX="684.0" layoutY="594.0" mnemonicParsing="false" onAction="#Select_Image_Action" prefHeight="42.0" prefWidth="110.0" style="-fx-background-color: #51A3B2; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-font-weight: 700; -fx-border-color: white;" text="Select Image" textFill="WHITE">
-            <font>
-               <Font size="14.0" />
-            </font></Button>
+                <font>
+                    <Font size="14.0" />
+                </font></Button>
             <Label layoutX="52.0" layoutY="430.0" style="-fx-font-weight: 700;" text="Gender:" textFill="WHITE" />
             <TextField fx:id="imageName" layoutX="177.0" layoutY="593.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
             <Label layoutX="53.0" layoutY="598.0" style="-fx-font-weight: 700;" text="Image Name:" textFill="WHITE" />
@@ -59,33 +32,10 @@
             <CheckBox fx:id="Neutral" layoutX="356.0" layoutY="430.0" mnemonicParsing="false" style="-fx-font-weight: 700;" text="Neutral" textFill="WHITE" />
             <CheckBox fx:id="Male" layoutX="177.0" layoutY="430.0" mnemonicParsing="false" style="-fx-font-weight: 700;" text="Male" textFill="WHITE" />
             <Button fx:id="done_Button" layoutX="48.0" layoutY="664.0" mnemonicParsing="false" onAction="#doneOnAction" prefHeight="11.0" prefWidth="97.0" style="-fx-background-color: #51A3B2; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-font-weight: 700; -fx-border-color: white;" text="Done" textFill="WHITE">
->>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
                 <font>
                     <Font size="17.0" />
                 </font>
             </Button>
-<<<<<<< HEAD
-            <TextField fx:id="categoryInput" layoutX="177.0" layoutY="193.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Label layoutX="49.0" layoutY="198.0" text="Category" />
-            <Label layoutX="58.0" layoutY="347.0" text="Level:" />
-            <TextField fx:id="levelInput" layoutX="177.0" layoutY="342.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Label layoutX="63.0" layoutY="395.0" text="Sex:" />
-            <CheckBox fx:id="sexFemale" layoutX="266.0" layoutY="395.0" mnemonicParsing="false" text="Female" />
-            <CheckBox fx:id="sexMale" layoutX="177.0" layoutY="395.0" mnemonicParsing="false" text="Male" />
-            <TextField fx:id="packFolder" layoutX="177.0" layoutY="488.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px;" />
-            <Label layoutX="52.0" layoutY="493.0" text="Pack folder" />
-            <TextField fx:id="keyword" layoutX="177.0" layoutY="539.0" prefHeight="26.0" prefWidth="455.0" promptText="Add a comma between descriptors" style="-fx-background-radius: 15px;" />
-            <Label layoutX="51.0" layoutY="544.0" prefHeight="17.0" prefWidth="75.0" text="Keywords" />
-         <Label layoutX="265.0" layoutY="-10.0" prefHeight="51.0" prefWidth="160.0" text="Add Card">
-            <font>
-               <Font size="35.0" />
-            </font>
-         </Label>
-        </children>
-      <padding>
-         <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
-      </padding></AnchorPane>
-=======
             <TextField fx:id="categoryInput" layoutX="177.0" layoutY="193.0" prefHeight="26.0" prefWidth="455.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
             <Label layoutX="49.0" layoutY="198.0" style="-fx-font-weight: 700;" text="Category" textFill="WHITE" />
             <Label layoutX="58.0" layoutY="347.0" style="-fx-font-weight: 700;" text="Level:" textFill="WHITE" />
@@ -97,22 +47,21 @@
             <Label layoutX="52.0" layoutY="493.0" style="-fx-font-weight: 700;" text="Pack folder" textFill="WHITE" />
             <TextField fx:id="keyword" layoutX="177.0" layoutY="539.0" prefHeight="26.0" prefWidth="455.0" promptText="Add a comma between descriptors" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
             <Label layoutX="51.0" layoutY="544.0" prefHeight="17.0" prefWidth="75.0" style="-fx-font-weight: 700;" text="Keywords" textFill="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="115.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="169.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="219.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="271.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="319.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="368.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="514.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="566.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
-         <Line endX="472.20001220703125" layoutX="160.0" layoutY="619.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="115.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="169.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="219.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="271.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="319.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="368.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="514.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="566.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Line endX="472.20001220703125" layoutX="160.0" layoutY="619.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
         </children></AnchorPane>
-   <Label alignment="CENTER" layoutX="1.0" layoutY="22.0" prefHeight="53.0" prefWidth="1298.0" style="-fx-font-weight: 700;" text="Add Card" textAlignment="CENTER" textFill="WHITE">
-      <font>
-         <Font size="30.0" />
-      </font>
-   </Label>
->>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
+    <Label alignment="CENTER" layoutX="1.0" layoutY="22.0" prefHeight="53.0" prefWidth="1298.0" style="-fx-font-weight: 700;" text="Add Card" textAlignment="CENTER" textFill="WHITE">
+        <font>
+            <Font size="30.0" />
+        </font>
+    </Label>
 
 
 

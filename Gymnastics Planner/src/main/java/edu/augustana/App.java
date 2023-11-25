@@ -31,15 +31,13 @@ public class App extends Application {
         Primary primary = loader.getController();
         primary.setTabControllers();
 
-        Scene scene = new Scene(root, 1200, 868);
+        Scene scene = new Scene(root, 1800, 1868);
         stage.setScene(scene);
         stage.show();
 
         // Optional: Icon addition and title addition
         stage.setTitle("TumbleTech");
-        primary.setLogo(stage);
-
-
+        //primary.setLogo(stage);
 
     }
 

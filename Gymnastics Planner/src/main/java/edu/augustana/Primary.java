@@ -36,6 +36,8 @@ public class Primary  {
 
 
 
+
+
     /*
 
     In this class we want to be able to set the layout for each of the tab.
@@ -69,6 +71,8 @@ public class Primary  {
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("CreatePlan.fxml"));
             AnchorPane pane1 = loader1.load();
             createPlan.setContent(pane1);
+            CreatePlanController cP = loader1.getController();
+            cP.buildCards();
 
 
             FXMLLoader loader2 = new FXMLLoader(getClass().getResource("AllPlans.fxml"));
@@ -107,7 +111,7 @@ public class Primary  {
 
     }
     public void setLogo(Stage primaryStage){
-        Image image = new Image("C:\\git\\FrigatebirdRepo\\Logo\\Gymnastics Logo.jpg");
+        Image image = new Image("Logo/Gymnastics Logo.jpg");
         primaryStage.getIcons().add(image);
     }
 

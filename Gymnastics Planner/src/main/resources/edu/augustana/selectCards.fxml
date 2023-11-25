@@ -10,52 +10,41 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<<<<<<< HEAD
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
-=======
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
->>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
-   <children>
-      <VBox layoutX="10.0" layoutY="10.0" prefHeight="852.0" prefWidth="1283.0" style="-fx-background-color: #51A3B2;">
-         <children>
-            <AnchorPane prefHeight="101.0" prefWidth="865.0">
-               <children>
-                  <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
-                  <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
-                  <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
-                  <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-                  <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
-               </children>
-            </AnchorPane>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1276.0">
-               <content>
-                  <TilePane fx:id="allCardContent" prefHeight="742.0" prefWidth="1279.0" style="-fx-background-color: #99D0DA;" />
-               </content>
-            </ScrollPane>
-         </children>
-      </VBox>
-      <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="101.0" prefWidth="1299.0">
-         <children>
-            <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
-            <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
-            <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
-            <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-            <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
-            <Button fx:id="selectTheseCards" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="38.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Select these cards" textFill="WHITE" />
-            <Button fx:id="searchButton" layoutX="595.0" layoutY="33.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Search" textFill="WHITE" />
-            <Line endX="439.0" endY="6.0" layoutX="150.0" layoutY="71.0" startX="-77.0" startY="6.0" stroke="WHITE" />
-         </children>
-      </AnchorPane>
-<<<<<<< HEAD
-      <TextField fx:id="searchedWord" layoutX="91.0" layoutY="49.0" prefHeight="26.0" prefWidth="509.0" style="-fx-background-radius: 15px;" />
-      <Label layoutX="91.0" layoutY="24.0" text="Search Word" />
-      <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" textFill="#5d3fd3" />
-      <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" textFill="#5d3fd3" />
-=======
-      <TextField fx:id="searchedWord" layoutX="87.0" layoutY="43.0" prefHeight="38.0" prefWidth="515.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
-      <Label layoutX="91.0" layoutY="24.0" prefHeight="17.0" prefWidth="83.0" text="Search Word" textFill="WHITE" />
-      <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-      <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
->>>>>>> 3f61c75cf9c94b5dd36163cf0937bfe5e3269648
-   </children>
+    <children>
+        <VBox layoutX="10.0" layoutY="10.0" prefHeight="852.0" prefWidth="1283.0" style="-fx-background-color: #51A3B2;">
+            <children>
+                <AnchorPane prefHeight="101.0" prefWidth="865.0">
+                    <children>
+                        <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
+                        <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+                        <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
+                        <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+                        <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                    </children>
+                </AnchorPane>
+                <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="747.0" prefWidth="1276.0">
+                    <content>
+                        <TilePane fx:id="allCardContent" prefHeight="742.0" prefWidth="1279.0" style="-fx-background-color: #99D0DA;" />
+                    </content>
+                </ScrollPane>
+            </children>
+        </VBox>
+        <AnchorPane layoutX="10.0" layoutY="10.0" prefHeight="101.0" prefWidth="1299.0">
+            <children>
+                <TextField fx:id="searchedWord" layoutX="81.0" layoutY="39.0" prefHeight="26.0" prefWidth="509.0" />
+                <Button fx:id="searchButton" layoutX="612.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+                <Label layoutX="81.0" layoutY="14.0" text="Search Word" />
+                <CheckBox fx:id="FemaleCheckBox" layoutX="737.0" layoutY="43.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+                <CheckBox fx:id="MaleCheckBox" layoutX="676.0" layoutY="42.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                <Button fx:id="selectTheseCards" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="38.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Select these cards" textFill="WHITE" />
+                <Button fx:id="searchButton" layoutX="595.0" layoutY="33.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Search" textFill="WHITE" />
+                <Line endX="439.0" endY="6.0" layoutX="150.0" layoutY="71.0" startX="-77.0" startY="6.0" stroke="WHITE" />
+            </children>
+        </AnchorPane>
+        <TextField fx:id="searchedWord" layoutX="87.0" layoutY="43.0" prefHeight="38.0" prefWidth="515.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
+        <Label layoutX="91.0" layoutY="24.0" prefHeight="17.0" prefWidth="83.0" text="Search Word" textFill="WHITE" />
+        <CheckBox fx:id="femaleCheckBox" layoutX="747.0" layoutY="53.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+        <CheckBox fx:id="maleCheckBox" layoutX="686.0" layoutY="52.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+    </children>
 </AnchorPane>

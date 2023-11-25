@@ -4,10 +4,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.CheckBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.TilePane;
@@ -26,14 +23,21 @@ public class EditPlanController {
     private TilePane selectedCardsView;
 
     @FXML
-    private TextField planTitle;
+    private Label planTitle;
     private PlansDB plansDB;
     private CardListDB cardListDB;
 
     private String officialPlanTitle;
 
+    private Boolean outsideLocation;
 
-    public void buildLayout(String filePath , String planName){
+    private String pathOutsideLocation;
+
+
+    public void buildLayout(String filePath , String planName , Boolean isOutside , String pathOutsideLocation){
+        outsideLocation = isOutside;
+        this.pathOutsideLocation = pathOutsideLocation;
+
         planTitle.setText(planName);
         plansDB = new PlansDB();
         cardListDB = new CardListDB(filePath,false);
@@ -195,14 +199,19 @@ public class EditPlanController {
     @FXML
     public void makeChanges() throws IOException {
 
-        System.out.println("Plan title in make changes for edit plans for final csv edit: " + officialPlanTitle+"_Plan.csv");
-        plansDB.overrideOrCreateNewPlan(officialPlanTitle+"_Plan.csv" ,false);
+        if(outsideLocation){
 
-        Boolean wantToChange =  prompt("Sucessfully Made the change! \n Do you want to make more changes? ",true);
-
+            plansDB.createFileDifferentLocation(officialPlanTitle , false , pathOutsideLocation );
 
 
-        if(!wantToChange){
+        }else {
+            System.out.println("Plan title in make changes for edit plans for final csv edit: " + officialPlanTitle + "_Plan.csv");
+            plansDB.overrideOrCreateNewPlan(officialPlanTitle + "_Plan.csv", false);
+
+        }
+        Boolean wantToChange = prompt("Sucessfully Made the change! \n Do you want to make more changes? ", true);
+
+        if (!wantToChange) {
             Stage stage = (Stage) planTitle.getScene().getWindow();
             stage.close();
         }
