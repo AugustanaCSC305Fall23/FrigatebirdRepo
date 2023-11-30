@@ -47,18 +47,37 @@ public class HandleSearch {
 
         List<String> searchWordArray = Arrays.asList(inputWord.trim().split(" "));
 
+        int count = 0;
         for (Card card : allCards) {
             for (String word : searchWordArray) {
-                for (String data : card.getData()) {
-                    if (data.toLowerCase().equals(word.toLowerCase())) {
+                count = 0;
+                for (String data : card.getDirectStringMatchingData()) {
+                    System.out.println("Dats stream: " + data);
+
+                    if(inputWord.toLowerCase().equals("all")){
                         filteredSearchBoxCards.add(card);
                         break;
                     }
+
+                        if (data.toLowerCase().equals(word.toLowerCase())) {
+                            filteredSearchBoxCards.add(card);
+                            break;
+                        }
+
+                        if (count >= 6) {
+                            if (data.toLowerCase().contains(word.toLowerCase())) {
+                                filteredSearchBoxCards.add(card);
+                                break;
+                            }
+                        }
+                    count++;
                 }
             }
         }
 
+        System.out.println("Filter search box cards value: " + filteredCheckBoxCards.size());
         return filteredSearchBoxCards;
+
     }
 
 

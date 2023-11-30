@@ -10,7 +10,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.shape.Line?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.SlectCardsController">
     <children>
         <VBox layoutX="10.0" layoutY="10.0" prefHeight="852.0" prefWidth="1283.0" style="-fx-background-color: #51A3B2;">
             <children>
@@ -40,6 +40,7 @@
                 <Button fx:id="selectTheseCards" layoutX="811.0" layoutY="33.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="38.0" prefWidth="120.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Select these cards" textFill="WHITE" />
                 <Button fx:id="searchButton" layoutX="595.0" layoutY="33.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="38.0" prefWidth="75.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-border-width: 2px; -fx-background-color: white; -fx-background-color: #51A3B2;" text="Search" textFill="WHITE" />
                 <Line endX="439.0" endY="6.0" layoutX="150.0" layoutY="71.0" startX="-77.0" startY="6.0" stroke="WHITE" />
+            <Label layoutX="676.0" layoutY="6.0" text="Gender Label" />
             </children>
         </AnchorPane>
         <TextField fx:id="searchedWord" layoutX="87.0" layoutY="43.0" prefHeight="38.0" prefWidth="515.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />

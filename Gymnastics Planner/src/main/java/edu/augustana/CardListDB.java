@@ -72,8 +72,9 @@ public class CardListDB {
 
 
         //creates new cards for all csv files data
+
         while (line != null) {
-            String[] splittedLine = line.split(",");
+            String[] splittedLine = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
             if(splittedLine.length >= 11) {
                 Card newCard = new Card(splittedLine);
                 allCards.add(newCard);

@@ -49,10 +49,11 @@
                <AnchorPane prefHeight="102.0" prefWidth="650.0">
                   <children>
                      <TextField fx:id="searchedWord" layoutY="39.0" onAction="#searchButtonAction" prefHeight="26.0" prefWidth="509.0" />
-                     <Button fx:id="searchButton" layoutX="532.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+                     <Button fx:id="searchButton" layoutX="624.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
                      <Label layoutY="22.0" text="Search Word" />
-                     <CheckBox fx:id="FemaleCheckBox" layoutX="528.0" layoutY="13.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-                     <CheckBox fx:id="MaleCheckBox" layoutX="459.0" layoutY="13.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                     <CheckBox fx:id="FemaleCheckBox" layoutX="517.0" layoutY="56.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+                     <CheckBox fx:id="MaleCheckBox" layoutX="517.0" layoutY="30.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                     <Label layoutX="517.0" layoutY="6.0" text="Gender Lable" />
                   </children>
                   <padding>
                      <Insets top="20.0" />

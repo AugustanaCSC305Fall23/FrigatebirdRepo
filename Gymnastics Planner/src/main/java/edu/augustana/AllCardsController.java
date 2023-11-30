@@ -67,6 +67,7 @@ public class AllCardsController {
                 allCardContent.getChildren().clear();
 
                 searchList(searchText);
+
             }else{
                 if (searchText.equals("")) {
                     allCardContent.getChildren().clear();
@@ -82,9 +83,9 @@ public class AllCardsController {
 
     @FXML
     void makeFavorite() throws IOException {
-        dataBase.makeFavorite(plansDB.getAllSelectedCards());
-        allCardContent.getChildren().clear();
-        buildCards();
+       // dataBase.makeFavorite(plansDB.getAllSelectedCards());
+       // allCardContent.getChildren().clear();
+       // buildCards();
     }
 
     @FXML
@@ -142,37 +143,40 @@ public class AllCardsController {
 
 
     private void dynamicCardAddingToView(ArrayList<Card> filteredCards) {
-        plansDB = new PlansDB();
-        for (Card card : filteredCards) {
-            CheckBox checkBox = new CheckBox();
 
-            String imageLink = card.getImage();
 
-            try {
-                // Load the image and create an ImageView
+            plansDB = new PlansDB();
+            for (Card card : filteredCards) {
+                CheckBox checkBox = new CheckBox();
 
-                Image img = new Image(imageLink);
-                ImageView imgView = new ImageView(img);
-                imgView.setFitHeight(250);
-                imgView.setFitWidth(250);
+                String imageLink = card.getImage();
 
-                Text event = new Text(card.getEvent() + " " + card.getGender());
-                event.setFont(Font.font(20));
+                try {
+                    // Load the image and create an ImageView
 
-                VBox cardContentBox = new VBox(imgView, event);
-                checkBox.setGraphic(cardContentBox);
+                    Image img = new Image(imageLink);
+                    ImageView imgView = new ImageView(img);
+                    imgView.setFitHeight(250);
+                    imgView.setFitWidth(250);
 
-                allCardContent.getChildren();
-                allCardContent.setPrefColumns(5);
+                    Text event = new Text(card.getEvent() + " " + card.getGender());
+                    event.setFont(Font.font(20));
 
-                allCardContent.getChildren().add(checkBox);
+                    VBox cardContentBox = new VBox(imgView, event);
+                    checkBox.setGraphic(cardContentBox);
 
-                plansDB.addCardsToAllSelectedCards(checkBox, card);
+                    allCardContent.getChildren();
+                    allCardContent.setPrefColumns(5);
 
-            } catch (Exception e) {
-                e.printStackTrace();
+                    allCardContent.getChildren().add(checkBox);
+
+                    plansDB.addCardsToAllSelectedCards(checkBox, card);
+
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
             }
-        }
+
 
         // Set gaps for the TilePane
         allCardContent.setHgap(10);
@@ -183,7 +187,6 @@ public class AllCardsController {
 
 
     private void searchList(String inputWord) {
-
         allCardContent.getChildren().clear();
         dynamicCardAddingToView(handleSearch.textBoxSearch(inputWord));
 
