@@ -23,7 +23,17 @@ public class FileTool {
 
     public String getPlanFilePath(String planName){
         File[] files = new File(allPlansDir).listFiles();
+
         for(File file: files){
+            if(file.isDirectory()){
+                File[] course = new File(file.getPath()).listFiles();
+                for(File moreFile: course){
+                    String path = moreFile.getPath();
+                    if (path.contains(planName)){
+                        return path;
+                    }
+                }
+            }
             String path = file.getPath();
             if (path.contains(planName)){
                 return path;
@@ -31,6 +41,7 @@ public class FileTool {
         }
         return "no File Found";
     }
+
 
 
     public ArrayList<String[]> getFileInfo(String filePath) throws FileNotFoundException {

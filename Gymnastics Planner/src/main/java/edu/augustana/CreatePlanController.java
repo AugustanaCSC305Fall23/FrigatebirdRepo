@@ -17,10 +17,8 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.List;
+import java.nio.file.FileAlreadyExistsException;
+import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class CreatePlanController {
@@ -49,11 +47,16 @@ public class CreatePlanController {
     @FXML
     private TilePane allCardContent;
 
+    @FXML
+    private ComboBox selectCourse;
+
     private String lastSearch = "";
     HashMap<CheckBox, Card> selectedCardsToCheckBox;
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private CardListDB cardListDB;
     private  HandleSearch handleSearch;
+
+    private String selectedCourse;
 
 
     public CreatePlanController(){
@@ -107,7 +110,7 @@ public class CreatePlanController {
             System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
         } else {
             // see if file exits and if user wants to override
-            Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName);
+            Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName , selectedCourse);
             System.out.println("Is file there? " + fileThere);
             Boolean override = false;
             if (fileThere) {
@@ -117,7 +120,7 @@ public class CreatePlanController {
 
             //if file is not there or override then write file
             if (!fileThere || override) {
-                plansDB.overrideOrCreateNewPlan(planTitleName ,true);
+                plansDB.overrideOrCreateNewPlan(planTitleName ,true , selectedCourse);
                 prompt("Sucessfully created the plan!", false);
                 planTitle.clear();
                 selectedCardsView.getChildren().clear();
@@ -399,6 +402,7 @@ public class CreatePlanController {
         handleSearch = new HandleSearch(cardListDB);
         dynamicCardAddingToView(handleSearch.getFavoriteCards(), true);
         dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites(), true);
+        initializeComboBox();
     }
 
 
@@ -433,7 +437,7 @@ public class CreatePlanController {
                 System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
             } else {
                 // see if file exits and if user wants to override
-                Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName);
+                Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName , selectedCourse);
                 System.out.println("Is file there? " + fileThere);
                 Boolean override = false;
 
@@ -444,7 +448,7 @@ public class CreatePlanController {
 
                 //if file is not there or override then write file
                 if (!fileThere || override) {
-                    plansDB.createFileDifferentLocation(planTitleName ,true,selectedPath);
+                    plansDB.createFileDifferentLocation(planTitleName ,true,selectedPath );
 
                     prompt("Sucessfully created the plan!", false);
                     planTitle.clear();
@@ -467,6 +471,62 @@ public class CreatePlanController {
     }
 
 
+    public void initializeComboBox(){
+        selectedCourse = "Unassigned Plans";
+        File[] files = new File("AllPlans").listFiles();
+        selectCourse.getItems().addAll("Create New Course");
+
+        for(File file : files){
+            if(file.isDirectory()){
+                selectCourse.getItems().add(file.getName());
+            }
+        }
+
+    }
 
 
+
+    @FXML
+    public void onCourseSelected() {
+        selectedCourse = selectCourse.getSelectionModel().getSelectedItem().toString();
+
+        if (selectedCourse.equals("Create New Course")) {
+            // Prompt user with a text input dialog
+            TextInputDialog dialog = new TextInputDialog();
+            dialog.setTitle("Create New Course");
+            dialog.setHeaderText("Enter the name of the new course:");
+            dialog.setContentText("Course Name:");
+
+            // Show the dialog and wait for the user's response
+            Optional<String> result = dialog.showAndWait();
+
+            // If the user entered a course name, update the selectedCourse
+            result.ifPresent(courseName -> {
+                selectedCourse = courseName;
+                selectCourse.getItems().add(courseName);
+                selectCourse.setValue(courseName);
+            });
+        }
+
+
+
+        //Create a new dir called that in AllPlans
+
+        try {
+            plansDB.createNewDir(selectedCourse);
+        } catch (FileAlreadyExistsException e){
+
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("Directory Exists");
+            alert.setHeaderText("The directory already exists.");
+
+        }
+
+
+
+        System.out.println("Selected course: " + selectedCourse);
+    }
 }
+
+
+

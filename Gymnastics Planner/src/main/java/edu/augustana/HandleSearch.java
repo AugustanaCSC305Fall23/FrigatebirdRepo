@@ -58,19 +58,26 @@ public class HandleSearch {
                         filteredSearchBoxCards.add(card);
                         break;
                     }
-
                         if (data.toLowerCase().equals(word.toLowerCase())) {
                             filteredSearchBoxCards.add(card);
                             break;
                         }
 
-                        if (count >= 6) {
-                            if (data.toLowerCase().contains(word.toLowerCase())) {
-                                filteredSearchBoxCards.add(card);
-                                break;
-                            }
-                        }
+//                        if (count >= 6) {
+//                            if (data.toLowerCase().contains(word.toLowerCase())) {
+//                                filteredSearchBoxCards.add(card);
+//                                break;
+//                            }
+//                        }
                     count++;
+                }
+
+
+                for (String listData : card.getListDataForSearching()) {
+                    if (listData.toLowerCase().contains(word.toLowerCase())) {
+                        filteredSearchBoxCards.add(card);
+                        break;
+                    }
                 }
             }
         }

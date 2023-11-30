@@ -67,6 +67,8 @@ public class ShowPlanController {
             Title.setText(planName);
             //write logic to read through the csv file and collect the short codes
             filePath = fileTool.getPlanFilePath(planName);
+
+            System.out.println("File path of that plan: " + filePath);
             try {
                 Scanner reader;
                 if(diffLocation){

@@ -6,6 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -154,6 +157,9 @@ public class PlansDB {
     }
 
     public void createFileDifferentLocation(String planTitle , Boolean isPlanTitle , String locationPath) throws IOException {
+
+        System.out.println("Path recieving from the edit plan: " + locationPath);
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(locationPath))) {
             writer.write(planTitle);
 
@@ -184,7 +190,7 @@ public class PlansDB {
     }
 
 
-    //segement and return dictionary of code for events
+
 
 
 

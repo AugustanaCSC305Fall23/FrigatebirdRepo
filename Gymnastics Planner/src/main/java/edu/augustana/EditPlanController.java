@@ -13,8 +13,11 @@ import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
 import java.util.HashMap;
+import java.util.Optional;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class EditPlanController {
@@ -24,6 +27,9 @@ public class EditPlanController {
 
     @FXML
     private Label planTitle;
+
+    @FXML
+    private ComboBox selectCourse;
     private PlansDB plansDB;
     private CardListDB cardListDB;
 
@@ -33,8 +39,41 @@ public class EditPlanController {
 
     private String pathOutsideLocation;
 
+    private String selectedCourse;
 
-    public void buildLayout(String filePath , String planName , Boolean isOutside , String pathOutsideLocation){
+    public void initializeComboBox(){
+        selectedCourse = "Unassigned Plans";
+        File[] files = new File("AllPlans").listFiles();
+        for(File file : files){
+            if(file.isDirectory()){
+                selectCourse.getItems().add(file.getName());
+            }
+        }
+
+    }
+
+    @FXML
+    public void onCourseSelected() {
+        selectedCourse = selectCourse.getSelectionModel().getSelectedItem().toString();
+
+        selectCourse.setValue(selectedCourse);
+
+        //Create a new dir called that in AllPlans
+
+        System.out.println("Selected course: " + selectedCourse);
+    }
+
+
+
+
+
+    public void buildLayout(String filePath , String planName , Boolean isOutside , String pathOutsideLocation , String selectedCourse){
+        if (isOutside) {
+            selectCourse.setVisible(false);
+        }
+
+        initializeComboBox();
+        this.selectedCourse = selectedCourse;
         outsideLocation = isOutside;
         this.pathOutsideLocation = pathOutsideLocation;
 
@@ -196,17 +235,22 @@ public class EditPlanController {
         return choice.get();
     }
 
+
+
     @FXML
     public void makeChanges() throws IOException {
 
         if(outsideLocation){
 
+            System.out.println("Pathoutsidelocation: " + pathOutsideLocation);
+
             plansDB.createFileDifferentLocation(officialPlanTitle , false , pathOutsideLocation );
 
-
         }else {
+
             System.out.println("Plan title in make changes for edit plans for final csv edit: " + officialPlanTitle + "_Plan.csv");
-            plansDB.overrideOrCreateNewPlan(officialPlanTitle + "_Plan.csv", false);
+            System.out.println("The selecred course is this : " + selectedCourse);
+            plansDB.overrideOrCreateNewPlan(selectedCourse + "/" + officialPlanTitle + "_Plan.csv", false);
 
         }
         Boolean wantToChange = prompt("Sucessfully Made the change! \n Do you want to make more changes? ", true);

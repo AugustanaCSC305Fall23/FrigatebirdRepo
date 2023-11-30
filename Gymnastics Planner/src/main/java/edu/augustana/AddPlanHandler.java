@@ -6,6 +6,9 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.nio.file.FileAlreadyExistsException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -101,12 +104,17 @@ public class AddPlanHandler {
 
 
 
-    public Boolean createCsvandCheckFileExists(String fileName){
-
+    public Boolean createCsvandCheckFileExists(String fileName , String folderName){
+        File allPlans;
         //Create a CSV and then update it with the card Information here
         this.fileName = fileName + "_Plan.csv";
         //Plan name already exists overwrite or dont make any changes
-        File allPlans = new File("AllPlans");
+        if(folderName.equals("")) {
+            allPlans = new File("AllPlans");
+        }else{
+             allPlans = new File("AllPlans/" + folderName);
+        }
+
         File[] files = allPlans.listFiles();
 
         Boolean fileThere = false;
@@ -119,6 +127,8 @@ public class AddPlanHandler {
 
         return fileThere;
     }
+
+
 
     public HashMap<CheckBox,Card> deleteCheckBox(){
 
@@ -136,12 +146,23 @@ public class AddPlanHandler {
     }
 
 
-    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle) throws IOException {
+    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle , String courseTitle) throws IOException {
         String filePath;
-        if(isPlanTitle) {
-            filePath = "AllPlans/" + fileName;
-        }else{
-            filePath = "AllPlans/" + planTitle;
+
+        if(courseTitle.equals("")){
+            //need to add to the course
+            if (isPlanTitle) {
+                filePath = "AllPlans/"  + fileName;
+            } else {
+                filePath = "AllPlans/" + planTitle;
+            }
+
+        }else {
+            if (isPlanTitle) {
+                filePath = "AllPlans/" + courseTitle + "/" + fileName;
+            } else {
+                filePath = "AllPlans/" + courseTitle+ "/" + planTitle;
+            }
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
             writer.write(planTitle);
@@ -202,6 +223,24 @@ public class AddPlanHandler {
         return allSelectedCards.size();
     }
 
+
+    public void createNewDir(String nameDir) throws FileAlreadyExistsException {
+        // Specify the path for the new directory
+
+        try {
+            // Create the directory
+            Files.createDirectory(Path.of("AllPlans/" + nameDir));
+            System.out.println("Directory created: " + nameDir);
+        } catch (FileAlreadyExistsException e) {
+            // Handle the case where the directory already exists
+            System.err.println("Directory already exists: " + nameDir);
+            throw e; // Re-throw the exception
+        } catch (IOException e) {
+            // Handle other IOExceptions
+            System.err.println("Error creating directory: " + nameDir);
+            e.printStackTrace();
+        }
+    }
 
 
 

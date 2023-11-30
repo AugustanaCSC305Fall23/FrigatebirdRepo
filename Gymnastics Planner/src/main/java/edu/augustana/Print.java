@@ -2,12 +2,22 @@ package edu.augustana;
 
 import javafx.print.Printer;
 import javafx.print.PrinterJob;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
+
+import java.nio.channels.Pipe;
 
 public class Print {
 
 
-   void printAnchorPane( VBox printablePage) {
+    VBox printablePage;
+
+
+
+   void printAnchorPane(VBox printablePage) {
+
+       this.printablePage = printablePage;
+
         Printer printer = Printer.getDefaultPrinter();
         PrinterJob printerJob = PrinterJob.createPrinterJob(printer);
 
@@ -19,7 +29,15 @@ public class Print {
             }
 
         }
+
     }
 
+
+    void getStringFromPrintData(){
+
+
+
+
+    }
 
 }
