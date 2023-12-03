@@ -4,33 +4,43 @@
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.AllPlansController">
-    <ListView fx:id="plansView" layoutX="14.0" layoutY="96.0" prefHeight="341.0" prefWidth="1272.0" style="-fx-background-color: #99D0DA;" />
-   <ListView fx:id="showPlans" layoutX="15.0" layoutY="495.0" prefHeight="341.0" prefWidth="1272.0" style="-fx-background-color: #99D0DA;" />
+   <ScrollPane layoutX="12.0" layoutY="100.0" prefHeight="341.0" prefWidth="1274.0">
+      <content>
+          <ListView fx:id="plansView" prefHeight="341.0" prefWidth="1272.0" style="-fx-background-color: #99D0DA;" />
+      </content>
+   </ScrollPane>
+   <ScrollPane layoutX="10.0" layoutY="503.0" prefHeight="362.0" prefWidth="1277.0">
+      <content>
+         <ListView fx:id="showPlans" prefHeight="355.0" prefWidth="1277.0" style="-fx-background-color: #99D0DA;" />
+      </content>
+   </ScrollPane>
     <ComboBox fx:id="filterSelect" layoutX="116.0" layoutY="29.0" prefHeight="25.0" prefWidth="341.0" style="-fx-background-radius: 15px; -fx-background-color: #99D0DA;" />
     <Label alignment="CENTER" layoutX="12.0" layoutY="29.0" prefHeight="25.0" prefWidth="96.0" text="Select Filter:" textFill="WHITE">
         <font>
             <Font size="14.0" />
         </font>
     </Label>
-    <Button fx:id="showPlanButton" layoutX="487.0" layoutY="22.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
-    <Button layoutX="601.0" layoutY="22.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
-   <Button layoutX="711.0" layoutY="22.0" mnemonicParsing="false" onAction="#viewPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="View Plan From Different Location" textFill="#5d3fd3" />
-   <Button layoutX="939.0" layoutY="20.0" mnemonicParsing="false" onAction="#editPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan From Different Location" textFill="#5d3fd3" />
-   <Label fx:id="planListLabel" layoutX="25.0" layoutY="455.0" prefHeight="33.0" prefWidth="700.0" text="No Plans To Display.">
+    <Button fx:id="showPlanButton" layoutX="675.0" layoutY="450.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
+    <Button layoutX="787.0" layoutY="451.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
+   <Button layoutX="687.0" layoutY="20.0" mnemonicParsing="false" onAction="#viewPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="View Plan From Different Location" textFill="#5d3fd3" />
+   <Button layoutX="909.0" layoutY="20.0" mnemonicParsing="false" onAction="#editPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan From Different Location" textFill="#5d3fd3" />
+   <Label fx:id="planListLabel" layoutX="25.0" layoutY="455.0" prefHeight="33.0" prefWidth="350.0" text="No Plans To Display.">
       <font>
          <Font size="24.0" />
       </font>
    </Label>
-   <Button fx:id="deletePlan" layoutX="1163.0" layoutY="18.0" mnemonicParsing="false" onAction="#deletePlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Delete Plan" textFill="#5d3fd3" />
+   <Button fx:id="deletePlan" layoutX="906.0" layoutY="449.0" mnemonicParsing="false" onAction="#deletePlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Delete Plan" textFill="#5d3fd3" />
    <Label layoutX="32.0" layoutY="68.0" prefHeight="17.0" prefWidth="87.0" text="Courses">
       <font>
          <Font size="22.0" />
       </font>
    </Label>
+   <Button fx:id="importPlanButton" layoutX="469.0" layoutY="18.0" mnemonicParsing="false" onAction="#importPlans" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Import Plan" textFill="#5d3fd3" />
 
 
 </AnchorPane>

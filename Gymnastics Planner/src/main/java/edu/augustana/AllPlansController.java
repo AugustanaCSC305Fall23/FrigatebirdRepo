@@ -33,6 +33,9 @@ public class AllPlansController {
     @FXML
     private ListView<Button> plansView;
 
+    @FXML
+    private Button importPlanButton;
+
 
     private String selectedCourse = "";
 
@@ -92,6 +95,7 @@ public class AllPlansController {
 
                     Scanner fileReader = new Scanner(file.getPath());
                     String input = fileReader.nextLine();
+
                     String[] titleData = input.split("_");
                     String title = titleData[0];
                     title = title.substring(9);
@@ -272,5 +276,91 @@ public class AllPlansController {
 
         }
 
+    @FXML
+    public void importPlans() {
+        String selectedCourse = selectCourseForImporting();
+        if (selectedCourse != null) {
+
+            String pathToExport = "AllPlans/" + selectedCourse;
+
+            System.out.println("Path to Export to: " + pathToExport);
+
+
+            FileChooser fileChooser = new FileChooser();
+            fileChooser.setTitle("Select File");
+
+            // Show file chooser dialog
+            File selectedFile = fileChooser.showOpenDialog(new Stage());
+            if (selectedFile != null) {
+                // Now you have the selected directory, and you can save your plan there
+                File fileToImport = selectedFile;
+
+                // Get this file to pathToExport
+                File destinationPath = new File(pathToExport);
+
+                // Assuming you want to keep the same file name, you can adjust this as needed
+                File destinationFile = new File(destinationPath, fileToImport.getName());
+
+                // Perform the actual file copy
+                // You may want to add error handling for IOException
+                // You can use Java NIO for more efficient file copying
+                try {
+                    java.nio.file.Files.copy(fileToImport.toPath(), destinationFile.toPath(), java.nio.file.StandardCopyOption.REPLACE_EXISTING);
+                    System.out.println("File imported successfully to: " + destinationFile.getAbsolutePath());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    // Handle the exception
+                    System.out.println("Error importing file: " + e.getMessage());
+                }
+            }
+        }
+    }
+
+
+
+
+    public String selectCourseForImporting(){
+
+        File[] dir = new File("AllPlans").listFiles();
+        ArrayList<String> listOfCourses = new ArrayList<>();
+
+        for (File d : dir) {
+            if (d.isDirectory()) {
+                listOfCourses.add(d.getName());
+            }
+        }
+
+        if (!listOfCourses.isEmpty()) {
+            // Create a ChoiceDialog
+            ChoiceDialog<String> dialog = new ChoiceDialog<>(listOfCourses.get(0), listOfCourses);
+            dialog.setTitle("Select a Course");
+            dialog.setHeaderText("Choose a course from the list:");
+            dialog.setContentText("Course:");
+
+            // Show the dialog and wait for the user's choice
+            Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+            dialog.showAndWait();
+
+            // Perform actions based on the selected course
+            String selectedCourse = dialog.getSelectedItem();
+            if (selectedCourse != null) {
+                System.out.println("Selected course: " + selectedCourse);
+                // Add your logic here
+            } else {
+                // Handle the case where the user didn't select any course
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Please select a course to import plan into.");
+            }
+            return selectedCourse;
+
+
+        } else {
+            // Handle the case where there are no courses
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+            alert.setTitle("No courses created yet. Please create a course from create plans.");
+        }
+
+        return null;
+    }
     }
 

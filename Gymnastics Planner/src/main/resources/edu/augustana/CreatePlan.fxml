@@ -29,7 +29,7 @@
                                     <Font size="31.0" />
                                 </font>
                             </Label>
-                            <Button fx:id="selectCards" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="45.0" prefWidth="195.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Save Plan At Alternate Location" textFill="WHITE" />
+                            <Button fx:id="selectCards" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="45.0" prefWidth="195.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Export Plan" textFill="WHITE" />
                             <Button layoutX="525.0" layoutY="76.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="45.0" prefWidth="199.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete Selected Cards" textFill="WHITE" />
                             <Line endX="175.29031372070312" endY="7.62939453125E-6" layoutX="213.0" layoutY="62.0" startX="-100.0" stroke="WHITE" />
                      <Button layoutX="764.0" layoutY="76.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="45.0" prefWidth="128.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Add Cards" textFill="WHITE" />
