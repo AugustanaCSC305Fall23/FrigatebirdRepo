@@ -10,11 +10,12 @@ import java.util.Scanner;
 public class CardListDB {
 
 
-    private  ArrayList<Card> allCards;
+    private  ArrayList<Card> allCards = new ArrayList<>();
     private ArrayList<CheckBox> allCheckBoxes;
     private String dataCsvPath = "AllPacks";
-    private ArrayList<Card> allCardsExceptfavorites;
-    private ArrayList<Card> favoriteCards;
+    private ArrayList<Card> allCardsExceptfavorites  = new ArrayList<>();
+    private ArrayList<Card> favoriteCards = new ArrayList<>();
+    String demoPackCsvFile = "";
     public CardListDB(Boolean forPlans){
         try {
             buildCardsObjectList(forPlans);
@@ -24,9 +25,9 @@ public class CardListDB {
     }
 
     public CardListDB(String filePath , Boolean forPlans){
-        dataCsvPath = filePath;
+        demoPackCsvFile = filePath;
         try {
-            buildCardsObjectList(forPlans);
+            buildCardsObjectListForDirectPathsGiven(forPlans);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
@@ -58,35 +59,36 @@ public class CardListDB {
 
     private void buildCardsObjectList(Boolean forPlans) throws IOException {
 
-        //Reads the csv file
-
         File dirAllPacks = new File(dataCsvPath);
         File[] demoPacks = dirAllPacks.listFiles();
 
-        for(File singleDemoPack : demoPacks) {
+        for (File singleDemoPack : demoPacks) {
+
+            System.out.println(singleDemoPack.getName());
 
             //get csv from demopack
-            String demoPackCsvFile = "";
-
-            for(File filesinDemoPack : singleDemoPack.listFiles()){
-                if(filesinDemoPack.getName().endsWith(".csv"));
+            for (File filesinDemoPack : singleDemoPack.listFiles()) {
+                if (filesinDemoPack.getName().endsWith(".csv")) ;
                 demoPackCsvFile = filesinDemoPack.getAbsolutePath();
             }
 
+            buildCardsObjectListForDirectPathsGiven(forPlans);
+
+        }
+    }
+
+    private void buildCardsObjectListForDirectPathsGiven(Boolean forPlans) throws IOException {
+
+        //Reads the csv file
             FileReader csvFile = new FileReader(demoPackCsvFile);
             BufferedReader reader = new BufferedReader(csvFile);
-            allCards = new ArrayList<>();
-            favoriteCards = new ArrayList<>();
-            allCardsExceptfavorites = new ArrayList<>();
             String line = null;
             line = reader.readLine();
             if (forPlans) {
                 line = reader.readLine();
             }
 
-
             //creates new cards for all csv files data
-
             while (line != null) {
                 String[] splittedLine = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
                 if (splittedLine.length >= 11) {
@@ -96,7 +98,6 @@ public class CardListDB {
                         allCardsExceptfavorites.add(newCard);
                     }
                     if (newCard.getFavoriteStatus()) {
-                        System.out.println("NOOO");
                         favoriteCards.add(newCard);
                     }
                 }
@@ -104,7 +105,7 @@ public class CardListDB {
 
             }
         }
-    }
+
 
     public  ArrayList<Card> getAllCards(){
         return allCards;

@@ -79,7 +79,9 @@ public class EditPlanController {
 
         planTitle.setText(planName);
         plansDB = new PlansDB();
-        cardListDB = new CardListDB(filePath,false);
+
+        System.out.println("File path being printed: " + filePath);
+        cardListDB = new CardListDB(filePath,true);
         this.officialPlanTitle = planName;
 
 

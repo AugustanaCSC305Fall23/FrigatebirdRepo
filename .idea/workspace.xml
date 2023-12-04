@@ -5,40 +5,45 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="eb20ffad-320f-4933-a126-a7e3153ee776" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Demo2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo2/Images/9.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Demo2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/10.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/11.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/12.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/13.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/14.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/15.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/16.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/2.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/3.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/4.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/5.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/6.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/7.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/8.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/AllPacks/Demo3/Images/9.jpg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPlans/Course 1/AnubhabvPlans1234_Plan.csv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/DEMO1.csv" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/DEMO1.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/1.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/1.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/10.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/10.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/11.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/11.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/12.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/12.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/13.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/13.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/14.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/14.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/15.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/15.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/16.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/16.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/17.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/17.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/18.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/18.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/19.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/19.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/2.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/2.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/20.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/20.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/21.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/21.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/22.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/22.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/23.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/23.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/24.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/24.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/25.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/25.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/26.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/26.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/29.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/29.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/3.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/3.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/30.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/30.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/4.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/4.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/5.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/5.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/6.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/6.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/7.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/7.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/8.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/8.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/9.png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/9.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/DEMO1Pack/Images/Untitled design (1).png" beforeDir="false" afterPath="$PROJECT_DIR$/AllPacks/Demo1/Images/Untitled design (1).png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Card.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Card.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/New Course testing/sfdlihasdfl;has;ldkf_Plan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/AllPlans/New Course testing/sfdlihasdfl;has;ldkf_Plan.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/EditPlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/EditPlanController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,23 +71,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/anubhavrayamajhi/Downloads/FrigatebirdRepo/AllPlans/#Course 2&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "/Users/anubhavrayamajhi/Desktop/FrigatebirdRepo/AllPacks",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/AllPacks" />
       <recent name="$PROJECT_DIR$/AllPlans/#Course 2" />
       <recent name="$PROJECT_DIR$/DEMO1Pack" />
     </key>
