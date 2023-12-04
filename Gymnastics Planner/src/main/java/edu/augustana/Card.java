@@ -30,10 +30,6 @@ public class Card {
     public Card(String[] data) throws  IOException{
 
 
-        for(String s : data){
-
-            System.out.println(s);
-        }
 
         if (data.length > 10) {
 
@@ -48,7 +44,7 @@ public class Card {
             this.category = data[2].strip();
             this.title = data[3].strip();
             this.packFolder = data[4].strip();
-            this.image = "file:DEMO1Pack/Images/" + data[5].strip();
+            this.image = "file:AllPacks/" +packFolder + "/Images/" + data[5].strip();
             this.imageName = data[5].strip();
 
 

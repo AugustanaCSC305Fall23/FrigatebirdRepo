@@ -12,7 +12,7 @@ public class CardListDB {
 
     private  ArrayList<Card> allCards;
     private ArrayList<CheckBox> allCheckBoxes;
-    private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
+    private String dataCsvPath = "AllPacks";
     private ArrayList<Card> allCardsExceptfavorites;
     private ArrayList<Card> favoriteCards;
     public CardListDB(Boolean forPlans){
@@ -59,35 +59,50 @@ public class CardListDB {
     private void buildCardsObjectList(Boolean forPlans) throws IOException {
 
         //Reads the csv file
-        FileReader csvFile = new FileReader(dataCsvPath);
-        BufferedReader reader = new BufferedReader(csvFile);
-        allCards = new ArrayList<>();
-        favoriteCards = new ArrayList<>();
-        allCardsExceptfavorites = new ArrayList<>();
-        String line = null;
-        line = reader.readLine();
-        if (forPlans){
-            line = reader.readLine();
-        }
 
+        File dirAllPacks = new File(dataCsvPath);
+        File[] demoPacks = dirAllPacks.listFiles();
 
-        //creates new cards for all csv files data
+        for(File singleDemoPack : demoPacks) {
 
-        while (line != null) {
-            String[] splittedLine = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
-            if(splittedLine.length >= 11) {
-                Card newCard = new Card(splittedLine);
-                allCards.add(newCard);
-                if (!newCard.getFavoriteStatus()) {
-                    allCardsExceptfavorites.add(newCard);
-                }
-                if (newCard.getFavoriteStatus()){
-                    System.out.println("NOOO");
-                    favoriteCards.add(newCard);
-                }
+            //get csv from demopack
+            String demoPackCsvFile = "";
+
+            for(File filesinDemoPack : singleDemoPack.listFiles()){
+                if(filesinDemoPack.getName().endsWith(".csv"));
+                demoPackCsvFile = filesinDemoPack.getAbsolutePath();
             }
-            line = reader.readLine();
 
+            FileReader csvFile = new FileReader(demoPackCsvFile);
+            BufferedReader reader = new BufferedReader(csvFile);
+            allCards = new ArrayList<>();
+            favoriteCards = new ArrayList<>();
+            allCardsExceptfavorites = new ArrayList<>();
+            String line = null;
+            line = reader.readLine();
+            if (forPlans) {
+                line = reader.readLine();
+            }
+
+
+            //creates new cards for all csv files data
+
+            while (line != null) {
+                String[] splittedLine = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
+                if (splittedLine.length >= 11) {
+                    Card newCard = new Card(splittedLine);
+                    allCards.add(newCard);
+                    if (!newCard.getFavoriteStatus()) {
+                        allCardsExceptfavorites.add(newCard);
+                    }
+                    if (newCard.getFavoriteStatus()) {
+                        System.out.println("NOOO");
+                        favoriteCards.add(newCard);
+                    }
+                }
+                line = reader.readLine();
+
+            }
         }
     }
 
