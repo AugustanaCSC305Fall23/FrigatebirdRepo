@@ -2,12 +2,14 @@ package edu.augustana;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.VBox;
 import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.File;
@@ -62,7 +64,12 @@ public class AllPlansController {
             FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
             Parent root = loader.load();
             ShowPlanController controller = loader.getController();  // Initialize the controller
-            Scene scene = new Scene(root, 1500, 1500);
+
+            Screen screen = Screen.getPrimary();
+            Rectangle2D bounds = screen.getVisualBounds();
+
+
+            Scene scene = new Scene(root, 992, bounds.getHeight()-25);
             Stage showPlanStage = new Stage();
             showPlanStage.setTitle("Show Plan");
             showPlanStage.setScene(scene);

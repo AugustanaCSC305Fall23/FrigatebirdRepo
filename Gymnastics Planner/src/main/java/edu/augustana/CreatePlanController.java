@@ -298,8 +298,8 @@ public class CreatePlanController {
 
                 Image img = new Image(imageLink);
                 ImageView imgView = new ImageView(img);
-                imgView.setFitHeight(250);
-                imgView.setFitWidth(250);
+                imgView.setFitHeight(150);
+                imgView.setFitWidth(150);
 
                 Text event = new Text(card.getEvent() + " " + card.getGender());
                 event.setFont(Font.font(20));

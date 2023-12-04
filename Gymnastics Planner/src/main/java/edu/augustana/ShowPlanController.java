@@ -54,95 +54,93 @@ public class ShowPlanController {
 
     }
 
-        public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path) throws IOException {
+    public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path) throws IOException {
 
-            shortCodes = new ArrayList<>();
-            cardsList = new ArrayList<>();
+        shortCodes = new ArrayList<>();
+        cardsList = new ArrayList<>();
 
-            FileTool fileTool = new FileTool();
-            System.out.println(segmentType);
-            CardListDB dataBase = new CardListDB(false);
-            allCards = dataBase.getAllCards();
-            allPlansDir = fileTool.getPlansDirectory();
-            Title.setText(planName);
-            //write logic to read through the csv file and collect the short codes
-            filePath = fileTool.getPlanFilePath(planName);
-
-            System.out.println("File path of that plan: " + filePath);
-            try {
-                Scanner reader;
-                if(diffLocation){
-                   reader = new Scanner(new File(path));
-                }else {
-                     reader = new Scanner(new File(filePath));
-                }
-                System.out.println(filePath);
-                String line = reader.nextLine();
-                while (reader.hasNextLine()) {
-                    line = reader.nextLine();
-                    String[] data = line.split(",");
-                    shortCodes.add(data[0]);
-                }
-
-            } catch (FileNotFoundException e) {
-                throw new RuntimeException(e);
+        FileTool fileTool = new FileTool();
+        System.out.println(segmentType);
+        CardListDB dataBase = new CardListDB(false);
+        allCards = dataBase.getAllCards();
+        allPlansDir = fileTool.getPlansDirectory();
+        Title.setText(planName);
+        //write logic to read through the csv file and collect the short codes
+        filePath = fileTool.getPlanFilePath(planName);
+        try {
+            Scanner reader;
+            if(diffLocation){
+                reader = new Scanner(new File(path));
+            }else {
+                reader = new Scanner(new File(filePath));
             }
-            //write the logic to gather the list of cards used in the plan
-            for (String code : shortCodes) {
-                cardsList.add(getCard(code));
+            System.out.println(filePath);
+            String line = reader.nextLine();
+            while (reader.hasNextLine()) {
+                line = reader.nextLine();
+                String[] data = line.split(",");
+                shortCodes.add(data[0]);
             }
-            //write the logic to segment the cards into the segment type
-            HandleSearch searchTool = new HandleSearch(dataBase);
-            if (segmentType == null || segmentType.equals("none")) {
-                dynamicCarAddingToView(cardsList);
-            } else {
-                switch (segmentType) {
 
-                    case "event":
-                        while (cardsList.size() != 0) {
-                            Label eventLabel = new Label();
-                            eventLabel.setFont(new Font("Arial", 20));
-                            eventLabel.setAlignment(Pos.TOP_CENTER);
-                            eventLabel.setPrefWidth(500);
-                            eventLabel.setPrefHeight(60);
-                            eventLabel.setText(cardsList.get(0).getEvent());
-                            cardBox.getChildren().add(eventLabel);
-                            cardBox.setSpacing(60);
-                            segmentedCards = new ArrayList<>();
-                            String segment = cardsList.get(0).getEvent();
-                            for (int i = cardsList.size() - 1; i >= 0; i--) {
-                                if (cardsList.get(i).getEvent().equals(segment)) {
-                                    segmentedCards.add(cardsList.get(i));
-                                    cardsList.remove(i);
-                                }
+        } catch (FileNotFoundException e) {
+            throw new RuntimeException(e);
+        }
+        //write the logic to gather the list of cards used in the plan
+        for (String code : shortCodes) {
+            cardsList.add(getCard(code));
+        }
+        //write the logic to segment the cards into the segment type
+        HandleSearch searchTool = new HandleSearch(dataBase);
+        if (segmentType == null || segmentType.equals("none")) {
+            dynamicCarAddingToView(cardsList);
+        } else {
+            switch (segmentType) {
+
+                case "event":
+                    while (cardsList.size() != 0) {
+                        Label eventLabel = new Label();
+                        eventLabel.setFont(new Font("Arial", 20));
+                        eventLabel.setAlignment(Pos.TOP_CENTER);
+                        eventLabel.setPrefWidth(500);
+                        eventLabel.setPrefHeight(60);
+                        eventLabel.setText(cardsList.get(0).getEvent());
+                        cardBox.getChildren().add(eventLabel);
+                        cardBox.setSpacing(60);
+                        segmentedCards = new ArrayList<>();
+                        String segment = cardsList.get(0).getEvent();
+                        for (int i = cardsList.size() - 1; i >= 0; i--) {
+                            if (cardsList.get(i).getEvent().equals(segment)) {
+                                segmentedCards.add(cardsList.get(i));
+                                cardsList.remove(i);
                             }
-                            System.out.println(segmentedCards.size());
-                            dynamicCarAddingToView(segmentedCards);
                         }
-                        break;
-
-                    case "category":
-                        while (cardsList.size() != 0) {
-                            Label eventLabel = new Label();
-                            eventLabel.setText(cardsList.get(0).getCategory());
-                            eventLabel.setFont(new Font("Ariel", 20));
-                            eventLabel.setAlignment(Pos.TOP_CENTER);
-                            eventLabel.setPrefWidth(500);
-//                            cardPane.getChildren().add(eventLabel);
-                            segmentedCards = new ArrayList<>();
-                            String segment = cardsList.get(0).getCategory();
-                            for (int i = cardsList.size() - 1; i >= 0; i--) {
-                                if (cardsList.get(i).getCategory().equals(segment)) {
-                                    segmentedCards.add(cardsList.get(i));
-                                    cardsList.remove(i);
-                                }
-                            }
                         System.out.println(segmentedCards.size());
                         dynamicCarAddingToView(segmentedCards);
                     }
                     break;
 
-                    case "gender":
+                case "category":
+                    while (cardsList.size() != 0) {
+                        Label eventLabel = new Label();
+                        eventLabel.setText(cardsList.get(0).getCategory());
+                        eventLabel.setFont(new Font("Ariel", 20));
+                        eventLabel.setAlignment(Pos.TOP_CENTER);
+                        eventLabel.setPrefWidth(500);
+//                            cardPane.getChildren().add(eventLabel);
+                        segmentedCards = new ArrayList<>();
+                        String segment = cardsList.get(0).getCategory();
+                        for (int i = cardsList.size() - 1; i >= 0; i--) {
+                            if (cardsList.get(i).getCategory().equals(segment)) {
+                                segmentedCards.add(cardsList.get(i));
+                                cardsList.remove(i);
+                            }
+                        }
+                        System.out.println(segmentedCards.size());
+                        dynamicCarAddingToView(segmentedCards);
+                    }
+                    break;
+
+                case "gender":
                     while (cardsList.size() != 0) {
                         Label eventLabel = new Label();
                         eventLabel = new Label();
@@ -159,59 +157,59 @@ public class ShowPlanController {
                                 cardsList.remove(i);
                             }
                         }
-                            System.out.println(segmentedCards.size());
-                            dynamicCarAddingToView(segmentedCards);
+                        System.out.println(segmentedCards.size());
+                        dynamicCarAddingToView(segmentedCards);
 
                     }
-                        break;
+                    break;
 
-                    case "sex":
-                        while (cardsList.size() != 0) {
-                            Label eventLabel = new Label();
-                            eventLabel = new Label();
-                            eventLabel.setText(cardsList.get(0).getSex());
-                            eventLabel.setFont(new Font("Ariel", 20));
-                            eventLabel.setAlignment(Pos.TOP_CENTER);
-                            eventLabel.setPrefWidth(500);
+                case "sex":
+                    while (cardsList.size() != 0) {
+                        Label eventLabel = new Label();
+                        eventLabel = new Label();
+                        eventLabel.setText(cardsList.get(0).getSex());
+                        eventLabel.setFont(new Font("Ariel", 20));
+                        eventLabel.setAlignment(Pos.TOP_CENTER);
+                        eventLabel.setPrefWidth(500);
 //                            cardPane.getChildren().add(eventLabel);
-                            segmentedCards = new ArrayList<>();
-                            String segment = cardsList.get(0).getSex();
-                            for (int i = cardsList.size() - 1; i >= 0; i--) {
-                                if (cardsList.get(i).getSex().equals(segment)) {
-                                    segmentedCards.add(cardsList.get(i));
-                                    cardsList.remove(i);
-                                }
+                        segmentedCards = new ArrayList<>();
+                        String segment = cardsList.get(0).getSex();
+                        for (int i = cardsList.size() - 1; i >= 0; i--) {
+                            if (cardsList.get(i).getSex().equals(segment)) {
+                                segmentedCards.add(cardsList.get(i));
+                                cardsList.remove(i);
                             }
-                            System.out.println(segmentedCards.size());
-                            dynamicCarAddingToView(segmentedCards);
                         }
-                        break;
+                        System.out.println(segmentedCards.size());
+                        dynamicCarAddingToView(segmentedCards);
+                    }
+                    break;
 
-                    case "level":
-                        while (cardsList.size() != 0) {
-                            Label eventLabel = new Label();
-                            eventLabel = new Label();
-                            eventLabel.setText(cardsList.get(0).getLevel());
-                            eventLabel.setFont(new Font("Ariel", 20));
-                            eventLabel.setAlignment(Pos.TOP_CENTER);
-                            eventLabel.setPrefWidth(500);
+                case "level":
+                    while (cardsList.size() != 0) {
+                        Label eventLabel = new Label();
+                        eventLabel = new Label();
+                        eventLabel.setText(cardsList.get(0).getLevel());
+                        eventLabel.setFont(new Font("Ariel", 20));
+                        eventLabel.setAlignment(Pos.TOP_CENTER);
+                        eventLabel.setPrefWidth(500);
 //                            cardPane.getChildren().add(eventLabel);
-                            segmentedCards = new ArrayList<>();
-                            String segment = cardsList.get(0).getLevel();
-                            for (int i = cardsList.size() - 1; i >= 0; i--) {
-                                if (cardsList.get(i).getLevel().equals(segment)) {
-                                    segmentedCards.add(cardsList.get(i));
-                                    cardsList.remove(i);
-                                }
+                        segmentedCards = new ArrayList<>();
+                        String segment = cardsList.get(0).getLevel();
+                        for (int i = cardsList.size() - 1; i >= 0; i--) {
+                            if (cardsList.get(i).getLevel().equals(segment)) {
+                                segmentedCards.add(cardsList.get(i));
+                                cardsList.remove(i);
                             }
-                            System.out.println(segmentedCards.size());
-                            dynamicCarAddingToView(segmentedCards);
                         }
-                        break;
-                }
-                //write the logic to show the cards
+                        System.out.println(segmentedCards.size());
+                        dynamicCarAddingToView(segmentedCards);
+                    }
+                    break;
             }
+            //write the logic to show the cards
         }
+    }
 
 
     /**
@@ -226,7 +224,7 @@ public class ShowPlanController {
             }
         }
         return null;
-        }
+    }
 
 
     private void dynamicCarAddingToView(ArrayList<Card> filteredCards) {
@@ -243,8 +241,8 @@ public class ShowPlanController {
 
                 Image img = new Image(imageLink);
                 ImageView imgView = new ImageView(img);
-                imgView.setFitHeight(250);
-                imgView.setFitWidth(250);
+                imgView.setFitHeight(300);
+                imgView.setFitWidth(300);
 
                 Text event = new Text(card.getEvent() + " " + card.getGender());
                 event.setFont(Font.font(20));
@@ -272,5 +270,5 @@ public class ShowPlanController {
         stage.close();
     }
 
-    }
+}
 

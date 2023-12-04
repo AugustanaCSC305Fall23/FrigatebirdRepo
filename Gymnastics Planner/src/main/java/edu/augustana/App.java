@@ -31,7 +31,10 @@ public class App extends Application {
         Primary primary = loader.getController();
         primary.setTabControllers();
 
-        Scene scene = new Scene(root, 1800, 1868);
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        Scene scene = new Scene(root, 1298, bounds.getHeight()-50);
         stage.setScene(scene);
         stage.show();
 

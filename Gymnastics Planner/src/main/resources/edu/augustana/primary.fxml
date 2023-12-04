@@ -7,7 +7,7 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.Primary">
 
-<TabPane fx:id="GeneralTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1364.0" prefWidth="1898.0" tabClosingPolicy="UNAVAILABLE">
+<TabPane fx:id="GeneralTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1364.0" prefWidth="1898.0" style="-fx-background-color: #51A3B2;" tabClosingPolicy="UNAVAILABLE">
     <tabs>
         <Tab fx:id="allCardTab" text="All Cards">
         </Tab>

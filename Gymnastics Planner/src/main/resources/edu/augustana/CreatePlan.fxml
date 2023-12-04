@@ -13,57 +13,57 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1348.0" prefWidth="1670.0" style="-fx-background-color: white; -fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: white; -fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
 
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="1353.0" prefWidth="966.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="653.0">
         <children>
-            <VBox prefHeight="1352.0" prefWidth="1004.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="652.0">
                 <children>
-                    <AnchorPane prefHeight="154.0" prefWidth="1173.0">
+                    <AnchorPane prefHeight="154.0" prefWidth="1045.0">
                         <children>
                             <Label layoutX="24.0" layoutY="38.0" prefHeight="17.0" prefWidth="98.0" text="Plan Title:" textFill="WHITE" />
                             <TextField fx:id="planTitle" layoutX="112.0" layoutY="34.0" prefHeight="26.0" prefWidth="399.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;" />
                             <Button layoutX="763.0" layoutY="17.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="45.0" prefWidth="131.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Create Plan" textFill="WHITE" />
-                            <Label alignment="CENTER" layoutX="250.0" layoutY="98.0" prefHeight="45.0" prefWidth="294.0" text="Selected Cards" textFill="WHITE">
+                            <Label alignment="CENTER" layoutX="209.0" layoutY="88.0" prefHeight="45.0" prefWidth="294.0" text="Selected Cards" textFill="WHITE">
                                 <font>
                                     <Font size="31.0" />
                                 </font>
                             </Label>
-                            <Button fx:id="selectCards" layoutX="524.0" layoutY="16.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="45.0" prefWidth="195.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Export Plan" textFill="WHITE" />
-                            <Button layoutX="525.0" layoutY="76.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="45.0" prefWidth="199.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete Selected Cards" textFill="WHITE" />
+                            <Button fx:id="selectCards" layoutX="513.0" layoutY="17.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="45.0" prefWidth="195.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Export Plan" textFill="WHITE" />
+                            <Button layoutX="511.0" layoutY="76.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="45.0" prefWidth="199.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete Selected Cards" textFill="WHITE" />
                             <Line endX="175.29031372070312" endY="7.62939453125E-6" layoutX="213.0" layoutY="62.0" startX="-100.0" stroke="WHITE" />
-                     <Button layoutX="764.0" layoutY="76.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="45.0" prefWidth="128.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Add Cards" textFill="WHITE" />
                      <ComboBox fx:id="selectCourse" layoutX="24.0" layoutY="98.0" onAction="#onCourseSelected" prefWidth="150.0" />
+                     <Button layoutX="763.0" layoutY="75.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="45.0" prefWidth="128.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Add Cards" textFill="WHITE" />
                         </children>
                     </AnchorPane>
-               <ScrollPane prefHeight="1191.0" prefWidth="960.0">
+               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="649.0">
                   <content>
-                          <TilePane fx:id="selectedCardsView" prefHeight="1174.0" prefWidth="966.0" />
+                          <TilePane fx:id="selectedCardsView" prefHeight="714.0" prefWidth="640.0" />
                   </content>
                </ScrollPane>
                 </children>
             </VBox>
         </children></AnchorPane>
-   <AnchorPane layoutX="968.0" layoutY="1.0" prefHeight="1339.0" prefWidth="650.0">
+   <AnchorPane layoutX="653.0" layoutY="152.0" prefHeight="712.0" prefWidth="517.0">
       <children>
-         <VBox prefHeight="1297.0" prefWidth="650.0" style="-fx-background-color: #51A3B2;">
+         <VBox layoutX="7.0" layoutY="5.0" prefHeight="706.0" prefWidth="510.0" style="-fx-background-color: #51A3B2;">
             <children>
-               <AnchorPane prefHeight="102.0" prefWidth="650.0">
+               <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="630.0">
                   <children>
-                     <TextField fx:id="searchedWord" layoutY="39.0" onAction="#searchButtonAction" prefHeight="26.0" prefWidth="509.0" />
-                     <Button fx:id="searchButton" layoutX="624.0" layoutY="39.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
-                     <Label layoutY="22.0" text="Search Word" />
-                     <CheckBox fx:id="FemaleCheckBox" layoutX="517.0" layoutY="56.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
-                     <CheckBox fx:id="MaleCheckBox" layoutX="517.0" layoutY="30.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
-                     <Label layoutX="517.0" layoutY="6.0" text="Gender Lable" />
+                     <TextField fx:id="searchedWord" layoutX="8.0" layoutY="27.0" onAction="#searchButtonAction" prefHeight="26.0" prefWidth="399.0" />
+                     <Button fx:id="searchButton" layoutX="417.0" layoutY="27.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+                     <Label layoutX="8.0" layoutY="5.0" text="Search Word" />
+                     <CheckBox fx:id="FemaleCheckBox" layoutX="530.0" layoutY="49.0" mnemonicParsing="false" onAction="#showFemaleAction" text="Female" />
+                     <CheckBox fx:id="MaleCheckBox" layoutX="530.0" layoutY="23.0" mnemonicParsing="false" onAction="#showMaleAction" text="Male" />
+                     <Label layoutX="519.0" layoutY="5.0" text="Gender Lable" />
                   </children>
                   <padding>
                      <Insets top="20.0" />
                   </padding>
                </AnchorPane>
-               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1254.0" prefWidth="700.0">
+               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="617.0" prefWidth="630.0">
                   <content>
-                     <TilePane fx:id="allCardContent" hgap="5.0" prefHeight="1255.0" prefWidth="700.0" style="-fx-background-color: #99D0DA;" vgap="5.0" />
+                     <TilePane fx:id="allCardContent" hgap="5.0" prefHeight="618.0" prefWidth="629.0" style="-fx-background-color: #99D0DA;" vgap="5.0" />
                   </content>
                </ScrollPane>
             </children>
