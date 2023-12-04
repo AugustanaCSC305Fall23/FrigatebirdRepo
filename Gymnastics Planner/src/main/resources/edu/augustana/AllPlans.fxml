@@ -25,7 +25,7 @@
             <Font size="14.0" />
         </font>
     </Label>
-    <Button fx:id="showPlanButton" layoutX="675.0" layoutY="450.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
+    <Button fx:id="showPlanButton" layoutX="529.0" layoutY="449.0" mnemonicParsing="false" onAction="#showPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan" textFill="#5d3fd3" />
     <Button layoutX="787.0" layoutY="451.0" mnemonicParsing="false" onAction="#editPlan" prefHeight="45.0" prefWidth="96.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan" textFill="#5d3fd3" />
    <Button layoutX="687.0" layoutY="20.0" mnemonicParsing="false" onAction="#viewPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="View Plan From Different Location" textFill="#5d3fd3" />
    <Button layoutX="909.0" layoutY="20.0" mnemonicParsing="false" onAction="#editPlanDifferentLocation" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Edit Plan From Different Location" textFill="#5d3fd3" />
@@ -41,6 +41,7 @@
       </font>
    </Label>
    <Button fx:id="importPlanButton" layoutX="469.0" layoutY="18.0" mnemonicParsing="false" onAction="#importPlans" prefHeight="45.0" prefWidth="216.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Import Plan" textFill="#5d3fd3" />
+   <Button fx:id="showPlanInTextButton" layoutX="639.0" layoutY="449.0" mnemonicParsing="false" onAction="#showPlanInText" prefHeight="45.0" prefWidth="133.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #99D0DA; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Show Plan in Text" textFill="#5d3fd3" />
 
 
 </AnchorPane>
