@@ -83,9 +83,9 @@ public class AllCardsController {
 
     @FXML
     void makeFavorite() throws IOException {
-       // dataBase.makeFavorite(plansDB.getAllSelectedCards());
-       // allCardContent.getChildren().clear();
-       // buildCards();
+        dataBase.makeFavorite(plansDB.getAllSelectedCards());
+        allCardContent.getChildren().clear();
+        buildCards();
     }
 
     @FXML
@@ -104,8 +104,9 @@ public class AllCardsController {
             } else{
 
                 //if not selected un checked
-                dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
-            }
+                ArrayList<Card> tempList = new ArrayList<>(handleSearch.queryIfTextInBoxSearch());
+                dynamicCardAddingToView(handleSearch.getFavoriteCards());
+                dynamicCardAddingToView(tempList);            }
     }
 
     @FXML
@@ -116,9 +117,6 @@ public class AllCardsController {
             if (maleCheckBox.isSelected()) {
                 // when female box is selected
                 handleSearch.clearCheckBoxFilter();
-
-                    // add the cards
-                    dynamicCardAddingToView(handleSearch.checkBoxSearch("M" , "N"));
                 handleSearch.clearFavoriteCards();
                 // add the cards
                 ArrayList<Card> tempList = new ArrayList<>(handleSearch.checkBoxSearch("M" , "N"));
@@ -127,8 +125,9 @@ public class AllCardsController {
             } else{
 
                 //if not selected un checked
-                    dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
-
+                ArrayList<Card> tempList = new ArrayList<>(handleSearch.queryIfTextInBoxSearch());
+                dynamicCardAddingToView(handleSearch.getFavoriteCards());
+                dynamicCardAddingToView(tempList);
             }
     }
 

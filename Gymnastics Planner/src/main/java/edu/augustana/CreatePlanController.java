@@ -367,8 +367,9 @@ public class CreatePlanController {
         } else{
 
             //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch(), false);
-
+            ArrayList<Card> tempList = new ArrayList<>(handleSearch.queryIfTextInBoxSearch());
+            dynamicCardAddingToView(handleSearch.getFavoriteCards(), false);
+            dynamicCardAddingToView(tempList, false);
         }
     }
 
@@ -388,8 +389,9 @@ public class CreatePlanController {
         } else{
 
             //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch(), false);
-
+            ArrayList<Card> tempList = new ArrayList<>(handleSearch.queryIfTextInBoxSearch());
+            dynamicCardAddingToView(handleSearch.getFavoriteCards(), false);
+            dynamicCardAddingToView(tempList, false);
         }
     }
 

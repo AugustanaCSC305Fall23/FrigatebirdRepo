@@ -101,6 +101,7 @@ public class HandleSearch {
                     filteredCheckBoxCards.add(card);
                     if(card.getFavoriteStatus()){
                         favoriteCards.add(card);
+                        System.out.println(card.getCode());
                     }
                 }
             }
@@ -108,7 +109,6 @@ public class HandleSearch {
         } else {
             //get cards from the search view
             System.out.println("This is running else");
-
             for (Card card : allCards) {
                 if (card.getGender().equals(filterOne) || card.getGender().equals(filterTwo)) {
                     filteredCheckBoxCards.add(card);

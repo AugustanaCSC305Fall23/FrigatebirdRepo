@@ -82,7 +82,6 @@ public class CardListDB {
                     allCardsExceptfavorites.add(newCard);
                 }
                 if (newCard.getFavoriteStatus()){
-                    System.out.println("NOOO");
                     favoriteCards.add(newCard);
                 }
             }
