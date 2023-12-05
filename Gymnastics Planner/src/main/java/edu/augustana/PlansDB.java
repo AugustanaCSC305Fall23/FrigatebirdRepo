@@ -2,17 +2,11 @@ package edu.augustana;
 
 import javafx.scene.control.CheckBox;
 
-import java.io.BufferedWriter;
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
+import java.util.*;
 
 public class PlansDB {
 
@@ -127,16 +121,22 @@ public class PlansDB {
     }
 
 
-    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle) throws IOException {
+    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle ,String note) throws IOException {
         String filePath;
         if(isPlanTitle) {
             filePath = "AllPlans/" + fileName;
         }else{
             filePath = "AllPlans/" + planTitle;
         }
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(planTitle);
 
+        System.out.println(filePath);
+//        Scanner reader = new Scanner(new FileReader((filePath)));
+//        String note = reader.next();
+       // reader.close();
+        System.out.println(" This is the note im suppoed to have: " +note);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
+            writer.write(note);
             System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
 
             for (Card card : allSelectedCards.values()) {
@@ -156,12 +156,12 @@ public class PlansDB {
 
     }
 
-    public void createFileDifferentLocation(String planTitle , Boolean isPlanTitle , String locationPath) throws IOException {
+    public void createFileDifferentLocation(String planTitle , Boolean isPlanTitle , String locationPath , String note) throws IOException {
 
         System.out.println("Path recieving from the edit plan: " + locationPath);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(locationPath))) {
-            writer.write(planTitle);
+            writer.write(note);
 
             System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
 

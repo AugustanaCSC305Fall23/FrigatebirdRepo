@@ -146,15 +146,15 @@ public class AddPlanHandler {
     }
 
 
-    public void overrideOrCreateNewPlan(String planTitle , Boolean isPlanTitle , String courseTitle) throws IOException {
+    public void overrideOrCreateNewPlan(String planTitle , String planNote  , Boolean isPlanTitle , String courseTitle) throws IOException {
         String filePath;
 
         if(courseTitle.equals("")){
             //need to add to the course
             if (isPlanTitle) {
-                filePath = "AllPlans/"  + fileName;
+                filePath = "AllPlans/Unassigned Course"  + fileName;
             } else {
-                filePath = "AllPlans/" + planTitle;
+                filePath = "AllPlans/Unassigned Course" + planTitle;
             }
 
         }else {
@@ -164,8 +164,9 @@ public class AddPlanHandler {
                 filePath = "AllPlans/" + courseTitle+ "/" + planTitle;
             }
         }
+
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(planTitle);
+            writer.write(planNote);
 
             System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
 
@@ -186,7 +187,7 @@ public class AddPlanHandler {
 
     }
 
-    public void createFileDifferentLocation(String planTitle , Boolean isPlanTitle , String locationPath) throws IOException {
+    public void createFileDifferentLocation(String planTitle , String planNote, Boolean isPlanTitle , String locationPath) throws IOException {
         String filePath;
         if(isPlanTitle) {
             filePath = locationPath+ "/" + fileName;
@@ -194,7 +195,7 @@ public class AddPlanHandler {
             filePath = locationPath+ "/" + planTitle;
         }
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(filePath))) {
-            writer.write(planTitle);
+            writer.write(planNote);
 
             System.out.println("All Selected Cards in PlansDB: " + allSelectedCards.size());
 

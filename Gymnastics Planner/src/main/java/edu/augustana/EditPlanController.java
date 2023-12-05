@@ -41,6 +41,9 @@ public class EditPlanController {
 
     private String selectedCourse;
 
+    @FXML
+    private TextField programNoteArea;
+
     public void initializeComboBox(){
         selectedCourse = "Unassigned Plans";
         File[] files = new File("AllPlans").listFiles();
@@ -78,6 +81,8 @@ public class EditPlanController {
         this.pathOutsideLocation = pathOutsideLocation;
 
         planTitle.setText(planName);
+
+
         plansDB = new PlansDB();
 
         System.out.println("File path being printed: " + filePath);
@@ -241,26 +246,28 @@ public class EditPlanController {
 
     @FXML
     public void makeChanges() throws IOException {
+        String note = programNoteArea.getText();
 
         if(outsideLocation){
 
             System.out.println("Pathoutsidelocation: " + pathOutsideLocation);
 
-            plansDB.createFileDifferentLocation(officialPlanTitle , false , pathOutsideLocation );
+            plansDB.createFileDifferentLocation(officialPlanTitle , false , pathOutsideLocation , note);
 
         }else {
 
+
             System.out.println("Plan title in make changes for edit plans for final csv edit: " + officialPlanTitle + "_Plan.csv");
             System.out.println("The selecred course is this : " + selectedCourse);
-            plansDB.overrideOrCreateNewPlan(selectedCourse + "/" + officialPlanTitle + "_Plan.csv", false);
+            plansDB.overrideOrCreateNewPlan(selectedCourse + "/" + officialPlanTitle + "_Plan.csv", false , note) ;
 
         }
-        Boolean wantToChange = prompt("Sucessfully Made the change! \n Do you want to make more changes? ", true);
+        Boolean wantToChange = prompt("Sucessfully Made the change! \n Do you want to make more changes? ", false);
 
-        if (!wantToChange) {
-            Stage stage = (Stage) planTitle.getScene().getWindow();
-            stage.close();
-        }
+
+        Stage stage = (Stage) planTitle.getScene().getWindow();
+        stage.close();
+
 
     }
 

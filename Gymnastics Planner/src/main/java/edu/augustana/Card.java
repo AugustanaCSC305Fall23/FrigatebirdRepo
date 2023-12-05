@@ -8,8 +8,6 @@ import java.util.NoSuchElementException;
 import java.util.Scanner;
 
 public class Card {
-        private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
-        private String favoriteCSVPath = "FavoriteCards.csv";
         private String code;
         private String event;
         private String category;
@@ -20,16 +18,14 @@ public class Card {
         private String level;
         private String equipment;
         private String keywords;
-
         private String packFolder;
         private String[] allData;
         private String imageName;
         private boolean isFavorite;
+        private String printingImage;
 
 
     public Card(String[] data) throws  IOException{
-
-
 
         if (data.length > 10) {
 
@@ -44,7 +40,8 @@ public class Card {
             this.category = data[2].strip();
             this.title = data[3].strip();
             this.packFolder = data[4].strip();
-            this.image = "file:AllPacks/" +packFolder + "/Images/" + data[5].strip();
+            this.image = "file:AllPacks/" +packFolder + "/thumbs/" + data[5].strip().replace(".png",".jpg");
+            this.printingImage = "file:AllPacks/" +packFolder + "/Images/" +data[5].strip();
             this.imageName = data[5].strip();
 
 
@@ -66,7 +63,7 @@ public class Card {
     public String[] getDirectStringMatchingData() {
         if (allData.length >= 11) {
             // Return elements 0 to 5, 9, and 10 from allData
-            return new String[]{allData[0], allData[1], allData[2], allData[3], allData[4], allData[5]};
+            return new String[]{allData[0], allData[1], allData[2], allData[3], allData[4], allData[5], allData[7]};
 
         } else {
             System.out.println("Insufficient data in the provided array.");
@@ -166,6 +163,10 @@ public class Card {
     public boolean getFavoriteStatus(){
         return isFavorite;}
     public  String getPackFolder(){return packFolder;}
+
+    public String getPrintingImage(){
+        return  printingImage;
+    }
 
     @Override
     public String toString() {

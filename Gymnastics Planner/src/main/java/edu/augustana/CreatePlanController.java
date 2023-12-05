@@ -31,6 +31,9 @@ public class CreatePlanController {
     private AddPlanHandler plansDB;
 
     @FXML
+    private TextField planNote;
+
+    @FXML
     Button selectTheseCards;
 
     @FXML
@@ -55,78 +58,51 @@ public class CreatePlanController {
     private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
     private CardListDB cardListDB;
     private  HandleSearch handleSearch;
-
     private String selectedCourse;
-
-
     public CreatePlanController(){
         plansDB = new AddPlanHandler();
     }
-
-    @FXML
-    public void selectCard() {
-        try {
-            // Load the FXML file
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("selectCards.fxml"));
-            Parent root = loader.load();
-
-            // Create a new stage
-            Stage selectCardsStage = new Stage();
-            selectCardsStage.setTitle("Select Cards"); // Set the stage title
-
-            // Set the scene
-            Scene selectCardsScene = new Scene(root);
-            selectCardsStage.setScene(selectCardsScene);
-
-            // Set an event handler for the stage being shown
-            selectCardsStage.setOnShown(e -> {
-                // This will be called after the stage is shown
-                SlectCardsController createPlanController = loader.getController();
-              //  try {
-                    //createPlanController.buildCards(plansDB,this);
-             //   } catch (IOException ex) {
-                 //   throw new RuntimeException(ex);
-             //   }
-            });
-
-            // Show the stage
-            selectCardsStage.show();
-
-        } catch (IOException e) {
-            throw new RuntimeException("Error loading selectCards.fxml", e);
-        }
-    }
-
-
 
 
     @FXML
     public void createPlan() throws IOException {
 
-        String planTitleName = planTitle.getText().strip();
 
-        if (planTitleName.isEmpty() || plansDB.getAllCheckBox().size() == 0) {
-            //Prompt user to write the name of the plan
-            System.out.println(prompt("Please write the plan name and select atleast one card" ,false));
-        } else {
-            // see if file exits and if user wants to override
-            Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName , selectedCourse);
-            System.out.println("Is file there? " + fileThere);
-            Boolean override = false;
-            if (fileThere) {
-                System.out.println("Plan already created do you want to ovverride?");
-                override = prompt(" Plan already created do you want to replace the existing plan?", true);
+        if(selectCourse.getSelectionModel().toString().equals("")){
+
+            Alert alret = new Alert(Alert.AlertType.CONFIRMATION);
+            alret.setContentText("Please select a course");
+        }else {
+
+
+            String planTitleName = planTitle.getText().strip();
+
+            if (planTitleName.isEmpty() || plansDB.getAllCheckBox().size() == 0) {
+                //Prompt user to write the name of the plan
+                System.out.println(prompt("Please write the plan name and select atleast one card", false));
+            } else {
+                // see if file exits and if user wants to override
+                Boolean fileThere = plansDB.createCsvandCheckFileExists(planTitleName, selectedCourse);
+                System.out.println("Is file there? " + fileThere);
+                Boolean override = false;
+                if (fileThere) {
+                    System.out.println("Plan already created do you want to ovverride?");
+                    override = prompt(" Plan already created do you want to replace the existing plan?", true);
+                }
+
+                String planNoteInfo = "";
+                planNoteInfo = planNote.getText();
+
+                //if file is not there or override then write file
+                if (!fileThere || override) {
+                    plansDB.overrideOrCreateNewPlan(planTitleName, planNoteInfo, true, selectedCourse);
+                    prompt("Successfully created the plan!", false);
+                    planTitle.clear();
+                    selectedCardsView.getChildren().clear();
+                }
             }
-
-            //if file is not there or override then write file
-            if (!fileThere || override) {
-                plansDB.overrideOrCreateNewPlan(planTitleName ,true , selectedCourse);
-                prompt("Sucessfully created the plan!", false);
-                planTitle.clear();
-                selectedCardsView.getChildren().clear();
-            }
-
         }
+
     }
 
 //just for prompting different things based on the needs
@@ -326,71 +302,12 @@ public class CreatePlanController {
 
     @FXML
     private void searchButtonAction() {
-        MaleCheckBox.setSelected(false);
-        FemaleCheckBox.setSelected(false);
 
         String searchText = searchedWord.getText().strip();
-
-        if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
-            lastSearch = searchText;
-            handleSearch.clearSearchBoxFilter();
-            handleSearch.clearFavoriteCards();
-            allCardContent.getChildren().clear();
-
-            searchList(searchText);
-        }else{
-            if (searchText.equals("")) {
-                allCardContent.getChildren().clear();
-                dynamicCardAddingToView(handleSearch.getFavoriteCards() , false);
-                dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites(), false);
-
-            } else {
-                allCardContent.getChildren().clear();
-                dynamicCardAddingToView(handleSearch.getFilteredSearchBoxCards(), false);
-            }
-        }
-    }
-
-    @FXML
-    void showFemaleAction() {
-
         allCardContent.getChildren().clear();
-        MaleCheckBox.setSelected(false);
+        dynamicCardAddingToView(handleSearch.textBoxSearch(searchText),false);
 
-        if (FemaleCheckBox.isSelected()) {
-            // when female box is selected
-            handleSearch.clearCheckBoxFilter();
-            handleSearch.clearFavoriteCards();
-            ArrayList<Card> tempList = handleSearch.checkBoxSearch("F" , "N");
-            dynamicCardAddingToView(handleSearch.getFavoriteCards(), false);
-            dynamicCardAddingToView(tempList, false);
-        } else{
 
-            //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch(), false);
-
-        }
-    }
-
-    @FXML
-    void showMaleAction() {
-
-        allCardContent.getChildren().clear();
-        FemaleCheckBox.setSelected(false);
-        if (MaleCheckBox.isSelected()) {
-            // when female box is selected
-            handleSearch.clearCheckBoxFilter();
-            // add the cards
-            handleSearch.clearFavoriteCards();
-            ArrayList<Card> tempList = handleSearch.checkBoxSearch("M" , "N");
-            dynamicCardAddingToView(handleSearch.getFavoriteCards(), false);
-            dynamicCardAddingToView(tempList, false);
-        } else{
-
-            //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch(), false);
-
-        }
     }
 
 
@@ -400,10 +317,40 @@ public class CreatePlanController {
         //map for the cards
         cardListDB = new CardListDB(false);
         handleSearch = new HandleSearch(cardListDB);
-        dynamicCardAddingToView(handleSearch.getFavoriteCards(), true);
-        dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites(), true);
+        dynamicCardAddingToView(handleSearch.getAllCards(), true);
         initializeComboBox();
+        populateFiltersComboBox();
+        setActionForFilters();
     }
+
+    @FXML
+    private ComboBox genderFilter;
+    @FXML
+    private ComboBox modelFilter;
+    @FXML
+    private ComboBox levelFilter;
+    @FXML
+    private ComboBox equipmentFilter;
+    public void populateFiltersComboBox(){
+
+        genderFilter.getItems().addAll( "All", "M", "F" , "N");
+        modelFilter.getItems().addAll("All" , "M", "F" , "N");
+        levelFilter.getItems().addAll( "All", "AB" , "B" , "I" );
+        equipmentFilter.getItems().add("All");
+        equipmentFilter.getItems().addAll(cardListDB.getAllEquipmentName());
+
+    }
+
+    public void setActionForFilters(){
+
+        genderFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterGender(genderFilter.getSelectionModel().getSelectedItem().toString()), false));
+        modelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterModel(modelFilter.getSelectionModel().getSelectedItem().toString()), false));
+        levelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filteredLevel(levelFilter.getSelectionModel().getSelectedItem().toString()), false));
+        equipmentFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterByEquipment(equipmentFilter.getSelectionModel().getSelectedItem().toString()), false));
+
+
+    }
+
 
 
 
@@ -446,9 +393,12 @@ public class CreatePlanController {
                     override = prompt(" Plan already created do you want to replace the existing plan?", true);
                 }
 
+                String planNoteInfo = "";
+                planNoteInfo = planNote.getText();
+
                 //if file is not there or override then write file
                 if (!fileThere || override) {
-                    plansDB.createFileDifferentLocation(planTitleName ,true,selectedPath );
+                    plansDB.createFileDifferentLocation(planTitleName ,planNoteInfo ,true,selectedPath );
 
                     prompt("Sucessfully created the plan!", false);
                     planTitle.clear();
@@ -472,7 +422,7 @@ public class CreatePlanController {
 
 
     public void initializeComboBox(){
-        selectedCourse = "Unassigned Plans";
+        selectedCourse = "Unassigned Course";
         File[] files = new File("AllPlans").listFiles();
         selectCourse.getItems().addAll("Create New Course");
 
@@ -481,14 +431,14 @@ public class CreatePlanController {
                 selectCourse.getItems().add(file.getName());
             }
         }
-
     }
-
 
 
     @FXML
     public void onCourseSelected() {
+
         selectedCourse = selectCourse.getSelectionModel().getSelectedItem().toString();
+
 
         if (selectedCourse.equals("Create New Course")) {
             // Prompt user with a text input dialog
@@ -511,7 +461,6 @@ public class CreatePlanController {
 
 
         //Create a new dir called that in AllPlans
-
         try {
             plansDB.createNewDir(selectedCourse);
         } catch (FileAlreadyExistsException e){

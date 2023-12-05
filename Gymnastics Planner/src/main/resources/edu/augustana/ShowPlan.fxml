@@ -20,10 +20,25 @@
             <Button layoutX="777.0" layoutY="27.0" mnemonicParsing="false" onAction="#printPlan" prefHeight="46.0" prefWidth="110.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #51A3B2; -fx-border-color: #5D3FD3; -fx-border-width: 2px;" text="Print" textFill="WHITE" />
          </children>
       </AnchorPane>
+      <Label alignment="CENTER" prefHeight="20.0" prefWidth="189.0" text="Plan Note:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
+      <Label fx:id="planNoteSection" alignment="CENTER" prefHeight="20.0" prefWidth="185.0" text="Label" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
       <ScrollPane hbarPolicy="NEVER" prefHeight="1264.0" prefWidth="992.0" vbarPolicy="ALWAYS">
          <content>
             <VBox fx:id="cardBox" maxHeight="1.7976931348623157E308" maxWidth="-Infinity" minWidth="-Infinity" prefHeight="1403.2" prefWidth="992.0" style="-fx-background-color: white;" />
          </content>
       </ScrollPane>
+      <Label fx:id="Title11" alignment="CENTER" prefHeight="63.0" prefWidth="389.0" text="Plan Note:" textFill="WHITE">
+         <font>
+            <Font size="16.0" />
+         </font>
+      </Label>
    </children>
 </VBox>

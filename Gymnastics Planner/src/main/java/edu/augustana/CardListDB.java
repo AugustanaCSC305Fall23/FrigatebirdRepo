@@ -3,9 +3,7 @@ package edu.augustana;
 import javafx.scene.control.CheckBox;
 
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Scanner;
+import java.util.*;
 
 public class CardListDB {
 
@@ -119,6 +117,19 @@ public class CardListDB {
         return favoriteCards;
     }
 
+
+    public HashSet<String> getAllEquipmentName(){
+
+        HashSet<String> allEquipmentNames = new HashSet<>();
+
+        for(Card cards: allCards){
+            String[] listOfEquipments = cards.getEquipment().split(",");
+            allEquipmentNames.addAll(List.of(listOfEquipments));
+        }
+
+        return allEquipmentNames;
+
+    }
 
 
 }

@@ -28,7 +28,7 @@
                     <Line endX="246.60003662109375" endY="0.40000152587890625" layoutX="275.0" layoutY="71.0" startX="-263.0" startY="0.40000152587890625" stroke="WHITE" />
                <Label layoutX="633.0" layoutY="16.0" text="Gender Label" />
                 </children></AnchorPane>
-            <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1213.0">
+            <ScrollPane hbarPolicy="NEVER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="708.0" prefWidth="1213.0">
                 <content>
                     <TilePane fx:id="allCardContent" prefHeight="788.0" prefWidth="1296.0" style="-fx-background-color: #99D0DA;" vgap="10.0" />
                 </content>

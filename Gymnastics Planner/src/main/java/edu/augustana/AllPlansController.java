@@ -196,7 +196,10 @@ public class AllPlansController {
                 } else {
 
                     try{
+
                         buildEditPlanStage(selectedPath, planName ,true , selectedPath );
+
+
                     }catch (Exception e){
 
                     }
@@ -254,7 +257,7 @@ public class AllPlansController {
                     showPlanStage.setScene(scene);
                     showPlanStage.show();
                     String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-                    controller.buildPlans("", segmentType , true , selectedPath);
+                    controller.buildPlans(selectedFile.getName(), segmentType , true , selectedPath);
                 }
 
             }else{
