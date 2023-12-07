@@ -61,11 +61,10 @@ private Label planNoteSection;
         print.printAnchorPane(cardBox);
 
     }
-    public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path,String text) throws IOException {
-
+    public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path, String text) throws IOException {
         shortCodes = new ArrayList<>();
         cardsList = new ArrayList<>();
-
+        planNoteSection.setVisible(false);
         FileTool fileTool = new FileTool();
         System.out.println(segmentType);
         CardListDB dataBase = new CardListDB(false);
@@ -86,7 +85,7 @@ private Label planNoteSection;
             planNote = line;
 
             System.out.println("Plan note is this: " + planNote);
-            planNoteSection.setText(planNote);
+            planNoteSection.setText("Plan Note: " + planNote);
 
             while (reader.hasNextLine()) {
                 line = reader.nextLine();
@@ -101,23 +100,20 @@ private Label planNoteSection;
         for (String code : shortCodes) {
             cardsList.add(getCard(code));
         }
+        dynamicTextHeaderToView(planName);
+
+
         //write the logic to segment the cards into the segment type
         HandleSearch searchTool = new HandleSearch(dataBase);
         if (segmentType == null || segmentType.equals("none")) {
-            dynamicTextAddingToView(cardsList, planName);
         } else {
             switch (segmentType) {
-
                 case "event":
+                    int c = 1;
+
                     while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setFont(new Font("Arial", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        eventLabel.setPrefHeight(60);
-                        eventLabel.setText(cardsList.get(0).getEvent());
-                        cardBox.getChildren().add(eventLabel);
-                        cardBox.setSpacing(60);
+
+                        cardBox.setSpacing(10);
                         segmentedCards = new ArrayList<>();
                         String segment = cardsList.get(0).getEvent();
                         for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -126,98 +122,15 @@ private Label planNoteSection;
                                 cardsList.remove(i);
                             }
                         }
-                        System.out.println(segmentedCards.size());
-                        dynamicTextAddingToView(segmentedCards, planName);
+
+
+                        dynamicTextAddingToView(segmentedCards, planName , c);
+                        c ++;
+                        System.out.println("the size: " + segmentedCards.size());
                     }
+
                     break;
 
-                case "category":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getCategory());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-//                            cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getCategory();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getCategory().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
-                            }
-                        }
-                        System.out.println(segmentedCards.size());
-                        dynamicTextAddingToView(segmentedCards, planName);
-                    }
-                    break;
-
-                case "gender":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getGender());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-//                        cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getGender();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getGender().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
-                            }
-                        }
-                        System.out.println(segmentedCards.size());
-                        dynamicTextAddingToView(segmentedCards, planName);
-
-                    }
-                    break;
-
-                case "sex":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getSex());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-//                            cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getSex();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getSex().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
-                            }
-                        }
-                        System.out.println(segmentedCards.size());
-                        dynamicTextAddingToView(segmentedCards, planName);
-                    }
-                    break;
-
-                case "level":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel = new Label();
-                        eventLabel.setText(cardsList.get(0).getLevel());
-                        eventLabel.setFont(new Font("Ariel", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-//                            cardPane.getChildren().add(eventLabel);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getLevel();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getLevel().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
-                            }
-                        }
-                        System.out.println(segmentedCards.size());
-                        dynamicTextAddingToView(segmentedCards, planName);
-                    }
-                    break;
             }
         }
     }
@@ -242,12 +155,13 @@ private Label planNoteSection;
             }else {
                 reader = new Scanner(new File(filePath));
             }
+
             System.out.println(filePath);
             String line = reader.nextLine();
             String planNote = line;
 
             System.out.println("Plan note is this: " + planNote);
-            planNoteSection.setText(planNote);
+            planNoteSection.setText("Plan Note: " + planNote);
 
             while (reader.hasNextLine()) {
                 line = reader.nextLine();
@@ -270,13 +184,14 @@ private Label planNoteSection;
                 case "event":
                     while (cardsList.size() != 0) {
                         Label eventLabel = new Label();
-                        eventLabel.setFont(new Font("Arial", 20));
+                        eventLabel.setFont(new Font("Arial", 30));
+                        eventLabel.setStyle("-fx-font-weight: bold;");
                         eventLabel.setAlignment(Pos.TOP_CENTER);
                         eventLabel.setPrefWidth(500);
-                        eventLabel.setPrefHeight(60);
+                        eventLabel.setPrefHeight(50);
                         eventLabel.setText(cardsList.get(0).getEvent());
                         cardBox.getChildren().add(eventLabel);
-                        cardBox.setSpacing(30);
+                        cardBox.setSpacing(15);
                         segmentedCards = new ArrayList<>();
                         String segment = cardsList.get(0).getEvent();
                         for (int i = cardsList.size() - 1; i >= 0; i--) {
@@ -309,18 +224,9 @@ private Label planNoteSection;
         return null;
     }
 
-    private void dynamicTextAddingToView(ArrayList<Card> filteredCards, String planName) {
-        if (cardBox == null) {
-            System.out.println("Error: cardBox is null. Make sure it is initialized.");
-            return;
-        }
 
-        if (filteredCards == null || filteredCards.isEmpty()) {
-            System.out.println("Error: filteredCards is null or empty.");
-            return;
-        }
+    private void dynamicTextHeaderToView( String planName) {
 
-        // Clear existing content in cardBox
         cardBox.getChildren().clear();
 
         // Extract the part of planName after the last backslash
@@ -332,36 +238,34 @@ private Label planNoteSection;
         planTitleLabel.setFont(Font.font(28)); // Set the font size for the plan title
         planTitleLabel.setStyle("-fx-font-weight: bold;"); // Make the title bold
         cardBox.getChildren().add(planTitleLabel);
+        Label notes = new Label(" Plan note: " + planNote);
+        notes.setFont(Font.font(18)); // Set the font size for the plan title
+        notes.setStyle("-fx-font-weight: bold;"); // Make the title bold
+        cardBox.getChildren().add(notes);
 
-        Label planNoteLabel = new Label("Plan Note: " + planNote);
-        planNoteLabel.setFont(Font.font(16)); // Set the font size for the plan title
-        planNoteLabel.setStyle("-fx-font-weight: Normal;"); // Make the title bold
-        cardBox.getChildren().add(planNoteLabel);
+    }
+    private void dynamicTextAddingToView(ArrayList<Card> filteredCards, String planName , int count) {
+        if (cardBox == null) {
+            System.out.println("Error: cardBox is null. Make sure it is initialized.");
+            return;
+        }
 
-        // Group cards by event
-        Map<String, List<Card>> cardsByEvent = filteredCards.stream()
-                .collect(Collectors.groupingBy(Card::getEvent));
+        if (filteredCards == null || filteredCards.isEmpty()) {
+            System.out.println("Error: filteredCards is null or empty.");
+            return;
+        }
 
-        // Set numbering counter
-        int eventNumber = 1;
-
-        for (Map.Entry<String, List<Card>> entry : cardsByEvent.entrySet()) {
-            String eventTitle = entry.getKey();
-            List<Card> cardsForEvent = entry.getValue();
 
             // Add event title to the VBox
-            Label titleLabel = new Label(String.format("%d. Event: %s", eventNumber, eventTitle));
+            Label titleLabel = new Label(String.format(" "+count +". Event: %s", filteredCards.get(0).getEvent().toString()));
             titleLabel.setFont(Font.font(24)); // Set the font size for event title
             titleLabel.setStyle("-fx-font-weight: bold;"); // Make the title bold
             cardBox.getChildren().add(titleLabel);
 
             // Set numbering counter for cards within the event
-            int cardNumber = 1;
-
-            for (Card card : cardsForEvent) {
+            for (Card card : filteredCards) {
                 // Construct a string containing card information
-                String cardInfo = String.format("    %d.%d Event: %s, Gender: %s, Category: %s, Sex: %s, Level: %s",
-                        eventNumber, cardNumber,
+                String cardInfo = String.format("      Event: %s, Gender: %s, Category: %s, Sex: %s, Level: %s",
                         card.getEvent(),
                         card.getGender(),
                         card.getCategory(),
@@ -379,13 +283,12 @@ private Label planNoteSection;
                 cardBox.getChildren().add(cardText);
 
                 // Increment card number within the event
-                cardNumber++;
             }
 
             // Increment event number
-            eventNumber++;
-        }
+
     }
+
 
 
 
@@ -405,7 +308,7 @@ private Label planNoteSection;
                 imgView.setFitHeight(300);
                 imgView.setFitWidth(300);
 
-                Text event = new Text(card.getEvent() + " " + card.getGender());
+                Text event = new Text(card.getCode());
                 event.setFont(Font.font(20));
 
                 VBox cardContentBox = new VBox(imgView, event);

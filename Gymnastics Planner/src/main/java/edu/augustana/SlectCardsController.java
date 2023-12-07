@@ -3,6 +3,7 @@ package edu.augustana;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.CheckBox;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -50,6 +51,34 @@ public class SlectCardsController {
     private  HandleSearch handleSearch;
 
 
+
+    @FXML
+    private ComboBox genderFilter;
+    @FXML
+    private ComboBox modelFilter;
+    @FXML
+    private ComboBox levelFilter;
+    @FXML
+    private ComboBox equipmentFilter;
+    public void populateFiltersComboBox(){
+
+        genderFilter.getItems().addAll( "All", "M", "F" , "N");
+        modelFilter.getItems().addAll("All" , "M", "F" , "N");
+        levelFilter.getItems().addAll( "All", "AB" , "B" , "I" );
+        equipmentFilter.getItems().add("All");
+        equipmentFilter.getItems().addAll(cardListDB.getAllEquipmentName());
+
+    }
+
+    public void setActionForFilters(){
+
+        genderFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterGender(genderFilter.getSelectionModel().getSelectedItem().toString())));
+        modelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterModel(modelFilter.getSelectionModel().getSelectedItem().toString())));
+        levelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filteredLevel(levelFilter.getSelectionModel().getSelectedItem().toString())));
+        equipmentFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterByEquipment(equipmentFilter.getSelectionModel().getSelectedItem().toString())));
+
+
+    }
     @FXML
     private void addCardsToPlan() {
 
@@ -118,9 +147,6 @@ public class SlectCardsController {
 
     @FXML
     private void searchButtonAction() {
-        maleCheckBox.setSelected(false);
-        femaleCheckBox.setSelected(false);
-
         String searchText = searchedWord.getText().strip();
 
         if (!searchText.equals(lastSearch) && !(searchText.equals("")) ){
@@ -143,59 +169,6 @@ public class SlectCardsController {
         }
     }
 
-    @FXML
-    void showFemaleAction() {
-
-        allCardContent.getChildren().clear();
-        maleCheckBox.setSelected(false);
-
-        if (femaleCheckBox.isSelected()) {
-            // when female box is selected
-            handleSearch.clearCheckBoxFilter();
-            handleSearch.clearFavoriteCards();
-            ArrayList<Card> tempList = handleSearch.checkBoxSearch("F" , "N");
-            dynamicCardAddingToView(handleSearch.getFavoriteCards());
-            dynamicCardAddingToView(tempList);
-        } else{
-
-            //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
-
-        }
-    }
-
-    @FXML
-    void showMaleAction() {
-
-        allCardContent.getChildren().clear();
-        femaleCheckBox.setSelected(false);
-        if (maleCheckBox.isSelected()) {
-            // when female box is selected
-            handleSearch.clearCheckBoxFilter();
-            // add the cards
-            handleSearch.clearFavoriteCards();
-            ArrayList<Card> tempList = handleSearch.checkBoxSearch("M" , "N");
-            dynamicCardAddingToView(handleSearch.getFavoriteCards());
-            dynamicCardAddingToView(tempList);
-        } else{
-
-            //if not selected un checked
-            dynamicCardAddingToView(handleSearch.queryIfTextInBoxSearch());
-
-        }
-    }
-
-
-    public void buildCards(PlansDB plansDB ,CreatePlanController createPlanController) throws IOException {
-
-        this.createPlanController = createPlanController;
-        //map for the cards
-        this.planDB = plansDB;
-        cardListDB = new CardListDB(false);
-        handleSearch = new HandleSearch(cardListDB);
-        dynamicCardAddingToView(handleSearch.getFavoriteCards());
-        dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
-    }
 
     public void buildCards(PlansDB plansDB , EditPlanController editPlanController) throws IOException {
 
@@ -206,6 +179,8 @@ public class SlectCardsController {
         handleSearch = new HandleSearch(cardListDB);
         dynamicCardAddingToView(handleSearch.getFavoriteCards());
         dynamicCardAddingToView(handleSearch.getAllCardsExceptFavorites());
+        populateFiltersComboBox();
+        setActionForFilters();
     }
 
 

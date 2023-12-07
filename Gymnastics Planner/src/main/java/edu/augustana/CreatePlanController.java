@@ -277,7 +277,7 @@ public class CreatePlanController {
                 imgView.setFitHeight(200);
                 imgView.setFitWidth(200);
 
-                Text event = new Text(card.getEvent() + " " + card.getGender());
+                Text event = new Text(card.getCode());
                 event.setFont(Font.font(20));
 
                 VBox cardContentBox = new VBox(imgView, event);

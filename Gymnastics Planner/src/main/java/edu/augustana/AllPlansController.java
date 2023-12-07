@@ -42,17 +42,6 @@ public class AllPlansController {
     private String selectedCourse = "";
 
     @FXML
-    void initialize() {
-        filterSelect.getItems().addAll("none", "event", "category", "gender", "sex", "level"
-
-        );
-    }
-
-    @FXML
-    private ComboBox<String> filterSelect;
-
-
-    @FXML
     private ListView<String> showPlans;
 
     @FXML
@@ -74,8 +63,7 @@ public class AllPlansController {
             showPlanStage.setTitle("Show Plan");
             showPlanStage.setScene(scene);
             showPlanStage.show();
-            String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(), segmentType ,false ,"","text");
+            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(), "event" ,false ,"","text");
         }
     }
     @FXML
@@ -97,8 +85,7 @@ public class AllPlansController {
             showPlanStage.setTitle("Show Plan");
             showPlanStage.setScene(scene);
             showPlanStage.show();
-            String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(), segmentType ,false ,"");
+            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(),"event" ,false ,"");
         }
     }
 
@@ -138,7 +125,6 @@ public class AllPlansController {
                         btn.setOnAction(e-> courseAction(btn.getText()));
                         plansView.getItems().add(btn);
 
-                        System.out.println("Thisihsisfbskadfkjasdflkjasd ");
 
                     }else{
 
@@ -173,7 +159,7 @@ public class AllPlansController {
 
         private void courseAction(String course){
 
-            planListLabel.setText("Thise are all the plans in course: " + course);
+            planListLabel.setText("All Plans In Course: " + course);
             showPlans.getItems().clear();
             selectedCourse = course;
             buildPlansForCourse(course);
@@ -282,9 +268,11 @@ public class AllPlansController {
                     showPlanStage.setTitle("Show Plan");
                     showPlanStage.setScene(scene);
                     showPlanStage.show();
-                    String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-                    controller.buildPlans("", segmentType , true , selectedPath);
+
+                    controller.buildPlans("" , "event",true , selectedPath);
                 }
+
+
 
             }else{
 
@@ -293,6 +281,46 @@ public class AllPlansController {
 
 
         }
+
+    @FXML
+    private void importPlanInText() throws IOException {
+
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Select File");
+
+        // Show file chooser dialog
+        File selectedFile = fileChooser.showOpenDialog(new Stage());
+        if (selectedFile != null) {
+            // Now you have the selected directory, and you can save your plan there
+            String selectedPath = selectedFile.getAbsolutePath();
+
+            System.out.println(selectedPath);
+
+            if (selectedFile == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
+                alert.show();
+            } else {
+                FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
+                Parent root = loader.load();
+                ShowPlanController controller = loader.getController();  // Initialize the controller
+                Scene scene = new Scene(root, 1500, 1500);
+                Stage showPlanStage = new Stage();
+                showPlanStage.setTitle("Show Plan");
+                showPlanStage.setScene(scene);
+                showPlanStage.show();
+
+                controller.buildPlans(selectedFile.getName() , "event",true , selectedPath,"");
+            }
+
+
+
+        }else{
+
+            //Error
+        }
+
+
+    }
 
 
         @FXML

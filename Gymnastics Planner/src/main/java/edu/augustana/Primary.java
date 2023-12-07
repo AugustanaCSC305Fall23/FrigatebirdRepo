@@ -109,7 +109,7 @@ public class Primary  {
 
     }
     public void setLogo(Stage primaryStage){
-        Image image = new Image("Logo/Gymnastics Logo.jpg");
+        Image image = new Image("C:\\git\\FrigatebirdRepo\\Gymnastics Planner\\Logo\\Gymnastics Logo.jpg");
         primaryStage.getIcons().add(image);
     }
 

@@ -36,7 +36,7 @@ public class App extends Application {
 
         // Optional: Icon addition and title addition
         stage.setTitle("TumbleTech");
-        //primary.setLogo(stage);
+        primary.setLogo(stage);
 
     }
 
