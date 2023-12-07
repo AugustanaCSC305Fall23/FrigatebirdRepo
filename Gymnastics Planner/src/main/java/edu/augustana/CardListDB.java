@@ -82,6 +82,7 @@ public class CardListDB {
             BufferedReader reader = new BufferedReader(csvFile);
             String line = null;
             line = reader.readLine();
+            line = reader.readLine();
             if (forPlans) {
                 line = reader.readLine();
             }
