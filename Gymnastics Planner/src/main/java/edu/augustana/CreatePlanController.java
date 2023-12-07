@@ -424,6 +424,7 @@ public class CreatePlanController {
                     prompt("Sucessfully created the plan!", false);
                     planTitle.clear();
                     selectedCardsView.getChildren().clear();
+                    planNote.clear();
                 }
 
             }
