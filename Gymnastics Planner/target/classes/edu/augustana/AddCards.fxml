@@ -8,7 +8,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="1298.0" style="-fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreateCardController">
 
 
     <AnchorPane layoutX="262.0" layoutY="55.0" minHeight="0.0" minWidth="0.0" prefHeight="758.0" prefWidth="850.0">
@@ -56,6 +56,11 @@
             <Line endX="472.20001220703125" layoutX="160.0" layoutY="514.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
             <Line endX="472.20001220703125" layoutX="160.0" layoutY="566.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
             <Line endX="472.20001220703125" layoutX="160.0" layoutY="619.0" startX="17.0" startY="0.399993896484375" stroke="WHITE" />
+            <Button fx:id="addCardButton" layoutX="676.0" layoutY="14.0" mnemonicParsing="false" onAction="#addCardButtonAction" prefHeight="42.0" prefWidth="147.0" style="-fx-background-color: #51A3B2; -fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-width: 2px; -fx-font-weight: 700; -fx-border-color: white;" text="Add Card pack" textFill="WHITE">
+                <font>
+                    <Font size="14.0" />
+                </font>
+            </Button>
         </children></AnchorPane>
     <Label alignment="CENTER" layoutX="1.0" layoutY="22.0" prefHeight="53.0" prefWidth="1298.0" style="-fx-font-weight: 700;" text="Add Card" textAlignment="CENTER" textFill="WHITE">
         <font>
