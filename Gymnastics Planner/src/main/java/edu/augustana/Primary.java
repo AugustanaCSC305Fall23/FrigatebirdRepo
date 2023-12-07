@@ -110,7 +110,6 @@ public class Primary  {
             cp.clearAllContent();
             try {
                 cp.buildCards();
-                cp.setPromptText();
             } catch (IOException e) {
                 throw new RuntimeException(e);
             }

@@ -117,9 +117,9 @@ public class AllPlansController {
                     String title = titleData[0];
                     title = title.substring(9);
 
-                    if (file.isDirectory()){
+                    if (file.isDirectory() && !file.getName().equals(".DS")){
                         //We need to perhaps so something
-
+                        System.out.println(file.getName());
                         Button btn = new Button();
                         btn.setText(title);
                         btn.setOnAction(e-> courseAction(btn.getText()));

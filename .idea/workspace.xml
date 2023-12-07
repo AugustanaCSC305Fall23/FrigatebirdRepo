@@ -6,7 +6,22 @@
   <component name="ChangeListManager">
     <list default="true" id="38610f98-fff6-4d98-8bac-2bcb8d713977" name="Changes" comment="Made changes to UI and Printing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AddCards.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/AddCards.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Anubhav Gym Plan_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Big Plan_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Modified plan_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Plans In Section 22_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Please work_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/Very Big Plan_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/biggest plan ldjalsf_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Aaloo/hello_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/All Added Feature Course/Anubhav Gym Plan_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/All Added Feature Course/Exporting this plan now_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/New Course testing/99900999_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/New Course testing/Testing with multiple DEMO PLANS_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/New Course testing/sfdlihasdfl;has;ldkf_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/bibhu course/plan name 1_Plan.csv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/AllPlansController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/AllPlansController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Primary.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,19 +83,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="JetRunConfigurationType">
-      <module name="GymnasticsPlanner" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="GymnasticsPlanner" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <recent_temporary>
       <list>
         <item itemvalue="Application.App" />
@@ -98,6 +100,7 @@
       <workItem from="1701721960709" duration="28921000" />
       <workItem from="1701967248933" duration="1217000" />
       <workItem from="1701976009769" duration="5295000" />
+      <workItem from="1701989827825" duration="463000" />
     </task>
     <task id="LOCAL-00001" summary="Made changes to UI and Printing">
       <option name="closed" value="true" />
