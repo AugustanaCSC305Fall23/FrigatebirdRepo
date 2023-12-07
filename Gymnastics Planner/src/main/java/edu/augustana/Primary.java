@@ -17,9 +17,9 @@ import static javafx.application.Application.launch;
 
 public class Primary  {
 
-
-    @FXML
-    private Tab allCardTab;
+//
+//    @FXML
+//    private Tab allCardTab;
 
     @FXML
     private Tab createPlan;
@@ -30,8 +30,6 @@ public class Primary  {
     @FXML
     private Tab addCards;
 
-    @FXML
-    private Tab exit;
 
 
 
@@ -61,11 +59,11 @@ public class Primary  {
     public void setTabControllers() throws IOException {
 
 
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("AllCards.fxml"));
-            AnchorPane pane = loader.load();
-            AllCardsController ac = loader.getController();
-            ac.buildCards();
-            allCardTab.setContent(pane);
+//            FXMLLoader loader = new FXMLLoader(getClass().getResource("AllCards.fxml"));
+//            AnchorPane pane = loader.load();
+//            AllCardsController ac = loader.getController();
+//            ac.buildCards();
+//            allCardTab.setContent(pane);
 
 
             FXMLLoader loader1 = new FXMLLoader(getClass().getResource("CreatePlan.fxml"));
@@ -87,21 +85,21 @@ public class Primary  {
             addCards.setContent(pane3);
 
 
-            FXMLLoader loader4 = new FXMLLoader(getClass().getResource("Exit.fxml"));
-            AnchorPane pane4 = loader4.load();
-            exit.setContent(pane4);
+//            FXMLLoader loader4 = new FXMLLoader(getClass().getResource("Exit.fxml"));
+//            AnchorPane pane4 = loader4.load();
+//            exit.setContent(pane4);
 
-         clickedOnTabs(ac,pc);
+         clickedOnTabs(pc);
 
     }
 
 
-    public void clickedOnTabs(AllCardsController ac , AllPlansController pc){
+    public void clickedOnTabs( AllPlansController pc){
 
-        allCardTab.setOnSelectionChanged(event -> {
-            ac.clearAllContent();
-            ac.buildCards();
-        });
+//        allCardTab.setOnSelectionChanged(event -> {
+//            ac.clearAllContent();
+//            ac.buildCards();
+//        });
 
         allPlans.setOnSelectionChanged(event -> {
                 pc.clearAllContent();

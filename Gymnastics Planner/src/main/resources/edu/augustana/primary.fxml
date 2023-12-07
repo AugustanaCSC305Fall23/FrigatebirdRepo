@@ -9,8 +9,6 @@
 
 <TabPane fx:id="GeneralTab" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1364.0" prefWidth="1898.0" style="-fx-background-color: #51A3B2;" tabClosingPolicy="UNAVAILABLE">
     <tabs>
-        <Tab fx:id="allCardTab" text="All Cards">
-        </Tab>
         <Tab fx:id="createPlan" text="Create Plan">
             <content>
             </content>
@@ -18,8 +16,6 @@
         <Tab fx:id="allPlans" text="All Plans">
         </Tab>
         <Tab fx:id="addCards" text="Add Cards">
-        </Tab>
-        <Tab fx:id="exit" text="Exit">
         </Tab>
     </tabs>
     <opaqueInsets>

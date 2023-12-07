@@ -66,7 +66,7 @@ public class CardListDB {
 
             //get csv from demopack
             for (File filesinDemoPack : singleDemoPack.listFiles()) {
-                if (filesinDemoPack.getName().endsWith(".csv")) ;
+                if (filesinDemoPack.getName().endsWith(".csv"))
                 demoPackCsvFile = filesinDemoPack.getAbsolutePath();
             }
 
