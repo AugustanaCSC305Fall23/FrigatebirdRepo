@@ -306,6 +306,7 @@ public class CreatePlanController {
 
     public void clearAllContent(){
         allCardContent.getChildren().clear();
+        selectCourse.getItems().clear();
         genderFilter.getItems().clear();
         modelFilter.getItems().clear();
         levelFilter.getItems().clear();
