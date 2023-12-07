@@ -360,6 +360,14 @@ public class CreatePlanController {
         equipmentFilter.getItems().add("All");
         equipmentFilter.getItems().addAll(cardListDB.getAllEquipmentName());
 
+        genderFilter.getSelectionModel().select(0);
+        modelFilter.getSelectionModel().select(0);
+
+        levelFilter.getSelectionModel().select(0);
+
+        equipmentFilter.getSelectionModel().select(0);
+
+
     }
 
     public void setActionForFilters(){
