@@ -30,7 +30,7 @@ public class App extends Application {
         Screen screen = Screen.getPrimary();
         Rectangle2D bounds = screen.getVisualBounds();
 
-        Scene scene = new Scene(root, 1298, bounds.getHeight()-50);
+        Scene scene = new Scene(root, 1398, bounds.getHeight()-50);
         stage.setScene(scene);
         stage.show();
 

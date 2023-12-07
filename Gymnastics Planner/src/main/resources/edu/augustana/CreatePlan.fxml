@@ -12,19 +12,19 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1034.0" prefWidth="1398.0" style="-fx-background-color: white; -fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
+<AnchorPane maxHeight="Infinity" maxWidth="Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="762.0" prefWidth="1398.0" style="-fx-background-color: white; -fx-background-color: #51A3B2;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="edu.augustana.CreatePlanController">
 
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="868.0" prefWidth="653.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="634.0" prefWidth="653.0">
         <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="868.0" prefWidth="652.0">
+            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="631.0" prefWidth="652.0">
                 <children>
                     <AnchorPane prefHeight="154.0" prefWidth="1045.0">
                         <children>
-                            <Label layoutX="24.0" layoutY="19.0" prefHeight="36.0" prefWidth="115.0" text="Plan Title:" textFill="WHITE">
+                            <Label layoutX="14.0" layoutY="27.0" prefHeight="36.0" prefWidth="115.0" text="Plan Title:" textFill="WHITE">
                         <font>
                            <Font size="22.0" />
                         </font></Label>
-                            <TextField fx:id="planTitle" layoutX="123.0" layoutY="23.0" prefHeight="40.0" prefWidth="356.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;">
+                            <TextField fx:id="planTitle" layoutX="112.0" layoutY="23.0" prefHeight="40.0" prefWidth="356.0" style="-fx-background-radius: 15px; -fx-background-color: #51A3B2;">
                         <font>
                            <Font size="20.0" />
                         </font></TextField>
@@ -33,23 +33,23 @@
                                     <Font size="31.0" />
                                 </font>
                             </Label>
-                            <Line endX="175.29031372070312" endY="7.62939453125E-6" layoutX="213.0" layoutY="62.0" startX="-100.0" stroke="WHITE" />
-                     <ComboBox fx:id="selectCourse" layoutX="31.0" layoutY="119.0" onAction="#onCourseSelected" prefWidth="150.0" />
-                     <Label layoutX="36.0" layoutY="82.0" prefHeight="27.0" prefWidth="144.0" text="Choose Course">
+                            <Line endX="266.0000305175781" endY="-3.814697265625E-6" layoutX="213.0" layoutY="62.0" startX="-100.0" stroke="WHITE" />
+                     <ComboBox fx:id="selectCourse" layoutX="21.0" layoutY="111.0" onAction="#onCourseSelected" prefWidth="150.0" style="-fx-background-radius: 50px;" />
+                     <Label layoutX="24.0" layoutY="76.0" prefHeight="27.0" prefWidth="144.0" text="Choose Course" textFill="WHITE">
                         <font>
                            <Font size="21.0" />
                         </font>
                      </Label>
-                            <Button layoutX="453.0" layoutY="92.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="55.0" prefWidth="167.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Create Plan" textFill="WHITE">
+                            <Button layoutX="458.0" layoutY="101.0" mnemonicParsing="false" onAction="#createPlan" prefHeight="44.0" prefWidth="133.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Create Plan" textFill="WHITE">
                         <font>
-                           <Font size="21.0" />
+                           <Font size="16.0" />
                         </font>
                      </Button>
                         </children>
                     </AnchorPane>
-               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="706.0" prefWidth="649.0">
+               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="482.0" prefWidth="649.0">
                   <content>
-                          <TilePane fx:id="selectedCardsView" prefHeight="702.0" prefWidth="645.0" />
+                          <TilePane fx:id="selectedCardsView" prefHeight="480.0" prefWidth="645.0" />
                   </content>
                </ScrollPane>
                 </children>
@@ -57,51 +57,62 @@
         </children></AnchorPane>
    <AnchorPane layoutX="653.0" layoutY="152.0" prefHeight="712.0" prefWidth="517.0">
       <children>
-         <VBox layoutX="7.0" layoutY="-2.0" prefHeight="736.0" prefWidth="707.0" style="-fx-background-color: #51A3B2;">
+         <VBox layoutX="7.0" layoutY="-2.0" prefHeight="400.0" prefWidth="708.0" style="-fx-background-color: #51A3B2;">
             <children>
                <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="83.0" prefWidth="708.0">
                   <children>
-                     <Button layoutX="551.0" layoutY="20.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="45.0" prefWidth="133.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Add Cards" textFill="WHITE">
+                     <Button layoutX="560.0" layoutY="15.0" mnemonicParsing="false" onAction="#addCardsToPlan" prefHeight="31.0" prefWidth="133.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Add Cards" textFill="WHITE">
                         <font>
                            <Font size="19.0" />
                         </font>
                      </Button>
-                     <ComboBox fx:id="genderFilter" layoutX="-1.0" layoutY="40.0" prefHeight="26.0" prefWidth="103.0" promptText="Gnder" />
-                     <ComboBox fx:id="modelFilter" layoutX="111.0" layoutY="39.0" prefHeight="26.0" prefWidth="103.0" promptText="Model" />
-                     <ComboBox fx:id="levelFilter" layoutX="218.0" layoutY="38.0" prefHeight="26.0" prefWidth="103.0" promptText="Level" />
-                     <ComboBox fx:id="equipmentFilter" layoutX="324.0" layoutY="38.0" prefHeight="26.0" prefWidth="115.0" promptText="Equipment" />
+                     <ComboBox fx:id="genderFilter" layoutX="-1.0" layoutY="40.0" prefHeight="26.0" prefWidth="103.0" promptText="Gender" style="-fx-background-radius: 50px; -fx-background-radius: 50px;" />
+                     <ComboBox fx:id="modelFilter" layoutX="111.0" layoutY="39.0" prefHeight="26.0" prefWidth="103.0" promptText="Model" style="-fx-background-radius: 50px; -fx-background-radius: 50px;" />
+                     <ComboBox fx:id="levelFilter" layoutX="218.0" layoutY="38.0" prefHeight="26.0" prefWidth="103.0" promptText="Level" style="-fx-background-radius: 50px; -fx-background-radius: 50px;" />
+                     <ComboBox fx:id="equipmentFilter" layoutX="324.0" layoutY="38.0" prefHeight="26.0" prefWidth="115.0" promptText="Equipment" style="-fx-background-radius: 50px; -fx-background-radius: 50px;" />
+                     <Label layoutX="31.0" layoutY="11.0" text="Gender" textFill="WHITE" />
+                     <Label layoutX="135.0" layoutY="11.0" text="Model" textFill="WHITE" />
+                     <Label layoutX="249.0" layoutY="10.0" text="Level" textFill="WHITE" />
+                     <Label layoutX="344.0" layoutY="11.0" text="Equipment" textFill="WHITE" />
                   </children>
                   <padding>
                      <Insets top="20.0" />
                   </padding>
                </AnchorPane>
-               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="621.0" prefWidth="696.0">
+               <ScrollPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="696.0">
                   <content>
-                     <TilePane fx:id="allCardContent" hgap="5.0" prefHeight="627.0" prefWidth="690.0" style="-fx-background-color: #99D0DA;" vgap="5.0" />
+                     <TilePane fx:id="allCardContent" hgap="5.0" prefHeight="398.0" prefWidth="690.0" style="-fx-background-color: #99D0DA;" vgap="5.0" />
                   </content>
                </ScrollPane>
             </children>
          </VBox>
       </children>
    </AnchorPane>
-          <Button fx:id="selectCards" layoutX="1200.0" layoutY="6.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="45.0" prefWidth="195.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Export Plan" textFill="WHITE">
+          <Button fx:id="selectCards" layoutX="1226.0" layoutY="14.0" mnemonicParsing="false" onAction="#savePlanAtAlternateLocation" prefHeight="28.0" prefWidth="133.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Export Plan" textFill="WHITE">
       <font>
-         <Font size="20.0" />
+         <Font size="19.0" />
       </font></Button>
-   <TextField fx:id="planNote" layoutX="228.0" layoutY="907.0" prefHeight="66.0" prefWidth="275.0" />
-   <Label layoutX="230.0" layoutY="865.0" prefHeight="35.0" prefWidth="145.0" text="Add Plan Note" textFill="WHITE">
+   <TextField fx:id="planNote" layoutX="228.0" layoutY="676.0" prefHeight="66.0" prefWidth="275.0" />
+   <Label layoutX="228.0" layoutY="641.0" prefHeight="35.0" prefWidth="145.0" text="Add Plan Note" textFill="WHITE">
       <font>
          <Font size="20.0" />
       </font>
    </Label>
-          <Button layoutX="5.0" layoutY="880.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="45.0" prefWidth="178.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete  Cards" textFill="WHITE">
+          <Button layoutX="57.0" layoutY="654.0" mnemonicParsing="false" onAction="#deleteSelectedCards" prefHeight="44.0" prefWidth="145.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-border-color: #5D3FD3; -fx-background-color: #51A3B2; -fx-border-width: 2px;" text="Delete Cards" textFill="WHITE">
       <font>
          <Font size="19.0" />
       </font>
    </Button>
-   <TextField fx:id="searchedWord" layoutX="734.0" layoutY="113.0" onAction="#searchButtonAction" prefHeight="26.0" prefWidth="314.0" />
-   <Label layoutX="741.0" layoutY="83.0" prefHeight="17.0" prefWidth="79.0" text="Search Word" />
-   <Button fx:id="searchButton" layoutX="1090.0" layoutY="113.0" mnemonicParsing="false" onAction="#searchButtonAction" text="Search" />
+   <TextField fx:id="searchedWord" layoutX="663.0" layoutY="113.0" onAction="#searchButtonAction" prefHeight="26.0" prefWidth="385.0" style="-fx-background-radius: 50px; -fx-background-radius: 50px; -fx-background-color: #51A3B2;" />
+   <Label layoutX="663.0" layoutY="85.0" prefHeight="28.0" prefWidth="115.0" text="Search Word" textFill="WHITE">
+      <font>
+         <Font size="18.0" />
+      </font></Label>
+   <Button fx:id="searchButton" layoutX="1058.0" layoutY="106.0" mnemonicParsing="false" onAction="#searchButtonAction" prefHeight="35.0" prefWidth="74.0" style="-fx-background-radius: 50px; -fx-border-radius: 50px; -fx-background-color: #51A3B2; -fx-border-color: #5D3FD3 #5D3FD3;" text="Search" textFill="WHITE">
+      <font>
+         <Font size="14.0" />
+      </font></Button>
+   <Line endX="266.0000305175781" endY="-3.814697265625E-6" layoutX="764.0" layoutY="139.0" startX="-100.0" stroke="WHITE" />
 
 
 

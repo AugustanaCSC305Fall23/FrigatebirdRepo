@@ -56,6 +56,29 @@ public class AllPlansController {
     private ListView<String> showPlans;
 
     @FXML
+    void showPlanInText() throws IOException {
+        if (showPlans.getSelectionModel().getSelectedItem() == null) {
+            Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
+            alert.show();
+        } else {
+            FXMLLoader loader = new FXMLLoader(AllCardsController.class.getResource("ShowPlan.fxml"));
+            Parent root = loader.load();
+            ShowPlanController controller = loader.getController();  // Initialize the controller
+
+            Screen screen = Screen.getPrimary();
+            Rectangle2D bounds = screen.getVisualBounds();
+
+
+            Scene scene = new Scene(root, 992, bounds.getHeight() - 25);
+            Stage showPlanStage = new Stage();
+            showPlanStage.setTitle("Show Plan");
+            showPlanStage.setScene(scene);
+            showPlanStage.show();
+            String segmentType = filterSelect.getSelectionModel().getSelectedItem();
+            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(), segmentType ,false ,"","text");
+        }
+    }
+    @FXML
     void showPlan() throws IOException {
         if (showPlans.getSelectionModel().getSelectedItem() == null) {
             Alert alert = new Alert(Alert.AlertType.WARNING, "Select a plan first");
@@ -167,11 +190,17 @@ public class AllPlansController {
                 alert.show();
             } else {
                 String planName = showPlans.getSelectionModel().getSelectedItem();
-                String[] planNameList = showPlans.getSelectionModel().getSelectedItem().split("/");
+                String folderSep = File.separator;
+                if (folderSep.equals("\\")) {
+                    folderSep = "\\\\";
+                }
+                String[] planNameList = showPlans.getSelectionModel().getSelectedItem().toString().split(folderSep);
 
                 FileTool fileTool = new FileTool();
                 String filePath = fileTool.getPlanFilePath(planName);
+                System.out.println(planNameList.length);
                 buildEditPlanStage(filePath, planNameList[1] , false , ""  );
+
             }
         }
 
@@ -196,10 +225,7 @@ public class AllPlansController {
                 } else {
 
                     try{
-
                         buildEditPlanStage(selectedPath, planName ,true , selectedPath );
-
-
                     }catch (Exception e){
 
                     }
@@ -257,7 +283,7 @@ public class AllPlansController {
                     showPlanStage.setScene(scene);
                     showPlanStage.show();
                     String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-                    controller.buildPlans(selectedFile.getName(), segmentType , true , selectedPath);
+                    controller.buildPlans("", segmentType , true , selectedPath);
                 }
 
             }else{
