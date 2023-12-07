@@ -5,9 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38610f98-fff6-4d98-8bac-2bcb8d713977" name="Changes" comment="&quot;Made changes to search functionality&quot;">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Primary.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/Primary.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/primary.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/primary.fxml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +82,7 @@
       <option name="presentableId" value="Default" />
       <updated>1701721957378</updated>
       <workItem from="1701721960709" duration="28921000" />
-      <workItem from="1701967248933" duration="996000" />
+      <workItem from="1701967248933" duration="1217000" />
     </task>
     <servers />
   </component>
