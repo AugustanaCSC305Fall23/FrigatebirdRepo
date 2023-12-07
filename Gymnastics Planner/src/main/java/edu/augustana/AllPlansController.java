@@ -42,17 +42,6 @@ public class AllPlansController {
     private String selectedCourse = "";
 
     @FXML
-    void initialize() {
-        filterSelect.getItems().addAll("none", "event", "category", "gender", "sex", "level"
-
-        );
-    }
-
-    @FXML
-    private ComboBox<String> filterSelect;
-
-
-    @FXML
     private ListView<String> showPlans;
 
     @FXML
@@ -74,8 +63,7 @@ public class AllPlansController {
             showPlanStage.setTitle("Show Plan");
             showPlanStage.setScene(scene);
             showPlanStage.show();
-            String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem(), segmentType ,false ,"");
+            controller.buildPlans(showPlans.getSelectionModel().getSelectedItem() ,false ,"");
         }
     }
 
@@ -256,8 +244,7 @@ public class AllPlansController {
                     showPlanStage.setTitle("Show Plan");
                     showPlanStage.setScene(scene);
                     showPlanStage.show();
-                    String segmentType = filterSelect.getSelectionModel().getSelectedItem();
-                    controller.buildPlans(selectedFile.getName(), segmentType , true , selectedPath);
+                    controller.buildPlans(selectedFile.getName() , true , selectedPath);
                 }
 
             }else{

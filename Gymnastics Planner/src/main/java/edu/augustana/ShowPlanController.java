@@ -57,13 +57,12 @@ private Label planNoteSection;
 
     }
 
-    public void buildPlans(String planName, String segmentType , Boolean diffLocation , String path) throws IOException {
+    public void buildPlans(String planName , Boolean diffLocation , String path) throws IOException {
 
         shortCodes = new ArrayList<>();
         cardsList = new ArrayList<>();
 
         FileTool fileTool = new FileTool();
-        System.out.println(segmentType);
         CardListDB dataBase = new CardListDB(false);
         allCards = dataBase.getAllCards();
         allPlansDir = fileTool.getPlansDirectory();
@@ -98,35 +97,24 @@ private Label planNoteSection;
             cardsList.add(getCard(code));
         }
         //write the logic to segment the cards into the segment type
-        if (segmentType == null || segmentType.equals("none")) {
-            dynamicCarAddingToView(cardsList);
-        } else {
-            switch (segmentType) {
-                case "event":
-                    while (cardsList.size() != 0) {
-                        Label eventLabel = new Label();
-                        eventLabel.setFont(new Font("Arial", 20));
-                        eventLabel.setAlignment(Pos.TOP_CENTER);
-                        eventLabel.setPrefWidth(500);
-                        eventLabel.setPrefHeight(60);
-                        eventLabel.setText(cardsList.get(0).getEvent());
-                        cardBox.getChildren().add(eventLabel);
-                        cardBox.setSpacing(30);
-                        segmentedCards = new ArrayList<>();
-                        String segment = cardsList.get(0).getEvent();
-                        for (int i = cardsList.size() - 1; i >= 0; i--) {
-                            if (cardsList.get(i).getEvent().equals(segment)) {
-                                segmentedCards.add(cardsList.get(i));
-                                cardsList.remove(i);
-                            }
-                        }
-                        System.out.println(segmentedCards.size());
-                        dynamicCarAddingToView(segmentedCards);
-                    }
-                    break;
+        Label eventLabel = new Label();
+        eventLabel.setFont(new Font("Arial", 20));
+        eventLabel.setAlignment(Pos.TOP_CENTER);
+        eventLabel.setPrefWidth(500);
+        eventLabel.setPrefHeight(60);
+        eventLabel.setText(cardsList.get(0).getEvent());
+        cardBox.getChildren().add(eventLabel);
+        cardBox.setSpacing(30);
+        segmentedCards = new ArrayList<>();
+        String segment = cardsList.get(0).getEvent();
+        for (int i = cardsList.size() - 1; i >= 0; i--) {
+            if (cardsList.get(i).getEvent().equals(segment)) {
+                segmentedCards.add(cardsList.get(i));
+                cardsList.remove(i);
             }
-            //write the logic to show the cards
         }
+        System.out.println(segmentedCards.size());
+        dynamicCarAddingToView(segmentedCards);
     }
 
 
