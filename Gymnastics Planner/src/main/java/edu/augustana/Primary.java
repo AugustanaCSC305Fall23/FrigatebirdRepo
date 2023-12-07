@@ -89,12 +89,12 @@ public class Primary  {
 //            AnchorPane pane4 = loader4.load();
 //            exit.setContent(pane4);
 
-         clickedOnTabs(pc);
+         clickedOnTabs(pc , cP);
 
     }
 
 
-    public void clickedOnTabs( AllPlansController pc){
+    public void clickedOnTabs( AllPlansController pc , CreatePlanController cp){
 
 //        allCardTab.setOnSelectionChanged(event -> {
 //            ac.clearAllContent();
@@ -104,7 +104,16 @@ public class Primary  {
         allPlans.setOnSelectionChanged(event -> {
                 pc.clearAllContent();
                 pc.buildPlans();
+        });
 
+        createPlan.setOnSelectionChanged(event -> {
+            cp.clearAllContent();
+            try {
+                cp.buildCards();
+                cp.setPromptText();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
         });
 
     }

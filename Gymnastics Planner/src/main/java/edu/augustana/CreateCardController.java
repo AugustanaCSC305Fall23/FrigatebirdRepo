@@ -18,7 +18,7 @@ import java.nio.file.attribute.BasicFileAttributes;
 import java.util.ArrayList;
 
 public class CreateCardController {
-    private String dataCsvPath = "DEMO1Pack/DEMO1.csv";
+    private String dataCsvPath = "AllPacks/";
 
     @FXML
     private TextField codeInput;
@@ -35,6 +35,9 @@ public class CreateCardController {
 
     @FXML
     private TextField imageName;
+
+    @FXML
+    private TextField thumbsName;
 
     @FXML
     private TextField levelInput;
@@ -61,18 +64,35 @@ public class CreateCardController {
     @FXML
     Button addCardButton;
 
+    @FXML
+    Button selectThumbsButton;
+
+    AddCard addCard = new AddCard(imageName);
 
 
 
-    AddCard addCard = new AddCard(imageName, dataCsvPath);
+
+
+    @FXML
+    private void selectThumbsButtonAction(){
+        String name =  addCard.selectImage("thumbs");
+        thumbsName.setText(name);
+
+    }
+
+
+
+
 
     @FXML
     void Select_Image_Action(){
-        Select_Image_Button.setOnAction(e -> {
-            addCard =  new AddCard(imageName, dataCsvPath);
-            addCard.selectImage();
-        });
+        String name =  addCard.selectImage("Images");
+        imageName.setText(name);
+
     }
+
+
+
     @FXML
     void doneOnAction(){
         String ID = codeInput.getText();
@@ -85,6 +105,9 @@ public class CreateCardController {
         String Sex = sexMale.isSelected() ? "M" : sexFemale.isSelected() ? "F" : "";
         String Keyword = keyword.getText();
         String Data = packFolder.getText();
+
+
+
         addCard.addCard(ID, Event, Category, Name, Equipment, Level, Gender, Sex, Keyword, Data);
         clear();
     }
@@ -103,6 +126,8 @@ public class CreateCardController {
         keyword.clear();
         packFolder.clear();
         imageName.clear();
+        thumbsName.clear();
+
     }
 
 

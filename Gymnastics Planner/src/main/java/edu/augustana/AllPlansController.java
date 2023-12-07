@@ -136,6 +136,7 @@ public class AllPlansController {
                 }
             }
 
+
         }
 
     public void buildPlansForCourse (String course) {

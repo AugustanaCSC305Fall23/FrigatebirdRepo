@@ -20,71 +20,91 @@ import javafx.stage.Stage;
 
 public class AddCard {
     private ArrayList<Card> allCards;
-    private TextField imageName;
     private String dataCsvPath;
 
-    public AddCard(TextField imageName,String dataCsvPath) {
-        this.imageName = imageName;
+    public AddCard(TextField imageName) {
         this.allCards = new CardListDB(true).getAllCards();
-        this.dataCsvPath = dataCsvPath;
     }
 
-    public void selectImage() {
+    private File imageFile;
+    private File thumbsFile;
+
+
+    public String selectImage(String imageName) {
         Stage primaryStage = new Stage();
-            primaryStage.setTitle("File Chooser Example");
-            FileChooser fileChooser = new FileChooser();
+        primaryStage.setTitle("File Chooser Example");
+        FileChooser fileChooser = new FileChooser();
 
-            // Set extension filter
-            FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files (*.png)", "*.png");
-            fileChooser.getExtensionFilters().add(extFilter);
+        // Set extension filter
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Image Files (*.png, *.jpg)", "*.png", "*.jpg");
+        fileChooser.getExtensionFilters().add(extFilter);
 
-            // Show open file dialog
-            File file = fileChooser.showOpenDialog(primaryStage);
-            if (file != null) {
-                imageName.setText(file.getName());
-                // Copy the selected file to a specified location
-                Path sourcePath = file.toPath();
-                Path destinationPath = Paths.get("DEMO1Pack/Images", file.getName()); // Specify the destination directory
-                try {
-                    Files.copy(sourcePath, destinationPath);
-                    System.out.println("File copied successfully to: " + destinationPath);
+        // Show open file dialog
+        File file = fileChooser.showOpenDialog(primaryStage);
+        if (file != null) {
+            if(imageName.equals("Images") && file.getName().endsWith(".png")){
 
-                    String newFileName = allCards.size() + 2 + ".png"; // Specify the new file name
-                    Path newFilePath = Paths.get("DEMO1Pack/Images", newFileName);
-                    Files.move(destinationPath, newFilePath);
-                    System.out.println("File renamed successfully to: " + newFilePath);
+                System.out.println("This is running images" + file.getName().endsWith(".png")+ " " + imageName);
+                imageFile = file;
+                return file.getName().toString();
 
+            }else if (imageName.equals("thumbs") && file.getName().endsWith(".jpg")){
+                System.out.println("This is running thumbs"+ file.getName().endsWith(".jpg") + " " + imageName);
+                thumbsFile = file;
+                return file.getName().toString();
 
-                } catch (Exception ex) {
-                    System.out.println("Error occurred while copying or renaming the file: " + ex.getMessage());
-                }
+            }else{
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setContentText("Wrong file type choosen. Choose 1 png file and one jpg file");
+                alert.show();
+                return null;
             }
+        }else{
+            return null;
+        }
+
+    }
+
+    public void copyImage(String demoPack , File file , String folder ){
+
+        // Copy the selected file to a specified location
+        Path sourcePath = file.toPath();
+        Path destinationPath = Paths.get("AllPacks/" , demoPack , "/" , folder, "/" , file.getName()); // Specify the destination directory
+
+        try {
+            Files.copy(sourcePath, destinationPath);
+            System.out.println("File copied successfully to: " + destinationPath);
+
+            // String newFileName = allCards.size() + 2 + ".png"; // Specify the new file name
+            // Path newFilePath = Paths.get("AllPacks/" , demoPack , "/" , folder , "/", newFileName);
+            // Files.move(destinationPath, newFilePath);
+            // System.out.println("File renamed successfully to: " + newFilePath);
+
+
+        } catch (Exception ex) {
+            System.out.println("Error occurred while copying or renaming the file: " + ex.getMessage());
+        }
+
+
     }
 
     public void addCard(String ID, String Event, String Category, String Name, String Equipment, String Level,
                         String Gender, String Sex, String Keyword, String packFolder) {
-        if(!ID.isEmpty() && !Event.isEmpty () && !Category.isEmpty() && !Name.isEmpty() && !Equipment.isEmpty() &&  !Level.isEmpty() && !Gender.isEmpty() && !Sex.isEmpty() && !Keyword.isEmpty() && !packFolder.isEmpty()){
+
+
+        if (!ID.isEmpty() && !Event.isEmpty() && !Category.isEmpty() && !Name.isEmpty() && !Equipment.isEmpty() && !Level.isEmpty() && !Gender.isEmpty() && !Sex.isEmpty() && !Keyword.isEmpty() && !packFolder.isEmpty()) {
             String csvLine = String.format("%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,\"%s\"",
-                    ID, Event, Category, Name, packFolder, (allCards.size() + 2) + ".png", Gender, Sex, Level, Equipment, Keyword);
+                    ID, Event, Category, Name, packFolder, imageFile.getName(), Gender, Sex, Level, Equipment, Keyword);
 
 
-            try (BufferedWriter writer = new BufferedWriter(new FileWriter(dataCsvPath, true))) {
-                writer.write(csvLine + "\n");
+            copyImage(packFolder, imageFile, "Images");
+            copyImage(packFolder, thumbsFile, "thumbs");
 
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setHeaderText(null);
-                alert.setContentText("Card Added!");
-                alert.showAndWait();
+            String path1 = "AllPacks/" + packFolder + "/" +packFolder+".csv";
+            writeFile(path1,csvLine);
 
 
-            } catch (IOException ex) {
-                Alert alert = new Alert(AlertType.INFORMATION);
-                alert.setTitle("Failed");
-                alert.setHeaderText(null);
-                alert.setContentText("Unable to Add Card.");
-                alert.showAndWait();
-            }
+
         }else{
             Alert alert = new Alert(AlertType.INFORMATION);
             alert.setTitle("Failed");
@@ -92,5 +112,29 @@ public class AddCard {
             alert.setContentText("Fill out all the fields!");
             alert.showAndWait();
         }
+    }
+
+
+    private void writeFile(String pathToWrite , String csvLine){
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(pathToWrite, true))) {
+            writer.write("\n"+ csvLine + "\n");
+
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Success");
+            alert.setHeaderText(null);
+            alert.setContentText("Card Added!");
+            alert.showAndWait();
+
+
+        } catch (IOException ex) {
+            Alert alert = new Alert(AlertType.INFORMATION);
+            alert.setTitle("Failed");
+            alert.setHeaderText(null);
+            alert.setContentText("Unable to Add Card.");
+            alert.showAndWait();
+        }
+
+
     }
 }

@@ -33,8 +33,6 @@ public class CreatePlanController {
     @FXML
     private TextField planNote;
 
-    @FXML
-    Button selectTheseCards;
 
     @FXML
     private TextField searchedWord;
@@ -42,10 +40,6 @@ public class CreatePlanController {
     @FXML
     Button searchButton;
 
-    @FXML
-    private CheckBox FemaleCheckBox;
-    @FXML
-    private CheckBox MaleCheckBox;
 
     @FXML
     private TilePane allCardContent;
@@ -301,13 +295,39 @@ public class CreatePlanController {
     }
 
     @FXML
-    private void searchButtonAction() {
+    public void searchButtonAction() {
 
         String searchText = searchedWord.getText().strip();
         allCardContent.getChildren().clear();
         dynamicCardAddingToView(handleSearch.textBoxSearch(searchText),false);
 
 
+    }
+
+    public void clearAllContent(){
+        allCardContent.getChildren().clear();
+        genderFilter.getItems().clear();
+        modelFilter.getItems().clear();
+        levelFilter.getItems().clear();
+        equipmentFilter.getItems().clear();
+
+    }
+
+    public void setPromptText() {
+        System.out.println("This is working");
+
+        // Assuming genderFilter, modelFilter, levelFilter, and equipmentFilter are objects of some filter class
+        genderFilter.setValue(null);  // Unselects the current value in genderFilter
+        genderFilter.setPromptText("Gender");
+
+        modelFilter.setValue(null);   // Unselects the current value in modelFilter
+        modelFilter.setPromptText("Model");
+
+        levelFilter.setValue(null);   // Unselects the current value in levelFilter
+        levelFilter.setPromptText("Level");
+
+        equipmentFilter.setValue(null);   // Unselects the current value in equipmentFilter
+        equipmentFilter.setPromptText("Equipment");
     }
 
 
