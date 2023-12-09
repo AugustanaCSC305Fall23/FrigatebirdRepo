@@ -6,8 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="38610f98-fff6-4d98-8bac-2bcb8d713977" name="Changes" comment="Made changes to UI and Printing">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Unassigned Course/Biggest Plan_Plan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/AllPlans/Unassigned Course/Biggest Plan_Plan.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/AllPlans/Unassigned Course/fgyjk_Plan.csv" beforeDir="false" afterPath="$PROJECT_DIR$/AllPlans/Unassigned Course/fgyjk_Plan.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/CreatePlan.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/resources/edu/augustana/CreatePlan.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

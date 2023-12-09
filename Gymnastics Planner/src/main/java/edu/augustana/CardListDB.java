@@ -81,12 +81,7 @@ public class CardListDB {
         //Reads the csv file
             FileReader csvFile = new FileReader(demoPackCsvFile);
             BufferedReader reader = new BufferedReader(csvFile);
-            String line = null;
-            line = reader.readLine();
-//            if (forPlans) {
-//                line = reader.readLine();
-//            }
-
+            String line = reader.readLine();
             //creates new cards for all csv files data
             while (line != null) {
                 String[] splittedLine = line.split(",(?=(?:[^\"]*\"[^\"]*\")*[^\"]*$)");
