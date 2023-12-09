@@ -34,7 +34,7 @@
                      </Label>
                      <ComboBox fx:id="selectCourse" layoutX="17.0" layoutY="95.0" onAction="#onCourseSelected" prefWidth="150.0" promptText="Change Plan Course" />
                      <TextField fx:id="programNoteArea" layoutX="213.0" layoutY="96.0" />
-                     <Label layoutX="213.0" layoutY="38.0" prefHeight="17.0" prefWidth="118.0" text="Program Note:" />
+                     <Label layoutX="293.0" layoutY="38.0" prefHeight="17.0" prefWidth="118.0" text="Program Note:" />
                         </children>
                     </AnchorPane>
                     <TilePane fx:id="selectedCardsView" prefHeight="725.0" prefWidth="605.0" />

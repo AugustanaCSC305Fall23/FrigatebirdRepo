@@ -77,15 +77,15 @@ public class CardListDB {
 
     private void buildCardsObjectListForDirectPathsGiven(Boolean forPlans) throws IOException {
 
+        int i = 0;
         //Reads the csv file
             FileReader csvFile = new FileReader(demoPackCsvFile);
             BufferedReader reader = new BufferedReader(csvFile);
             String line = null;
             line = reader.readLine();
-            line = reader.readLine();
-            if (forPlans) {
-                line = reader.readLine();
-            }
+//            if (forPlans) {
+//                line = reader.readLine();
+//            }
 
             //creates new cards for all csv files data
             while (line != null) {
@@ -100,6 +100,8 @@ public class CardListDB {
                         favoriteCards.add(newCard);
                     }
                 }
+                i++;
+                System.out.println(i);
                 line = reader.readLine();
 
             }
