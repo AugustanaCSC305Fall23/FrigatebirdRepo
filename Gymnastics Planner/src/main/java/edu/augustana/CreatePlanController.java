@@ -370,15 +370,19 @@ public class CreatePlanController {
         System.out.println("Selection model for filter gender: " + genderFilter.getSelectionModel().getSelectedItem().toString());
     }
 
-    public void setActionForFilters(){
-        System.out.println("Selection model for filter gender: " + genderFilter.getSelectionModel().getSelectedItem().toString());
+    public void setActionForFilters() {
+        String selectedGender = getStringValue(genderFilter);
+        System.out.println("Selection model for filter gender: " + selectedGender);
 
-        genderFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterGender(genderFilter.getSelectionModel().getSelectedItem().toString()), false));
-        modelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterModel(modelFilter.getSelectionModel().getSelectedItem().toString()), false));
-        levelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filteredLevel(levelFilter.getSelectionModel().getSelectedItem().toString()), false));
-        equipmentFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterByEquipment(equipmentFilter.getSelectionModel().getSelectedItem().toString()), false));
+        genderFilter.setOnAction(e -> dynamicCardAddingToView(handleSearch.filterGender(getStringValue(genderFilter)), false));
+        modelFilter.setOnAction(e -> dynamicCardAddingToView(handleSearch.filterModel(getStringValue(modelFilter)), false));
+        levelFilter.setOnAction(e -> dynamicCardAddingToView(handleSearch.filteredLevel(getStringValue(levelFilter)), false));
+        equipmentFilter.setOnAction(e -> dynamicCardAddingToView(handleSearch.filterByEquipment(getStringValue(equipmentFilter)), false));
+    }
 
-
+    private String getStringValue(ComboBox<String> comboBox) {
+        String selectedValue = comboBox.getSelectionModel().getSelectedItem();
+        return (selectedValue != null) ? selectedValue.toString() : "All";
     }
 
 

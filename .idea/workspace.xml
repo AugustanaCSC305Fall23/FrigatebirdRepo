@@ -5,15 +5,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="38610f98-fff6-4d98-8bac-2bcb8d713977" name="Changes" comment="Made changes to UI and Printing">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/Images/Anu.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/Images/Hello.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/Images/Test2.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/thumbs/Anu.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/thumbs/Hello.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/AllPacks/Demo2/thumbs/Test2.jpg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CardListDB.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CreateCardController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CreateCardController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CreatePlanController.java" beforeDir="false" afterPath="$PROJECT_DIR$/Gymnastics Planner/src/main/java/edu/augustana/CreatePlanController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +86,7 @@
       <workItem from="1701976009769" duration="5295000" />
       <workItem from="1701989827825" duration="812000" />
       <workItem from="1702258887991" duration="3455000" />
-      <workItem from="1702262890092" duration="1398000" />
+      <workItem from="1702262890092" duration="1736000" />
     </task>
     <task id="LOCAL-00001" summary="Made changes to UI and Printing">
       <option name="closed" value="true" />
