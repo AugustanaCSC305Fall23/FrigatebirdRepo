@@ -262,7 +262,7 @@ public class EditPlanController {
             plansDB.overrideOrCreateNewPlan(selectedCourse + "/" + officialPlanTitle + "_Plan.csv", false , note) ;
 
         }
-        Boolean wantToChange = prompt("Sucessfully Made the change! \n Do you want to make more changes? ", false);
+        Boolean wantToChange = prompt("Sucessfully Made the change! ", false);
 
 
         Stage stage = (Stage) planTitle.getScene().getWindow();

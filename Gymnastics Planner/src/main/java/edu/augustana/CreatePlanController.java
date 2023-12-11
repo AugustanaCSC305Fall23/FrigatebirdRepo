@@ -92,6 +92,7 @@ public class CreatePlanController {
                     plansDB.overrideOrCreateNewPlan(planTitleName, planNoteInfo, true, selectedCourse);
                     prompt("Successfully created the plan!", false);
                     planTitle.clear();
+                    planNote.clear();
                     selectedCardsView.getChildren().clear();
                 }
             }
