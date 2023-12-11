@@ -145,44 +145,61 @@ public class CreateCardController {
         boolean thumbsDirFound = false;
         boolean csvFileFound = false;
 
-        File[] allFiles = selectedDirectory.listFiles();
+        if(selectedDirectory != null) {
 
-        int count = 0;
+            File[] allFiles = selectedDirectory.listFiles();
 
-        // Iterate through allFiles
-        for (File file : allFiles) {
-            if (count < 3) {
-                if (file.isDirectory() && file.getName().equals("Images")) {
-                    imagesDirFound = true;
-                } else if (file.isDirectory() && file.getName().equals("thumbs")) {
-                    thumbsDirFound = true;
-                } else if (file.isFile() && file.getName().endsWith(".csv")) {
-                    csvFileFound = true;
+            int count = 0;
+
+            // Iterate through allFiles
+
+            for (File file : allFiles) {
+                System.out.println(file.getName());
+
+                if (count < 3) {
+                    if (file.isDirectory() && file.getName().toLowerCase().equals("images")) {
+
+                        imagesDirFound = true;
+                    } else if (file.isDirectory() && file.getName().toLowerCase().equals("thumbs")) {
+                        thumbsDirFound = true;
+                    } else if (file.isFile() && file.getName().endsWith(".csv")) {
+                        csvFileFound = true;
+                    }
+                    if(!file.getName().equals(".DS_Store")) {
+                        count++;
+                    }
+                } else {
+                    break;
                 }
+            }
+
+            String destinationPath = "AllPacks/" + selectedDirectory.getName();
+            String fileFromWhere = selectedDirectory.getAbsolutePath();
+
+            if (imagesDirFound && thumbsDirFound && csvFileFound && count == 3) {
+
+
+                Path sourcePath = Paths.get(fileFromWhere);
+                Path targetPath = Paths.get(destinationPath);
+
+                try {
+                    copyDirectory(sourcePath, targetPath);
+                    Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                    alert.setContentText("Demo Pack Added");
+                    alert.show();
+                    System.out.println("Directory copied successfully!");
+                } catch (IOException e) {
+                    System.err.println("Error copying directory: " + e.getMessage());
+                }
+
             } else {
-                break;
+
+                System.out.println(imagesDirFound + " " + thumbsDirFound + " " + csvFileFound + " " + count);
+
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setContentText("Directory type not matched.");
+                alert.show();
             }
-        }
-
-        String destinationPath = "AllPacks/"+selectedDirectory.getName();
-        String fileFromWhere = selectedDirectory.getAbsolutePath();
-
-        if (imagesDirFound && thumbsDirFound && csvFileFound && count == 2) {
-            Path sourcePath = Paths.get(fileFromWhere);
-            Path targetPath = Paths.get(destinationPath);
-
-            try {
-                copyDirectory(sourcePath, targetPath);
-                System.out.println("Directory copied successfully!");
-            } catch (IOException e) {
-                System.err.println("Error copying directory: " + e.getMessage());
-            }
-
-        }else{
-
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
-            alert.setContentText("Directory type not matched.");
-            alert.show();
         }
     }
 

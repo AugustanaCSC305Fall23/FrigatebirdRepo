@@ -9,7 +9,6 @@ public class CardListDB {
 
 
     private  ArrayList<Card> allCards = new ArrayList<>();
-    private ArrayList<CheckBox> allCheckBoxes;
     private String dataCsvPath = "AllPacks";
     private ArrayList<Card> allCardsExceptfavorites  = new ArrayList<>();
     private ArrayList<Card> favoriteCards = new ArrayList<>();
@@ -60,18 +59,22 @@ public class CardListDB {
         File dirAllPacks = new File(dataCsvPath);
         File[] demoPacks = dirAllPacks.listFiles();
 
+        System.out.println("All of the demo packs: " + demoPacks.length);
+
         for (File singleDemoPack : demoPacks) {
 
-            System.out.println(singleDemoPack.getName());
+            System.out.println("The name of tha plan: " + singleDemoPack.getName());
 
-            //get csv from demopack
-            for (File filesinDemoPack : singleDemoPack.listFiles()) {
-                if (filesinDemoPack.getName().endsWith(".csv"))
-                demoPackCsvFile = filesinDemoPack.getAbsolutePath();
+            if (!singleDemoPack.getName().equals(".DS_Store")) {
+                //get csv from demopack
+                for (File filesinDemoPack : singleDemoPack.listFiles()) {
+                    if (filesinDemoPack.getName().endsWith(".csv"))
+                        demoPackCsvFile = filesinDemoPack.getAbsolutePath();
+                }
+
+                buildCardsObjectListForDirectPathsGiven(forPlans);
+
             }
-
-            buildCardsObjectListForDirectPathsGiven(forPlans);
-
         }
     }
 

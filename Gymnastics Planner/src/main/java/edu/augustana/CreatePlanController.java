@@ -361,17 +361,17 @@ public class CreatePlanController {
         equipmentFilter.getItems().add("All");
         equipmentFilter.getItems().addAll(cardListDB.getAllEquipmentName());
 
-        genderFilter.getSelectionModel().select(0);
-        modelFilter.getSelectionModel().select(0);
-
-        levelFilter.getSelectionModel().select(0);
-
-        equipmentFilter.getSelectionModel().select(0);
+        genderFilter.getSelectionModel().select("All");
+        modelFilter.getSelectionModel().select("All");
+        levelFilter.getSelectionModel().select("All");
+        equipmentFilter.getSelectionModel().select("All");
 
 
+        System.out.println("Selection model for filter gender: " + genderFilter.getSelectionModel().getSelectedItem().toString());
     }
 
     public void setActionForFilters(){
+        System.out.println("Selection model for filter gender: " + genderFilter.getSelectionModel().getSelectedItem().toString());
 
         genderFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterGender(genderFilter.getSelectionModel().getSelectedItem().toString()), false));
         modelFilter.setOnAction(e->dynamicCardAddingToView(handleSearch.filterModel(modelFilter.getSelectionModel().getSelectedItem().toString()), false));
